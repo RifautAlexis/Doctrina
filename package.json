@@ -1,0 +1,25 @@
+{
+  "name": "doctrina",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd api-server && npm run start:dev",
+    "client": "cd client && npm run start:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RifautAlexis/Doctrina.git"
+  },
+  "author": "Rifaut Alexis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RifautAlexis/Doctrina/issues"
+  },
+  "homepage": "https://github.com/RifautAlexis/Doctrina#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
