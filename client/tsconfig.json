@@ -5,6 +5,7 @@
   To learn more about this file see: https://angular.io/config/solution-tsconfig.
 */
 {
+  "extends": "../tsconfig.json",
   "files": [],
   "references": [
     {
@@ -13,5 +14,11 @@
     {
       "path": "./tsconfig.spec.json"
     }
-]
+  ],
+  "compilerOptions": {
+  },
+  "angularCompilerOptions": {
+    "strictInjectionParameters": true,
+    "strictTemplates": true
+  }
 }
