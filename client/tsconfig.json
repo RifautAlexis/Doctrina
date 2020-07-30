@@ -16,6 +16,7 @@
     }
   ],
   "compilerOptions": {
+    "experimentalDecorators": true
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
