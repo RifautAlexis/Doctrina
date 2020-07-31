@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FrameLayoutComponent } from './layout/frame/frame-layout.component';
@@ -7,7 +8,8 @@ import { ShareModule } from '@share/share.module';
   declarations: [FrameLayoutComponent],
   imports: [
     CommonModule,
-    ShareModule
+    ShareModule,
+    RouterModule,
   ],
   exports: [FrameLayoutComponent]
 })
