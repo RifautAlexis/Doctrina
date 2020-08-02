@@ -1,6 +1,7 @@
-import { tagSchema } from './schema/tag.schema';
-import { articleSchema } from './schema/article.schema';
-import { userSchema } from './schema/user.schema';
+import { USER_MODEL, ARTICLE_MODEL, TAG_MODEL, TAG_COLLECTION, ARTICLE_COLLECTION, USER_COLLECTION } from './data.constants';
+import { TagSchema } from './model/tag';
+import { ArticleSchema } from './model/article';
+import { UserSchema } from './model/user';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose'
 import { MongooseConfig } from './mongoose.config'
@@ -12,19 +13,19 @@ import { MongooseConfig } from './mongoose.config'
         }),
         MongooseModule.forFeature([
             {
-                name: 'User',
-                schema: userSchema,
-                collection: 'users'
+                name: USER_MODEL,
+                schema: UserSchema,
+                collection: USER_COLLECTION
             },
             {
-                name: 'Article',
-                schema: articleSchema,
-                collection: 'articles'
+                name: ARTICLE_MODEL,
+                schema: ArticleSchema,
+                collection: ARTICLE_COLLECTION
             },
             {
-                name: 'Tag',
-                schema: tagSchema,
-                collection: 'tags'
+                name: TAG_MODEL,
+                schema: TagSchema,
+                collection: TAG_COLLECTION
             },
         ])
     ],
