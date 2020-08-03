@@ -1,9 +1,9 @@
 import { connect, disconnect, Model, model } from 'mongoose';
 import { USER_MODEL, USER_COLLECTION, ARTICLE_MODEL, ARTICLE_COLLECTION, TAG_MODEL, TAG_COLLECTION } from './data.constants';
-import { TagSchema, tagModel } from './model/tag';
-import { ArticleSchema, articleModel } from './model/article';
+import { TagSchema, tagModel, ITagDocument } from './model/tag';
+import { ArticleSchema, articleModel, IArticleDocument } from './model/article';
 import { UserSchema, userModel } from './model/user';
-import { tagsToSeed } from './data-seed';
+import { articlesToSeed, tagsToSeed, usersToSeed } from './data-seed';
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -17,10 +17,20 @@ const uri: string = process.env.DATABASE_URI as string;
     await articleModel.collection.deleteMany({});
     
     await Promise.all([
-        tagModel.create(tagsToSeed)
+        tagModel.create(tagsToSeed),
+        userModel.create(usersToSeed)
     ])
-    .then(([tags]) => {
-        // const 
+    .then(([tags, users]) => {
+        const articlesToAdd: Array<IArticleDocument> = articlesToSeed.map(article => {
+            article.authorIds = users[0]._id;
+            const sampleTags: ITagDocument[] = tags
+                .map(x => ({ x, r: Math.random() }))
+                .sort((a, b) => a.r - b.r)
+                .map(a => a.x)
+                .slice(0, 3);
+            article.tagIds = sampleTags.map(tag => tag._id); 
+        });
+        articleModel.create(articlesToAdd)
     });
 
     await disconnect();

@@ -1,5 +1,6 @@
 import { Model, Schema, Document, model } from 'mongoose';
 import { ARTICLE_MODEL, ARTICLE_COLLECTION } from '../data.constants';
+import { ITagDocument } from './tag';
 import { IUserDocument } from './user';
 
 export const ArticleSchema = new Schema(
@@ -34,7 +35,7 @@ export interface IArticleDocument extends Document {
     authorsId: IUserDocument['_id'];
     title: String;
     content: String;
-    tagIds: [String];
+    tagIds: ITagDocument['_id'];
     createdAt: Date;
     updatedAt: Date;
 };

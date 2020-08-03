@@ -1,8 +1,13 @@
 import { Model, Schema, Document, model } from 'mongoose';
 import { USER_MODEL, USER_COLLECTION } from '../data.constants';
+import { IArticleDocument } from './article';
 
 export const UserSchema = new Schema(
     {
+        username: {
+            type: String,
+            required: true
+        },
         articleIds: {
             type: [String],
             required: false
@@ -17,7 +22,7 @@ export const UserSchema = new Schema(
 )
 
 export interface IUserDocument extends Document {
-    articleIds: String;
+    articleIds: IArticleDocument['_id'];
 };
 
 export const userModel: Model<IUserDocument> = model<IUserDocument>(
