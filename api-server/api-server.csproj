@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>api_server</RootNamespace>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Contract\" />
+    <Folder Include="Data\" />
+    <Folder Include="Data\Mappings\" />
+    <Folder Include="Data\Models\" />
+    <Folder Include="Contract\DTOs\" />
+    <Folder Include="Contract\Mappers\" />
+    <Folder Include="Contract\Requests\" />
+    <Folder Include="Contract\Validators\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Handlers\Authentication\" />
+    <Folder Include="Contract\Validators\Authentication\" />
+    <Folder Include="Contract\Responses\" />
+    <Folder Include="Presentation\" />
+    <Folder Include="Presentation\Controllers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.6" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="9.1.1" />
+  </ItemGroup>
+</Project>
