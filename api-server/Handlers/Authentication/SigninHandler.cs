@@ -1,0 +1,45 @@
+﻿using System.Linq;
+using System.Threading.Tasks;
+using api_server.Contract.Requests;
+using api_server.Data;
+using api_server.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using api_server.Contract.Mappers;
+using System.Text;
+using api_server.Contract.Responses;
+using System;
+
+namespace api_server.Handlers
+{
+    public class SigninHandler : IHandler<SigninRequest, AuthenticationResponse>
+    {
+        private readonly ApplicationDBContext _appDBContext;
+        private readonly IConfiguration _appSettings;
+
+        public SigninHandler(ApplicationDBContext appDBContext, IConfiguration config)
+        {
+            _appDBContext = appDBContext;
+            _appSettings = config;
+        }
+
+        public async Task<AuthenticationResponse> Handle(SigninRequest request)
+        {
+
+            (string email, string password) = request.SigninDTO;
+
+            User user = await _appDBContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
+
+            if (user == null) { throw new ArgumentException("No user was found for this email"); }
+
+            if (!user.VerifyPassword(password)) { throw new ArgumentException("Wrong password"); }
+
+            var secretKey = Encoding.ASCII.GetBytes(_appSettings.GetSection("Settings:Secret").Value);
+            var token = user.CreateToken(secretKey);
+
+            await _appDBContext.SaveChangesAsync();
+
+            return new AuthenticationResponse { User = user.ToDTO(), Token = token };
+        }
+    }
+}
