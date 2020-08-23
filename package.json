@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd api-server && npm run start:dev",
+    "server": "cd api-server && dotnet watch run",
     "client": "cd client && npm run start:dev",
     "build:server": " cd api-server && npm run build:prod",
     "build:client": " cd client && npm run build:prod"

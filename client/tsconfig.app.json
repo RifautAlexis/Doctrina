@@ -6,8 +6,8 @@
     "types": [],
     "baseUrl": "./",
     "paths": {
-      "@share/*": [
-        "src/app/share/*"
+      "@shared/*": [
+        "src/app/shared/*"
       ],
       "@core/*": [
         "src/app/core/*"

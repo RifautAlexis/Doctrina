@@ -7,19 +7,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArchiveModule } from './feature/archive/archive.module';
 import { ArticleModule } from './feature/article/article.module';
 import { HomeModule } from './feature/home/home.module';
+import { AdminModule } from './feature/admin/admin.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
     ArchiveModule,
     ArticleModule,
-    HomeModule
+    HomeModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
