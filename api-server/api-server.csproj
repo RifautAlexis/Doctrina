@@ -21,6 +21,8 @@
     <Folder Include="Contract\Responses\" />
     <Folder Include="Presentation\" />
     <Folder Include="Presentation\Controllers\" />
+    <Folder Include="Contract\Exceptions\" />
+    <Folder Include="Presentation\Middleware\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />

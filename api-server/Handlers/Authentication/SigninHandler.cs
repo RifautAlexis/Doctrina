@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using api_server.Contract.Mappers;
 using System.Text;
 using api_server.Contract.Responses;
-using System;
+using api_server.Contract.Exceptions;
 
 namespace api_server.Handlers
 {
@@ -30,9 +30,9 @@ namespace api_server.Handlers
 
             User user = await _appDBContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
 
-            if (user == null) { throw new ArgumentException("No user was found for this email"); }
+            if (user == null) { throw new ErrorException("No user was found for this email"); } //return new ErrorResponse("No user was found for this email"); };
 
-            if (!user.VerifyPassword(password)) { throw new ArgumentException("Wrong password"); }
+            if (!user.VerifyPassword(password)) { throw new ErrorException("Wrong password"); }
 
             var secretKey = Encoding.ASCII.GetBytes(_appSettings.GetSection("Settings:Secret").Value);
             var token = user.CreateToken(secretKey);
@@ -40,6 +40,7 @@ namespace api_server.Handlers
             await _appDBContext.SaveChangesAsync();
 
             return new AuthenticationResponse { User = user.ToDTO(), Token = token };
+            //return new OkResponse(new AuthenticationResponse { User = user.ToDTO(), Token = token });
         }
     }
 }

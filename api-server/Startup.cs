@@ -8,10 +8,11 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using FluentValidation.AspNetCore;
+using api_server.Presentation.Middleware;
 using api_server.Contract.Requests;
-using api_server.Handlers;
 using api_server.Contract.Responses;
-using api_server.Presentation;
+using api_server.Handlers;
+using Microsoft.Extensions.Hosting;
 
 namespace api_server
 {
@@ -27,6 +28,7 @@ namespace api_server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddScoped<
                 IHandler<SigninRequest, AuthenticationResponse>,
                 SigninHandler>();
@@ -40,6 +42,8 @@ namespace api_server
             services.AddDbContext<ApplicationDBContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
                 options => options.EnableRetryOnFailure()
             ));
+
+            services.AddCors();
 
             // configure jwt authentication
             var secret = Configuration.GetSection("Settings:Secret").Value;
@@ -69,10 +73,10 @@ namespace api_server
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseMiddleware<ExceptionMiddleware>();
 

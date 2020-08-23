@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using api_server.Contract.Exceptions;
 
-namespace api_server.Presentation
+namespace api_server.Presentation.Middleware
 {
     public class ExceptionMiddleware
     {
@@ -28,25 +29,18 @@ namespace api_server.Presentation
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, Exception exception)
+        public async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = (int)GetErrorCode(exception); //(int)HttpStatusCode.InternalServerError;
-
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(new
+            if (exception is ErrorException)
             {
-                context.Response.StatusCode,
-                exception.Message
-            })); ;
-        }
+                httpContext.Response.ContentType = "application/json";
+                httpContext.Response.StatusCode = 400;
 
-        private static HttpStatusCode GetErrorCode(Exception e)
-        {
-            return e switch
-            {
-                ArgumentException _ => HttpStatusCode.BadRequest,
-                _ => HttpStatusCode.InternalServerError,
-            };
+                var result = JsonConvert.SerializeObject(new { statusCode = httpContext.Response.StatusCode, message = exception.Message });
+                await httpContext.Response.WriteAsync(result);
+            }
+
+            return;
         }
     }
 
