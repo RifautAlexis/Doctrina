@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace api_server.Data.Mapping
 {
-    public class TagsAttributedMap
+    public class TagAttributedMap
     {
 
-        public TagsAttributedMap(EntityTypeBuilder<TagsAttributed> entityBuilder)
+        public TagAttributedMap(EntityTypeBuilder<TagAttributed> entityBuilder)
         {
             entityBuilder.HasKey(t => t.Id);
 

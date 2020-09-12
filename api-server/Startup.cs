@@ -32,6 +32,21 @@ namespace api_server
             services.AddScoped<
                 IHandler<SigninRequest, AuthenticationResponse>,
                 SigninHandler>();
+            services.AddScoped<
+                IHandler<SearchArticlesRequest, ArticlesResponse>,
+                GetArticlesHandler>();
+            services.AddScoped<
+                IHandler<GetArticleByIdRequest, ArticleResponse>,
+                GetArticleByIdHandler>();
+            services.AddScoped<
+                IHandler<GetAllArticleRequest, ArticlesResponse>,
+                GetAllArticleHandler>();
+            services.AddScoped<
+                IHandler<IsUniqueTitleRequest, BooleanResponse>,
+                IsUniqueTitleHandler>();
+            services.AddScoped<
+                IHandler<CreateArticleRequest, IdResponse>,
+                CreateArticleHandler>();
 
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options => options.SuppressInferBindingSourcesForParameters = true)

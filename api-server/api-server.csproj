@@ -23,6 +23,16 @@
     <Folder Include="Presentation\Controllers\" />
     <Folder Include="Contract\Exceptions\" />
     <Folder Include="Presentation\Middleware\" />
+    <Folder Include="Handlers\Article\" />
+    <Folder Include="Contract\Responses\Article\" />
+    <Folder Include="Contract\Responses\Authentication\" />
+    <Folder Include="Contract\Requests\Article\" />
+    <Folder Include="Contract\Requests\Authentication\" />
+    <Folder Include="Contract\DTOs\Authentication\" />
+    <Folder Include="Contract\DTOs\User\" />
+    <Folder Include="Contract\DTOs\Tag\" />
+    <Folder Include="Contract\Validators\Articles\" />
+    <Folder Include="Contract\DTOs\Article\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />

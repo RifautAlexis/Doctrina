@@ -1,6 +1,6 @@
 ﻿namespace api_server.Data.Models
 {
-    public class TagsAttributed : BaseEntity
+    public class TagAttributed : BaseEntity
     {
         public virtual Tag Tag { get; set; }
         public virtual Article Article { get; set; }

@@ -6,11 +6,12 @@ namespace api_server.Data.Models
     {
         public string Title { get; set; }
         public string Content { get; set; }
+        public string Description { get; set; }
 
         /*****/
 
         public virtual User Author { get; set; }
-        public virtual ICollection<TagsAttributed> Tags { get; set; }
+        public virtual ICollection<TagAttributed> Tags { get; set; }
 
         /*****/
 

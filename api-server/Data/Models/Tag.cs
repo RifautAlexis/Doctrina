@@ -8,6 +8,6 @@ namespace api_server.Data.Models
 
         /*****/
 
-        public virtual ICollection<TagsAttributed> TagsAttributed { get; set; }
+        public virtual ICollection<TagAttributed> TagsAttributed { get; set; }
     }
 }
