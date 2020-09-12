@@ -1,8 +1,0 @@
-<ng-container *ngIf="(article$ | async) as article; else loadingBlock">
-    <h1>{{article.title}}</h1>
-    <p>{{article.content}}</p>
-</ng-container>
-
-<ng-template #loadingBlock>
-    <loading-indicator></loading-indicator>
-</ng-template>
