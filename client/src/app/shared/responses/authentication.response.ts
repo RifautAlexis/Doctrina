@@ -1,6 +1,6 @@
 import { IUser } from "../models/user.model";
 
-export interface IAuthentication {
+export interface IAuthenticationResponse {
     user: IUser;
     token: string;
 }

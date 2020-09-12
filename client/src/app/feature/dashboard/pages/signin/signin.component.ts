@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EmailValidator, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '@core/services/authentication.service';
-import { IAuthentication } from '@shared/responses/authentication.response';
-import { IResponse } from '@shared/responses/response';
+import { Role } from '@shared/enum';
+import { IAuthentication } from '@shared/models/authentication.model';
 
 @Component({
   selector: 'app-signin',
@@ -16,7 +16,8 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,11 +29,16 @@ export class SigninComponent implements OnInit {
   }
 
   public submitForm() {
-    const {email, password} = this.adminForm.value as ITest;
+    const { email, password } = this.adminForm.value as ITest;
 
     this.authenticationService.signin(email, password).subscribe(
       (response: IAuthentication) => {
-          console.log("RESPONSE", response);
+
+        localStorage.setItem('currentToken', response.token);
+
+        const role: Role = this.authenticationService.getCurrentUserRole();
+        this.router.navigate(['dashboard']);
+        console.log("RESPONSE", response);
       },
       (error: any) => {
         console.log("LOLOLOLOL", error);

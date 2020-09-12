@@ -7,8 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ArchiveModule } from './feature/archive/archive.module';
 import { ArticleModule } from './feature/article/article.module';
 import { HomeModule } from './feature/home/home.module';
-import { AdminModule } from './feature/admin/admin.module';
+import { DashboardModule } from './feature/dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -20,10 +21,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
+    MarkdownModule.forRoot(),
     ArchiveModule,
     ArticleModule,
     HomeModule,
-    AdminModule
+    DashboardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

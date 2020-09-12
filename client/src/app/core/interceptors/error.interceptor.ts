@@ -5,13 +5,10 @@ import {
     HttpInterceptor,
     HttpHandler,
     HttpRequest,
-    HttpErrorResponse,
-    HttpResponse, HttpEventType
+    HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-import { IResponse } from '@shared/responses/response';
-import { empty, of } from "rxjs";
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Snackbar } from '@shared/components/snackbar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { MaterialUiModule } from './material-ui/material-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Snackbar } from './components/snackbar.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [
+    LoadingIndicatorComponent
   ],
   entryComponents: [
   ],
@@ -16,7 +17,8 @@ import { Snackbar } from './components/snackbar.component';
   exports: [
     MaterialUiModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingIndicatorComponent
   ],
   providers: [
   ]
