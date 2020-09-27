@@ -31,7 +31,7 @@ namespace api_server.Controllers
         }
 
         [HttpGet]
-        [Authorized(Role.Admin)]
+        [AllowAnonymous]
         [Route("")]
         public async Task<ArticlesResponse> GetAll(GetAllArticleRequest request, [FromServices] IHandler<GetAllArticleRequest, ArticlesResponse> handler)
         {
