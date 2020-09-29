@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:client/datas/models/article.dart';
-import 'package:client/datas/responses/articles_response.dart';
 import 'package:client/services/article_service.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';

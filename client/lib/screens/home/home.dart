@@ -3,7 +3,6 @@ import 'package:client/datas/models/article.dart';
 import 'package:client/screens/home/bloc/list_articles_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:global_configuration/global_configuration.dart';
 import 'package:client/services/article_service.dart';
 
 class Home extends StatefulWidget {
@@ -32,15 +31,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _scrollController = ScrollController();
-  final _scrollThreshold = 200.0;
-  ListArticlesBloc _listArticlesBloc;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_onScroll);
-    _listArticlesBloc = BlocProvider.of<ListArticlesBloc>(context);
   }
 
   @override
@@ -68,25 +62,10 @@ class _HomePageState extends State<HomePage> {
               return ArticleWidget(article: state.articles[index]);
             },
             itemCount: state.articles.length,
-            controller: _scrollController,
           );
         }
       },
     );
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  void _onScroll() {
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
-    if (maxScroll - currentScroll <= _scrollThreshold) {
-      _listArticlesBloc.add(ArticlesFetched());
-    }
   }
 }
 
@@ -106,7 +85,7 @@ class ArticleWidget extends StatelessWidget {
       isThreeLine: true,
       subtitle: Text(article.description),
       dense: true,
-      onTap: () => print("TAPED => " + article.id.toString()),
+      onTap: () => Navigator.of(context).pushNamed('/articleDetails/${article.id}')
     );
   }
 }
