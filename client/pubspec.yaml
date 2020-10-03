@@ -32,6 +32,10 @@ dependencies:
   global_configuration: ^1.6.0
   equatable: ^1.2.5
   fluro: "^1.6.3"
+  form_bloc: ^0.19.1
+  flutter_form_bloc: ^0.19.0
+  flutter_tagging: ^2.2.0+3
+  flutter_markdown: ^0.4.4
 
 dev_dependencies:
   # flutter_test:

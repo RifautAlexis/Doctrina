@@ -27,12 +27,10 @@ class ArticleDetailsPage extends StatefulWidget {
 }
 
 class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
-  ArticleDetailsBloc _articleDetailsBloc;
 
   @override
   void initState() {
     super.initState();
-    _articleDetailsBloc = BlocProvider.of<ArticleDetailsBloc>(context);
   }
 
   @override

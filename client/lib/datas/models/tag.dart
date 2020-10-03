@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter_tagging/flutter_tagging.dart';
 
-class Tag extends Equatable {
+class Tag extends Taggable { // Equatable
   const Tag(
     this.id,
     this.name,
