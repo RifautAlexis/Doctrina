@@ -1,9 +1,9 @@
 part of 'list_articles_bloc.dart';
 
-abstract class ListArticlesEvent extends Equatable {
+@immutable
+abstract class ListArticlesEvent {
   const ListArticlesEvent();
 
-  @override
   List<Object> get props => [];
 }
 

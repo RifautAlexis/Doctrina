@@ -1,10 +1,9 @@
 part of 'list_articles_bloc.dart';
 
 @immutable
-abstract class ListArticlesState extends Equatable {
+abstract class ListArticlesState {
   const ListArticlesState();
 
-  @override
   List<Object> get props => [];
 }
 
@@ -19,9 +18,5 @@ class ListArticlesSuccess extends ListArticlesState {
 
   const ListArticlesSuccess({this.articles});
 
-  @override
   List<Object> get props => [articles];
-
-  @override
-  String toString() => 'ListArticleLoadSuccess { articles: $articles }';
 }
