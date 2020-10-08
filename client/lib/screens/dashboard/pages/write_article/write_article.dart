@@ -1,5 +1,5 @@
 import 'package:client/blocs/forms/write_article_form_bloc.dart';
-import 'package:client/screens/dashboard/pages/write_article/components/dashboard.dart';
+import 'package:client/screens/dashboard/dashboard.dart';
 import 'package:client/screens/dashboard/pages/write_article/components/form_write_article/form_write_article.dart';
 import 'package:client/screens/dashboard/pages/write_article/components/preview_content/preview_content.dart';
 import 'package:client/services/article_service.dart';
@@ -61,9 +61,6 @@ class _WriteArticleState extends State<WriteArticle> {
                 //     SnackBar(content: Text(state.failureResponse)));
               },
               child: Column(children: [
-                Text("value => " + formBloc.contentInput.value),
-                Text("isEmpty => " + formBloc.contentInput.isEmpty.toString()),
-                Text("state => " + formBloc.contentInput.state.value),
                 FormWriteArticle(writeArticleFormBloc: formBloc),
                 Divider(
                   thickness: 3.0,
