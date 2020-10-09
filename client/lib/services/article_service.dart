@@ -13,10 +13,10 @@ class ArticleService {
     return articlesResponse.articles;
   }
 
-  Future<ArticleResponse> getArticle(int articleId) async {
+  Future<Article> getArticle(int articleId) async {
     var res = await _http.get("article/" + articleId.toString());
     ArticleResponse articleResponse = ArticleResponse.fromJson(res.response);
-    return articleResponse;
+    return articleResponse.articleDetails;
   }
 
   Future<BooleanResponse> isUniqueTitle(String title) async {

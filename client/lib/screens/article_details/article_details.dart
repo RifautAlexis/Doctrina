@@ -1,8 +1,9 @@
 import 'package:client/components/frame_page.dart';
-import 'package:client/screens/article_details/bloc/article_details_bloc.dart';
+import 'package:client/screens/article_details/mobx/article_details_store.dart';
 import 'package:client/services/article_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 class ArticleDetails extends StatelessWidget {
   final int articleId;
@@ -10,11 +11,15 @@ class ArticleDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("ARTICLEID => " + articleId.toString());
     return FramePage(
-      body: BlocProvider(
-        create: (context) => ArticleDetailsBloc(articleService: ArticleService())
-          ..add(ArticleDetailsFetched(articleId)),
+      body: MultiProvider(
+        providers: [
+          Provider<ArticleService>(create: (_) => ArticleService()),
+          ProxyProvider<ArticleService, ArticleDetailsStore>(
+              update: (_, articleService, __) =>
+                  ArticleDetailsStore(articleService: articleService)
+                    ..fetchArticleDetails(articleId))
+        ],
         child: ArticleDetailsPage(),
       ),
     );
@@ -27,7 +32,6 @@ class ArticleDetailsPage extends StatefulWidget {
 }
 
 class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
-
   @override
   void initState() {
     super.initState();
@@ -35,33 +39,26 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ArticleDetailsBloc, ArticleDetailsState>(
-      builder: (context, state) {
-        if (state is ArticleDetailsInitial) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (state is ArticleDetailsFailure) {
-          return Center(
-            child: Text('failed to fetch articles'),
-          );
-        }
-        if (state is ArticleDetailsSuccess) {
-          if (state.article == null) {
-            return Center(
-              child: Text('no articles'),
-            );
-          }
-          final article = state.article;
-          return Column(
-            children: [
-              Text(article.title),
-              Text(article.content),
-            ],
-          );
-        }
-      },
-    );
+    final articleDetailsStore = Provider.of<ArticleDetailsStore>(context);
+    return Observer(builder: (_) {
+      if (articleDetailsStore.hasError) {
+        return Text('failed to fetch article details');
+      } else if (articleDetailsStore.isLoading) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      } else if (articleDetailsStore.hasResults) {
+        final articleDetails = articleDetailsStore.article;
+        return Column(
+          children: [
+            Text(articleDetails.title),
+            Text(articleDetails.content),
+          ],
+        );
+      }
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    });
   }
 }

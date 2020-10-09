@@ -44,7 +44,9 @@ class _HomePageState extends State<HomePage> {
       if (articlesStore.hasError) {
         return Text('failed to fetch articles');
       } else if (articlesStore.isLoading) {
-        return CircularProgressIndicator();
+        return Center(
+          child: CircularProgressIndicator(),
+        );
       } else if (articlesStore.hasResults) {
         return ListView.builder(
           itemBuilder: (BuildContext context, int index) {
@@ -53,7 +55,9 @@ class _HomePageState extends State<HomePage> {
           itemCount: articlesStore.articles.length,
         );
       }
-      return CircularProgressIndicator();
+      return Center(
+        child: CircularProgressIndicator(),
+      );
     });
   }
 }
