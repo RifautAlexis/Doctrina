@@ -1,23 +1,21 @@
-import 'package:client/blocs/forms/write_article_form_bloc.dart';
+import 'package:client/mobx/tags_store.dart';
 import 'package:client/screens/dashboard/dashboard.dart';
 import 'package:client/screens/dashboard/pages/write_article/components/form_write_article/form_write_article.dart';
 import 'package:client/screens/dashboard/pages/write_article/components/preview_content/preview_content.dart';
+import 'package:client/screens/dashboard/pages/write_article/mobx/form_write_article_store.dart';
 import 'package:client/services/article_service.dart';
+import 'package:client/services/tag_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:provider/provider.dart';
 
 class WriteArticle extends StatefulWidget {
   const WriteArticle({Key key}) : super(key: key);
-
 
   @override
   _WriteArticleState createState() => _WriteArticleState();
 }
 
 class _WriteArticleState extends State<WriteArticle> {
-
-  WriteArticleFormBloc formBloc;
 
   @override
   void initState() {
@@ -27,110 +25,33 @@ class _WriteArticleState extends State<WriteArticle> {
   @override
   void dispose() {
     super.dispose();
-    formBloc.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Dashboard(
-      body: _buildPage(context),
-    );
+        body: MultiProvider(
+      providers: [
+        Provider<TagService>(create: (_) => TagService()),
+        ProxyProvider<TagService, TagsStore>(
+            update: (_, tagService, __) =>
+                TagsStore(tagService: tagService)..fetchTags()),
+        Provider<ArticleService>(create: (_) => ArticleService()),
+        ProxyProvider<ArticleService, FormWriteArticleStore>(
+            update: (_, articleService, __) =>
+                FormWriteArticleStore(articleService: articleService))
+      ],
+      child: _buildPage(context),
+    ));
   }
 
   Widget _buildPage(BuildContext context) {
-    return BlocProvider(
-        create: (context) =>
-            WriteArticleFormBloc(articleService: ArticleService()),
-        child: Builder(builder: (context) {
-          this.formBloc = BlocProvider.of<WriteArticleFormBloc>(context);
-
-          return FormBlocListener<WriteArticleFormBloc, String, String>(
-              onSubmitting: (context, state) {
-                // LoadingDialog.show(context);
-              },
-              onSuccess: (context, state) {
-                // LoadingDialog.hide(context);
-
-                // Navigator.of(context).pushReplacement(
-                //     MaterialPageRoute(builder: (_) => SuccessScreen()));
-              },
-              onFailure: (context, state) {
-                // LoadingDialog.hide(context);
-
-                // Scaffold.of(context).showSnackBar(
-                //     SnackBar(content: Text(state.failureResponse)));
-              },
-              child: Column(children: [
-                FormWriteArticle(writeArticleFormBloc: formBloc),
-                Divider(
-                  thickness: 3.0,
-                ),
-                Expanded(
-                    child: PreviewContent(content: formBloc.contentInput.value)
-                  )
-              ])
-              );
-        }));
-  }
-}
-
-class LoadingDialog extends StatelessWidget {
-  static void show(BuildContext context, {Key key}) => showDialog<void>(
-        context: context,
-        useRootNavigator: false,
-        barrierDismissible: false,
-        builder: (_) => LoadingDialog(key: key),
-      ).then((_) => FocusScope.of(context).requestFocus(FocusNode()));
-
-  static void hide(BuildContext context) => Navigator.pop(context);
-
-  LoadingDialog({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Center(
-        child: Card(
-          child: Container(
-            width: 80,
-            height: 80,
-            padding: EdgeInsets.all(12.0),
-            child: CircularProgressIndicator(),
-          ),
-        ),
+    return Column(children: [
+      FormWriteArticle(),
+      Divider(
+        thickness: 3.0,
       ),
-    );
-  }
-}
-
-class SuccessScreen extends StatelessWidget {
-  SuccessScreen({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Icon(Icons.tag_faces, size: 100),
-            SizedBox(height: 10),
-            Text(
-              'Success',
-              style: TextStyle(fontSize: 54, color: Colors.black),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 10),
-            RaisedButton.icon(
-              onPressed: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => WriteArticle())),
-              icon: Icon(Icons.replay),
-              label: Text('AGAIN'),
-            ),
-          ],
-        ),
-      ),
-    );
+      Expanded(child: PreviewContent())
+    ]);
   }
 }

@@ -5,7 +5,7 @@ class BooleanResponse {
 
   factory BooleanResponse.fromJson(Map<String, dynamic> response) {
     return BooleanResponse(
-      value: response["response"] as bool,
+      value: response["value"] as bool,
     );
   }
 }

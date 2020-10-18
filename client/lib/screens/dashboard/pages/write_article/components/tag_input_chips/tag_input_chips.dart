@@ -1,9 +1,10 @@
 import 'package:client/datas/models/tag.dart';
-import 'package:client/screens/dashboard/pages/write_article/components/tag_input_chips/bloc/list_tags_bloc.dart';
-import 'package:client/services/tag_service.dart';
+import 'package:client/mobx/tags_store.dart';
+import 'package:client/screens/dashboard/pages/write_article/mobx/form_write_article_store.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_tagging/flutter_tagging.dart';
+import 'package:provider/provider.dart';
 
 class TagInputChips extends StatefulWidget {
   TagInputChips({Key key}) : super(key: key);
@@ -13,52 +14,25 @@ class TagInputChips extends StatefulWidget {
 }
 
 class _TagInputChipsState extends State<TagInputChips> {
-  List<Tag> _selectedTags;
 
   @override
   void initState() {
-    _selectedTags = [];
     super.initState();
   }
 
   @override
   void dispose() {
-    _selectedTags.clear();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) =>
-            ListTagsBloc(tagService: TagService())..add(TagsFetched()),
-        child: BlocBuilder<ListTagsBloc, ListTagsState>(
-          builder: (context, state) {
-            if (state is ListTagsInitial) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (state is ListTagsFailure) {
-              return Center(
-                child: Text('failed to fetch tags'),
-              );
-            }
-            if (state is ListTagsSuccess) {
-              if (state.tags.isEmpty) {
-                return Center(
-                  child: Text('no tags'),
-                );
-              }
-              return _buildTagInputChips(state.tags);
-            }
-          },
-        ));
-  }
+    final tagsStore = Provider.of<TagsStore>(context);
+    final formAWStore = Provider.of<FormWriteArticleStore>(context);
 
-  Widget _buildTagInputChips(List<Tag> tags) {
-    return FlutterTagging<Tag>(
-              initialItems: _selectedTags,
+    return Observer(
+        builder: (_) => FlutterTagging<Tag>(
+              initialItems: formAWStore.selectedTags,
               textFieldConfiguration: TextFieldConfiguration(
                 decoration: InputDecoration(
                   border: InputBorder.none,
@@ -68,7 +42,10 @@ class _TagInputChipsState extends State<TagInputChips> {
                   labelText: 'Select Tags',
                 ),
               ),
-              findSuggestions: (search) => tags.where((tag) => tag.name.toLowerCase().contains(search.toLowerCase())).toList(),
+              findSuggestions: (search) => tagsStore.tags
+                  .where((tag) =>
+                      tag.name.toLowerCase().contains(search.toLowerCase()))
+                  .toList(),
               additionCallback: (value) {
                 return Tag(
                   0,
@@ -91,7 +68,7 @@ class _TagInputChipsState extends State<TagInputChips> {
                       fontSize: 14.0,
                       fontWeight: FontWeight.w300,
                     ),
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.pink,
                   ),
                 );
               },
@@ -104,15 +81,8 @@ class _TagInputChipsState extends State<TagInputChips> {
                 );
               },
               onChanged: () {
-                setState(() {
-                  // _selectedValuesJson = _selectedTags
-                  //     .map<String>((lang) => '\n${lang.toJson()}')
-                  //     .toList()
-                  //     .toString();
-                  // _selectedValuesJson =
-                  //     _selectedValuesJson.replaceFirst('}]', '}\n]');
-                });
+                  print(formAWStore.selectedTags);
               },
-            );
+            ));
   }
 }

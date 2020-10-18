@@ -3,6 +3,7 @@ import 'package:client/screens/article_details/mobx/article_details_store.dart';
 import 'package:client/services/article_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:provider/provider.dart';
 
 class ArticleDetails extends StatelessWidget {
@@ -52,7 +53,9 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
         return Column(
           children: [
             Text(articleDetails.title),
-            Text(articleDetails.content),
+            ListView(
+                shrinkWrap: true,
+                children: [HtmlWidget(articleDetails.content)])
           ],
         );
       }

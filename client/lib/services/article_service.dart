@@ -2,6 +2,7 @@ import 'package:client/datas/models/article.dart';
 import 'package:client/datas/responses/article_response.dart';
 import 'package:client/datas/responses/articles_response.dart';
 import 'package:client/datas/responses/boolean_response.dart';
+import 'package:client/datas/responses/id_response.dart';
 import 'package:client/http/http.dart';
 
 final _http = Http();
@@ -19,15 +20,23 @@ class ArticleService {
     return articleResponse.articleDetails;
   }
 
-  Future<BooleanResponse> isUniqueTitle(String title) async {
-    var res = await _http.post("article/isUniqueTitle" + title);
+  Future<bool> isUniqueTitle(String title) async {
+    var res = await _http.post("article/isUniqueTitle", data: {"Title": title});
     BooleanResponse articleResponse = BooleanResponse.fromJson(res.response);
-    return articleResponse;
+    return articleResponse.value;
   }
 
-  Future<BooleanResponse> createArticle(String title) async {
-    var res = await _http.post("article/isUniqueTitle" + title);
-    BooleanResponse articleResponse = BooleanResponse.fromJson(res.response);
-    return articleResponse;
+  Future<int> createArticle(String title, String description, String content,
+      List<int> tagIds) async {
+    var res = await _http.post("article/createArticle",
+        data: {
+          "title": title,
+          "description": description,
+          "content": content,
+          "tagIds": tagIds
+        },
+        queryParameters: null);
+    IdResponse idResponse = IdResponse.fromJson(res.response);
+    return idResponse.id;
   }
 }

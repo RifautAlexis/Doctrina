@@ -1,32 +1,21 @@
-// import 'dart:async';
+import 'dart:async';
 
-// import 'package:meta/meta.dart';
+import 'package:client/datas/responses/authentication_response.dart';
+import 'package:client/http/http.dart';
 
-// class AuthenticationService {
-//   final _controller = StreamController<AuthenticationStatus>();
+final _http = Http();
 
-//   Stream<AuthenticationStatus> get status async* {
-//     // await Future<void>.delayed(const Duration(seconds: 1));
-//     // yield AuthenticationStatus.unauthenticated;
-//     yield* _controller.stream;
-//   }
-
-//   Future<void> logIn({
-//     @required String email,
-//     @required String password,
-//   }) async {
-//     assert(email != null);
-//     assert(password != null);
-
-//     await Future.delayed(
-//       const Duration(milliseconds: 300),
-//       () => _controller.add(AuthenticationStatus.authenticated),
-//     );
-//   }
-
-//   void logOut() {
-//     _controller.add(AuthenticationStatus.unauthenticated);
-//   }
-
-//   void dispose() => _controller.close();
-// }
+class AuthenticationService {
+  Future<AuthenticationResponse> loginAdmin(
+    String email,
+    String password,
+  ) async {
+    assert(email != null);
+    assert(password != null);
+    var res = await _http.post("authentication/signin",
+        data: {"email": email, "password": password});
+    AuthenticationResponse authResponse =
+        AuthenticationResponse.fromJson(res.response);
+    return authResponse;
+  }
+}
