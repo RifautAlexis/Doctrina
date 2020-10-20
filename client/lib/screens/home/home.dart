@@ -1,5 +1,6 @@
 import 'package:client/components/frame_page.dart';
 import 'package:client/datas/models/article.dart';
+import 'package:client/screens/home/components/article_description.dart';
 import 'package:client/screens/home/mobx/articles_store.dart';
 import 'package:flutter/material.dart';
 import 'package:client/services/article_service.dart';
@@ -50,7 +51,18 @@ class _HomePageState extends State<HomePage> {
       } else if (articlesStore.hasResults) {
         return ListView.builder(
           itemBuilder: (BuildContext context, int index) {
-            return ArticleWidget(article: articlesStore.articles[index]);
+            var article = articlesStore.articles[index];
+            var quarterWidth = MediaQuery.of(context).size.width / 6;
+            return Padding(
+                padding:
+                    EdgeInsets.fromLTRB(quarterWidth, 10.0, quarterWidth, 0.0),
+                child: IntrinsicWidth(
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                      ArticleDescription(article: article),
+                      Divider(thickness: 1.5)
+                    ])));
           },
           itemCount: articlesStore.articles.length,
         );
@@ -70,10 +82,6 @@ class ArticleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Text(
-          '${article.id}',
-          style: TextStyle(fontSize: 10.0),
-        ),
         title: Text(article.title),
         isThreeLine: true,
         subtitle: Text(article.description),

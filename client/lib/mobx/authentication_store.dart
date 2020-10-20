@@ -1,6 +1,7 @@
 import 'package:client/datas/models/user.dart';
 import 'package:mobx/mobx.dart';
 import 'package:validators/validators.dart';
+import 'dart:html' as html;
 
 part 'authentication_store.g.dart';
 
@@ -16,6 +17,23 @@ abstract class _AuthenticationStore with Store {
   String token = '';
 
   @computed
-  bool get hasCurrentUser =>
-      user != null && !isNull(token) && token.isNotEmpty;
+  bool get hasCurrentUser {
+    print(user != null);
+    print(!isNull(token));
+    print(token.isNotEmpty);
+    return user != null && !isNull(token) && token.isNotEmpty;
+  }
+      
+  
+  @action
+  Future<void> setJWTInLocalStorage(String jwt) async {
+      html.window.localStorage['token'] = jwt;
+  }
+  
+  @action
+  Future<void> logout() async {
+      html.window.localStorage['token'] = '';
+      user = null;
+      token = '';
+  }
 }

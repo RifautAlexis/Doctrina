@@ -5,6 +5,7 @@ import 'package:client/services/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:validators/validators.dart';
+import 'dart:html' as html;
 
 part 'form_login_admin_store.g.dart';
 
@@ -70,8 +71,7 @@ abstract class _FormLoginAdminStore with Store {
       final authenticationResponse = await loginFuture;
       authStore.user = authenticationResponse.user;
       authStore.token = authenticationResponse.token;
-      print(authStore.user);
-      print(authStore.token);
+      authStore.setJWTInLocalStorage(authenticationResponse.token);
     } on Object catch (_) {}
   }
 }

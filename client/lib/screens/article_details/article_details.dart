@@ -4,6 +4,7 @@ import 'package:client/services/article_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class ArticleDetails extends StatelessWidget {
@@ -50,13 +51,37 @@ class _ArticleDetailsPageState extends State<ArticleDetailsPage> {
         );
       } else if (articleDetailsStore.hasResults) {
         final articleDetails = articleDetailsStore.article;
-        return Column(
-          children: [
-            Text(articleDetails.title),
-            ListView(
-                shrinkWrap: true,
-                children: [HtmlWidget(articleDetails.content)])
-          ],
+        var quarterWidth = MediaQuery.of(context).size.width / 6;
+        String dateToDisplay = '';
+        if (articleDetails.createdAt.isAtSameMomentAs(articleDetails.updatedAt)) {
+          var dateFormat = DateFormat('dd-MM-yyyy').format(articleDetails.createdAt);
+          dateToDisplay = 'Publié le $dateFormat';
+        } else {
+          var dateFormat = DateFormat('dd-MM-yyyy').format(articleDetails.updatedAt);
+          dateToDisplay = 'Mise à jour le $dateFormat';
+        }
+        return SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(quarterWidth, 10.0, quarterWidth, 0.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  articleDetails.title,
+                  style: const TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 15.0),
+                Text(dateToDisplay),
+                SizedBox(height: 25.0),
+                ListView(
+                    shrinkWrap: true,
+                    children: [HtmlWidget(articleDetails.content)])
+              ],
+            ),
+          ),
         );
       }
       return Center(

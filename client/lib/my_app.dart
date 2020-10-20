@@ -7,19 +7,20 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-  ConfigEnv env = new ConfigEnv();
-    
+    ConfigEnv env = new ConfigEnv();
+
     return MultiProvider(
       providers: [
         Provider<AuthenticationStore>(create: (_) => AuthenticationStore())
       ],
       child: GetMaterialApp(
-      title: env.get("appName"),
-      theme: appTheme,
-      initialRoute: '/',
-      onGenerateRoute: FluroRouter.router.generator
-    ));
+          title: env.get("appName"),
+          theme: appTheme,
+          initialRoute: '/',
+          onGenerateRoute: FluroRouter.router.generator),
+    );
   }
 }

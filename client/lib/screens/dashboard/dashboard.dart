@@ -9,14 +9,6 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final authStore = Provider.of<AuthenticationStore>(context);
-
-    // if (!authStore.hasCurrentUser) {
-    //   print("NOT LOGGED START");
-    //   Navigator.of(context).pushNamed('/admin');
-    //   print("NOT LOGGED END");
-    //   // return FramePage(body: body);
-    // } else {
     return FramePage(
         body: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       ConstrainedBox(

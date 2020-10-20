@@ -1,6 +1,7 @@
 import 'package:client/datas/responses/api_response.dart';
 import 'package:client/utils/configEnv.dart';
 import 'package:dio/dio.dart';
+import 'dart:html' as html;
 
 class Http {
   static final Http _instance = Http._internal();
@@ -32,11 +33,11 @@ class Http {
     _dio.interceptors
         .add(InterceptorsWrapper(onRequest: (RequestOptions options) async {
       _dio.interceptors.requestLock.lock();
-      // String token = await authBloc.getToken();
+      String token = html.window.localStorage['token'];
 
-      // if (token != null) {
-      //   options.headers["Authorization"] = "Bearer " + token;
-      // }
+      if (token != null) {
+        options.headers["Authorization"] = "Bearer " + token;
+      }
 
       _dio.interceptors.requestLock.unlock();
       return options;
