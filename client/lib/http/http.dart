@@ -21,7 +21,7 @@ class Http {
 
   Http._internal() {
     _options = BaseOptions(
-      baseUrl: env.get("apiUrl"),
+      baseUrl: env.get("API_URL"),
       followRedirects: false,
       validateStatus: (status) {
         return status < 500;

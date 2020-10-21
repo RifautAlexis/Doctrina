@@ -10,14 +10,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ConfigEnv env = new ConfigEnv();
+    ConfigEnv env = ConfigEnv();
 
     return MultiProvider(
       providers: [
         Provider<AuthenticationStore>(create: (_) => AuthenticationStore())
       ],
       child: GetMaterialApp(
-          title: env.get("appName"),
+          title: env.get("APP_NAME"),
           theme: appTheme,
           initialRoute: '/',
           onGenerateRoute: FluroRouter.router.generator),

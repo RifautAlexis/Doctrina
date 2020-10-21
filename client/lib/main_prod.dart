@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:client/my_app.dart';
 
 Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   FluroRouter.setupRouter();
-  await ConfigEnv().loadFromAsset("env/env_dev.json");
+  ConfigEnv().loadFromAsset();
 
   runApp(MyApp());
 }

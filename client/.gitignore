@@ -42,4 +42,5 @@ app.*.map.json
 
 
 
-web/assets/env
+build_dev.sh
+build_prod.sh
