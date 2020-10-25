@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:client/datas/http_error.dart';
 import 'package:client/datas/responses/api_response.dart';
+import 'package:client/http/http_error_interceptor.dart';
+import 'package:client/http/network_exceptions.dart';
 import 'package:client/utils/configEnv.dart';
 import 'package:dio/dio.dart';
 import 'dart:html' as html;
@@ -8,8 +13,6 @@ class Http {
   Dio _dio;
   BaseOptions _options;
   ConfigEnv env = new ConfigEnv();
-
-  // static final authBloc = AuthBloc();
 
   factory Http() {
     return _instance;
@@ -24,7 +27,7 @@ class Http {
       baseUrl: env.get("API_URL"),
       followRedirects: false,
       validateStatus: (status) {
-        return status < 500;
+        return httpStatusValide.contains(status);
       },
     );
 
@@ -42,39 +45,111 @@ class Http {
       _dio.interceptors.requestLock.unlock();
       return options;
     }));
+
+    _dio.interceptors.add(HttpErrorInterceptor());
   }
 
-  Future<ApiResponse> get(String url, [Map<String, dynamic> params]) async {
-    final requestResponse =
-        await _dio.get(url, queryParameters: params == null ? {} : params);
-    return ApiResponse(response: requestResponse.data);
+  Future<ApiResponse> get(
+    String uri, {
+    Map<String, dynamic> queryParameters,
+    Options options,
+    CancelToken cancelToken,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    try {
+      var response = await _dio.get(
+        uri,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return ApiResponse(response: response.data);
+    } on DioError catch (failure) {
+      var httpError = failure.error as HttpError;
+      throw httpError;
+    } catch (failure) {
+      throw failure;
+    }
   }
 
-  Future<dynamic> post(String url,
-      {dynamic data,
-      Map<String, dynamic> queryParameters,
-      void Function(int, int) onSendProgress}) async {
-    final requestResponse = await _dio.post(url,
-        data: data == null ? {} : data,
-        queryParameters: queryParameters == null ? {} : queryParameters,
-        onSendProgress: onSendProgress);
-    return ApiResponse(response: requestResponse.data);
+  Future<ApiResponse> post(
+    String uri, {
+    data,
+    Map<String, dynamic> queryParameters,
+    Options options,
+    CancelToken cancelToken,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    try {
+      var response = await _dio.post(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return ApiResponse(response: response.data);
+    } on DioError catch (failure) {
+      var httpError = failure.error as HttpError;
+      throw httpError;
+    } catch (failure) {
+      throw failure;
+    }
   }
 
-  Future<dynamic> delete(String url, [Map<String, dynamic> params]) async {
-    final requestResponse =
-        await _dio.delete(url, queryParameters: params == null ? {} : params);
-    return ApiResponse(response: requestResponse.data);
+  Future<ApiResponse> patch(
+    String uri, {
+    data,
+    Map<String, dynamic> queryParameters,
+    Options options,
+    CancelToken cancelToken,
+    ProgressCallback onSendProgress,
+    ProgressCallback onReceiveProgress,
+  }) async {
+    try {
+      var response = await _dio.patch(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return ApiResponse(response: response.data);
+    } on DioError catch (failure) {
+      var httpError = failure.error as HttpError;
+      throw httpError;
+    } catch (failure) {
+      throw failure;
+    }
   }
 
-  Future<dynamic> put(String url,
-      {dynamic data,
-      Map<String, dynamic> queryParameters,
-      void Function(int, int) onSendProgress}) async {
-    final requestResponse = await _dio.put(url,
-        data: data == null ? {} : data,
-        queryParameters: queryParameters == null ? {} : queryParameters,
-        onSendProgress: onSendProgress);
-    return ApiResponse(response: requestResponse.data);
+  Future<ApiResponse> delete(
+    String uri, {
+    data,
+    Map<String, dynamic> queryParameters,
+    Options options,
+    CancelToken cancelToken,
+  }) async {
+    try {
+      var response = await _dio.delete(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+      );
+      return ApiResponse(response: response.data);
+    } on DioError catch (failure) {
+      var httpError = failure.error as HttpError;
+      throw httpError;
+    } catch (failure) {
+      throw failure;
+    }
   }
 }

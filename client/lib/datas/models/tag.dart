@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter_tagging/flutter_tagging.dart';
 
 class Tag extends Taggable { // Equatable
@@ -15,7 +14,7 @@ class Tag extends Taggable { // Equatable
   final DateTime updatedAt;
 
   @override
-  List<Object> get props => [id];
+  List<Object> get props => [id, name, createdAt, updatedAt];
 
   factory Tag.fromJson(Map<String, dynamic> json) => Tag(
         json['id'] as int,

@@ -18,9 +18,6 @@ abstract class _AuthenticationStore with Store {
 
   @computed
   bool get hasCurrentUser {
-    print(user != null);
-    print(!isNull(token));
-    print(token.isNotEmpty);
     return user != null && !isNull(token) && token.isNotEmpty;
   }
       

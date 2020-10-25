@@ -1,3 +1,5 @@
+import 'package:client/components/snackbar.dart';
+import 'package:client/datas/http_error.dart';
 import 'package:client/datas/models/article.dart';
 import 'package:client/services/article_service.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +20,10 @@ abstract class _ArticlesStore with Store {
   ObservableFuture<List<Article>> fetchArticlesFuture = emptyResponse;
 
   @computed
-  bool get hasError =>
-      fetchArticlesFuture.status == FutureStatus.rejected;
+  bool get hasError => fetchArticlesFuture.status == FutureStatus.rejected;
 
   @computed
-  bool get isLoading =>
-      fetchArticlesFuture.status == FutureStatus.pending;
+  bool get isLoading => fetchArticlesFuture.status == FutureStatus.pending;
 
   @computed
   bool get hasResults =>
@@ -35,9 +35,15 @@ abstract class _ArticlesStore with Store {
 
   @action
   Future fetchArticles() async {
-    final articles = articleService.getArticles();
-    fetchArticlesFuture = ObservableFuture(articles);
+    try {
+      final articles = articleService.getArticles();
+      fetchArticlesFuture = ObservableFuture(articles);
 
-    this.articles = await articles;
+      this.articles = await articles;
+    } on HttpError catch (failure) {
+      Snackbar.createError(message: failure.errorMesage);
+    } catch (failure) {
+      Snackbar.createError();
+    }
   }
 }

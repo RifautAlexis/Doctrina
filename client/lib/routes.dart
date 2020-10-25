@@ -44,10 +44,13 @@ class FluroRouter {
       }
     }));
 
-    router.define('dashboard/write',
-        handler: Handler(
-            handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
-                guardMustBeAdmin(context, WriteArticle())));
+    router.define(
+      'dashboard/write',
+      handler: Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+            guardMustBeAdmin(context, WriteArticle()),
+      ),
+    );
   }
 
   static guardMustBeAdmin(BuildContext context, Widget screen) {

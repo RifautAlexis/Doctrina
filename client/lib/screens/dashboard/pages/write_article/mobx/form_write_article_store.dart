@@ -1,3 +1,5 @@
+import 'package:client/components/snackbar.dart';
+import 'package:client/datas/http_error.dart';
 import 'package:client/datas/models/tag.dart';
 import 'package:client/screens/dashboard/pages/write_article/mobx/form_write_article_error_state.dart';
 import 'package:client/services/article_service.dart';
@@ -65,7 +67,6 @@ abstract class _FormWriteArticleStore with Store {
     }
 
     try {
-      // Wrap the future to track the status of the call with an ObservableFuture
       isUniqueTitleFuture =
           ObservableFuture(articleService.isUniqueTitle(title));
       error.title = null;
@@ -75,10 +76,13 @@ abstract class _FormWriteArticleStore with Store {
         error.title = 'This title is already taken';
         return;
       }
-    } on Object catch (_) {
+    } on HttpError catch (failure) {
       error.title = null;
+      Snackbar.createError(message: failure.errorMesage);
+    } catch (failure) {
+      error.title = null;
+      Snackbar.createError();
     }
-
     error.title = null;
   }
 
@@ -124,6 +128,10 @@ abstract class _FormWriteArticleStore with Store {
       createArticleFuture = ObservableFuture(
           articleService.createArticle(title, description, content, tagIds));
       await createArticleFuture;
-    } on Object catch (_) {}
+    } on HttpError catch (failure) {
+      Snackbar.createError(message: failure.errorMesage);
+    } catch (failure) {
+      Snackbar.createError();
+    }
   }
 }

@@ -1,3 +1,5 @@
+import 'package:client/components/snackbar.dart';
+import 'package:client/datas/http_error.dart';
 import 'package:client/datas/models/article.dart';
 import 'package:client/services/article_service.dart';
 import 'package:flutter/material.dart';
@@ -35,9 +37,15 @@ abstract class _ArticleDetailsStore with Store {
 
   @action
   Future fetchArticleDetails(int articleId) async {
-    final article = articleService.getArticle(articleId);
-    fetchArticleDetailsFuture = ObservableFuture(article);
+    try {
+      final article = articleService.getArticle(articleId);
+      fetchArticleDetailsFuture = ObservableFuture(article);
 
-    this.article = await article;
+      this.article = await article;
+    } on HttpError catch (failure) {
+      Snackbar.createError(message: failure.errorMesage);
+    } catch (failure) {
+      Snackbar.createError();
+    }
   }
 }

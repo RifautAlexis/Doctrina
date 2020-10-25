@@ -1,8 +1,7 @@
 import 'package:client/datas/models/tag.dart';
 import 'package:client/datas/models/user.dart';
-import 'package:equatable/equatable.dart';
 
-class Article extends Equatable {
+class Article {
   const Article({
     this.id,
     this.title,
@@ -22,10 +21,6 @@ class Article extends Equatable {
   final List<Tag> tags;
   final DateTime createdAt;
   final DateTime updatedAt;
-
-  @override
-  List<Object> get props =>
-      [id, title, content, description, author, tags, createdAt, updatedAt];
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
         id: json['id'] as int,

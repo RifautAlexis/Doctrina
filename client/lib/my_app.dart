@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     ConfigEnv env = ConfigEnv();
@@ -17,10 +16,11 @@ class MyApp extends StatelessWidget {
         Provider<AuthenticationStore>(create: (_) => AuthenticationStore())
       ],
       child: GetMaterialApp(
-          title: env.get("APP_NAME"),
-          theme: appTheme,
-          initialRoute: '/',
-          onGenerateRoute: FluroRouter.router.generator),
+        title: env.get("APP_NAME"),
+        theme: appTheme,
+        initialRoute: '/',
+        onGenerateRoute: FluroRouter.router.generator,
+      ),
     );
   }
 }
