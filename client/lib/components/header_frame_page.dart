@@ -1,8 +1,10 @@
 import 'package:client/components/clickable_icon.dart';
 import 'package:client/components/clickable_text.dart';
+import 'package:client/mobx/authentication_store.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class HeaderFramePage extends StatelessWidget implements PreferredSizeWidget {
   const HeaderFramePage({
@@ -14,6 +16,7 @@ class HeaderFramePage extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authStore = Provider.of<AuthenticationStore>(context);
     return Row(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -23,51 +26,53 @@ class HeaderFramePage extends StatelessWidget implements PreferredSizeWidget {
             children: [
               ClickableText(
                 text: 'Home',
-                destinationToGo: '/',
+                action: () => Navigator.pushNamed(context, '/'),
                 margin: EdgeInsets.only(left: 25.0),
               ),
               ClickableText(
                 text: 'About',
-                destinationToGo: '/about',
+                action: () => Navigator.pushNamed(context, '/about'),
                 margin: EdgeInsets.only(left: 25.0),
               ),
               ClickableText(
                 text: "Knowledge Coffee",
-                destinationToGo: '/knowledge-coffee',
+                action: () => Navigator.pushNamed(context, '/knowledge-coffee'),
                 margin: EdgeInsets.only(left: 25.0),
               ),
             ],
           ),
         ),
-        // Expanded(
-        //   child: Row(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [Text("MIDDLE")],
-        //   )
-        // ),
         Expanded(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              authStore.hasCurrentUser
+                  ? ClickableText(
+                      text: "Logout",
+                      action: () => authStore.logout(),
+                      margin: EdgeInsets.only(left: 25.0),
+                    )
+                  : Container(),
               ClickableIcon(
-                  icon: Icon(
-                    FontAwesomeIcons.linkedin,
-                    color: Colors.white,
-                    size: 24.0,
-                    semanticLabel: 'Linkdein',
-                  ),
-                  destinationToGo:
-                      'https://www.linkedin.com/in/rifaut-alexis/',
-                margin: EdgeInsets.only(left: 25.0),),
+                icon: Icon(
+                  FontAwesomeIcons.linkedin,
+                  color: Colors.white,
+                  size: 24.0,
+                  semanticLabel: 'Linkdein',
+                ),
+                destinationToGo: 'https://www.linkedin.com/in/rifaut-alexis/',
+                margin: EdgeInsets.only(left: 25.0),
+              ),
               ClickableIcon(
-                  icon: Icon(
-                    FontAwesomeIcons.github,
-                    color: Colors.white,
-                    size: 24.0,
-                    semanticLabel: 'Github',
-                  ),
-                  destinationToGo: 'https://github.com/RifautAlexis',
-                margin: EdgeInsets.only(left: 25.0),),
+                icon: Icon(
+                  FontAwesomeIcons.github,
+                  color: Colors.white,
+                  size: 24.0,
+                  semanticLabel: 'Github',
+                ),
+                destinationToGo: 'https://github.com/RifautAlexis',
+                margin: EdgeInsets.only(left: 25.0),
+              ),
             ],
           ),
         ),

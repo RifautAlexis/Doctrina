@@ -33,36 +33,23 @@ class FluroRouter {
             handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
                 KnowledgeCoffee()));
 
-    router.define('admin', handler: Handler(
-        handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-      final authStore = Provider.of<AuthenticationStore>(context);
-
-      if (!authStore.hasCurrentUser) {
-        return WriteArticle();
-      } else {
-        return LoginAdmin();
-      }
-    }));
+    router.define('/admin', handler: Handler(
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) => !guardMustBeAdmin(context) ? LoginAdmin() : WriteArticle()));
 
     router.define(
-      'dashboard/write',
+      '/dashboard/write',
       handler: Handler(
-        handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
-            guardMustBeAdmin(context, WriteArticle()),
-      ),
+        handlerFunc: (BuildContext context, Map<String, dynamic> params) => guardMustBeAdmin(context) ? WriteArticle() : LoginAdmin())
     );
   }
 
-  static guardMustBeAdmin(BuildContext context, Widget screen) {
-    assert(context != null);
-    assert(screen != null);
-
+  static guardMustBeConnected(BuildContext context) {
     final authStore = Provider.of<AuthenticationStore>(context);
-
-    if (!authStore.hasCurrentUser) {
-      return LoginAdmin();
-    } else {
-      return WriteArticle();
-    }
+    return !authStore.hasCurrentUser && authStore.isAdmin;
+  }
+  
+  static guardMustBeAdmin(BuildContext context) {
+    final authStore = Provider.of<AuthenticationStore>(context);
+    return authStore.isAdmin;
   }
 }

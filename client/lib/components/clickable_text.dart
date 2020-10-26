@@ -4,12 +4,12 @@ class ClickableText extends StatelessWidget {
   const ClickableText(
       {Key key,
       @required this.text,
-      @required this.destinationToGo,
+      @required this.action,
       this.margin})
       : super(key: key);
 
   final String text;
-  final String destinationToGo;
+  final Function action;
   final EdgeInsetsGeometry margin;
 
   @override
@@ -19,7 +19,7 @@ class ClickableText extends StatelessWidget {
       child: InkWell(
         child: Text(text),
         onTap: () {
-          Navigator.pushNamed(context, destinationToGo);
+          action();
         },
       ),
     );

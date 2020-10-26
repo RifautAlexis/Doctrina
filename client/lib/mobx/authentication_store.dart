@@ -1,4 +1,5 @@
 import 'package:client/datas/models/user.dart';
+import 'package:get/get.dart';
 import 'package:mobx/mobx.dart';
 import 'package:validators/validators.dart';
 import 'dart:html' as html;
@@ -20,7 +21,11 @@ abstract class _AuthenticationStore with Store {
   bool get hasCurrentUser {
     return user != null && !isNull(token) && token.isNotEmpty;
   }
-      
+  
+  @computed
+  bool get isAdmin {
+    return hasCurrentUser && user.role == Role.admin.index;
+  }
   
   @action
   Future<void> setJWTInLocalStorage(String jwt) async {
@@ -32,5 +37,6 @@ abstract class _AuthenticationStore with Store {
       html.window.localStorage['token'] = '';
       user = null;
       token = '';
+      Get.toNamed('/');
   }
 }

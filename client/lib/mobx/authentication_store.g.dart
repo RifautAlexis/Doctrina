@@ -16,6 +16,12 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
       (_$hasCurrentUserComputed ??= Computed<bool>(() => super.hasCurrentUser,
               name: '_AuthenticationStore.hasCurrentUser'))
           .value;
+  Computed<bool> _$isAdminComputed;
+
+  @override
+  bool get isAdmin => (_$isAdminComputed ??= Computed<bool>(() => super.isAdmin,
+          name: '_AuthenticationStore.isAdmin'))
+      .value;
 
   final _$userAtom = Atom(name: '_AuthenticationStore.user');
 
@@ -47,12 +53,29 @@ mixin _$AuthenticationStore on _AuthenticationStore, Store {
     });
   }
 
+  final _$setJWTInLocalStorageAsyncAction =
+      AsyncAction('_AuthenticationStore.setJWTInLocalStorage');
+
+  @override
+  Future<void> setJWTInLocalStorage(String jwt) {
+    return _$setJWTInLocalStorageAsyncAction
+        .run(() => super.setJWTInLocalStorage(jwt));
+  }
+
+  final _$logoutAsyncAction = AsyncAction('_AuthenticationStore.logout');
+
+  @override
+  Future<void> logout() {
+    return _$logoutAsyncAction.run(() => super.logout());
+  }
+
   @override
   String toString() {
     return '''
 user: ${user},
 token: ${token},
-hasCurrentUser: ${hasCurrentUser}
+hasCurrentUser: ${hasCurrentUser},
+isAdmin: ${isAdmin}
     ''';
   }
 }
