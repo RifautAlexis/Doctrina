@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: env.get("APP_NAME"),
         theme: appTheme,
+        darkTheme: appTheme,
         initialRoute: '/',
         onGenerateRoute: FluroRouter.router.generator,
       ),
