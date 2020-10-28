@@ -22,7 +22,6 @@
     <Folder Include="Presentation\" />
     <Folder Include="Presentation\Controllers\" />
     <Folder Include="Contract\Exceptions\" />
-    <Folder Include="Presentation\Middleware\" />
     <Folder Include="Handlers\Article\" />
     <Folder Include="Contract\Responses\Article\" />
     <Folder Include="Contract\Responses\Authentication\" />
@@ -33,6 +32,10 @@
     <Folder Include="Contract\DTOs\Tag\" />
     <Folder Include="Contract\Validators\Articles\" />
     <Folder Include="Contract\DTOs\Article\" />
+    <Folder Include="Contract\Responses\Tag\" />
+    <Folder Include="Contract\Requests\Tag\" />
+    <Folder Include="Handlers\Tag\" />
+    <Folder Include="Middleware\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />

@@ -47,6 +47,9 @@ namespace api_server
             services.AddScoped<
                 IHandler<CreateArticleRequest, IdResponse>,
                 CreateArticleHandler>();
+            services.AddScoped<
+                IHandler<GetAllTagRequest, TagsResponse>,
+                GetAllTagHandler>();
 
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options => options.SuppressInferBindingSourcesForParameters = true)

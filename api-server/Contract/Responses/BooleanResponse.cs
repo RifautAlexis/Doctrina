@@ -2,6 +2,6 @@
 {
     public class BooleanResponse
     {
-        public bool Response { get; set; }
+        public bool Value { get; set; }
     }
 }

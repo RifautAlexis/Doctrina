@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using api_server.Contract.Exceptions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api_server.Presentation.Middleware
 {
@@ -30,16 +31,17 @@ namespace api_server.Presentation.Middleware
 
         public async Task HandleExceptionAsync(HttpContext httpContext, Exception exception)
         {
-            if (exception is ErrorException)
+            if (exception is ErrorException errorException)
             {
                 httpContext.Response.ContentType = "application/json";
-                httpContext.Response.StatusCode = 400;
+                httpContext.Response.StatusCode = errorException.StatusCode;
 
-                var result = JsonConvert.SerializeObject(new { statusCode = httpContext.Response.StatusCode, message = exception.Message });
+                var result = JsonConvert.SerializeObject(new ProblemDetails { Status = errorException.StatusCode, Detail = errorException.ErrorMessage, Title = errorException.Title });
                 await httpContext.Response.WriteAsync(result);
+                return;
             }
 
-            return;
+            throw exception;
         }
     }
 

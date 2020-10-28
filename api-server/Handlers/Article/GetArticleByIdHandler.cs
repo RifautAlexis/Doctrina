@@ -31,7 +31,7 @@ namespace api_server.Handlers
                 .Include(a => a.Author)
                 .FirstOrDefaultAsync();
 
-            if (article == null) throw new ErrorException("No user was found with this id");
+            if (article == null) throw new NotFoundException();
 
             return new ArticleResponse { Article = article.ToDTO() };
         }
