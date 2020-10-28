@@ -30,9 +30,9 @@ namespace api_server.Handlers
 
             User user = await _appDBContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
 
-            if (user == null) { throw new ErrorException("No user was found for this email"); } //return new ErrorResponse("No user was found for this email"); };
+            if (user == null) { throw new NotFoundException(); }
 
-            if (!user.VerifyPassword(password)) { throw new ErrorException("Wrong password"); }
+            if (!user.VerifyPassword(password)) { throw new InvalidPasswordException(); }
 
             var secretKey = Encoding.ASCII.GetBytes(_appSettings.GetSection("Settings:Secret").Value);
             var token = user.CreateToken(secretKey);

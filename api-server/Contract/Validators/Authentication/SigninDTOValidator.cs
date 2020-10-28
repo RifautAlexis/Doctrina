@@ -10,10 +10,12 @@ namespace api_server.Contract.Validators.Authentication
         public SigninDTOValidator()
         {
             RuleFor(s => s.Email)
-                .NotEmpty().WithMessage("Can't be empty !")
+                .Cascade(CascadeMode.Stop)
+                .SetValidator(new StringValidator())
                 .EmailAddress().WithMessage("Wrong email format !");
             RuleFor(s => s.Password)
-                .NotEmpty().WithMessage("Can't be empty !")
+                .Cascade(CascadeMode.Stop)
+                .SetValidator(new StringValidator())
                 .MinimumLength(3).WithMessage("Require at least 3 characters !");
         }
     }

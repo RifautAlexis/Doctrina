@@ -21,7 +21,7 @@ namespace api_server.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<TagsAttributed> TagsAttributed { get; set; }
+        public DbSet<TagAttributed> TagsAttributed { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,9 +30,9 @@ namespace api_server.Data
             new UserMap(modelBuilder.Entity<User>());
             new ArticleMap(modelBuilder.Entity<Article>());
             new TagMap(modelBuilder.Entity<Tag>());
-            new TagsAttributedMap(modelBuilder.Entity<TagsAttributed>());
+            new TagAttributedMap(modelBuilder.Entity<TagAttributed>());
 
-            modelBuilder.Seed(this._appSettings);
+            modelBuilder.Seed(_appSettings);
         }
 
         public override int SaveChanges()

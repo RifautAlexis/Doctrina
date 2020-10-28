@@ -15,6 +15,8 @@ namespace api_server.Data.Mapping
 
             entityBuilder.Property(a => a.Content).IsRequired();
 
+            entityBuilder.Property(a => a.Description).IsRequired();
+
             entityBuilder.Property(a => a.CreatedAt).IsRequired();
             entityBuilder.Property(a => a.UpdatedAt).IsRequired();
 

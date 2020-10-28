@@ -1,8 +1,10 @@
 ﻿using System;
 namespace api_server.Contract.Exceptions
 {
-    public class ErrorException : Exception
+    public abstract class ErrorException : Exception
     {
-        public ErrorException(string message) : base(message) { }
+        public abstract string Title { get; }
+        public abstract int StatusCode { get; }
+        public abstract string ErrorMessage { get; }
     }
 }
