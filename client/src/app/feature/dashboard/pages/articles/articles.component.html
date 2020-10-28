@@ -1,0 +1,17 @@
+<ng-container *ngIf="(articles$ | async) as articles; else loadingBlock">
+    <mat-list>
+        <mat-list-item *ngFor="let article of articles" (click)='goToArticle(article.id)'>
+            <p>Published: {{article.createdAt}}</p>
+            <p>Upadated: {{article.updatedAt}}</p>
+            <h1 matLine> {{article.title}} </h1>
+            <p matLine> {{article.description}} </p>
+            <mat-list class="inline-list">
+                <mat-list-item *ngFor="let tag of tags"> {{tag.name}} </mat-list-item>
+            </mat-list>
+        </mat-list-item>
+    </mat-list>
+</ng-container>
+
+<ng-template #loadingBlock>
+    <loading-indicator></loading-indicator>
+</ng-template>
