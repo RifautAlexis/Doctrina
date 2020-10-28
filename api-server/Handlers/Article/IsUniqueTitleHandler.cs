@@ -19,8 +19,6 @@ namespace api_server.Handlers
 
         public async Task<BooleanResponse> Handle(IsUniqueTitleRequest request)
         {
-            throw new NotFoundException();
-
             var titles = await _appDBContext.Articles.Select(a => a.Title).ToListAsync();
             bool isUniqueTitle = titles.All(title => title.ToLowerInvariant() != request.isUniqueTitleDTO.Title.ToLowerInvariant());
 
