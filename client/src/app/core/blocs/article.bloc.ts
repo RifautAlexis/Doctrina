@@ -17,8 +17,8 @@ export class ArticleBloc {
     constructor(private articleService: ArticleService) {  }
 
     getById(articleId: number): void {
-        this.articleService.getArticle(articleId)
-            .subscribe((response: IArticleResponse) => {this._articleFetcher$.next(response.article as IArticle)});
+        // this.articleService.getArticle(articleId)
+        //     .subscribe((response: IArticleResponse) => {this._articleFetcher$.next(response.article as IArticle)});
     }
 
     dispose() {

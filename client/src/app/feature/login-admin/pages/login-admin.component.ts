@@ -6,11 +6,11 @@ import { Role } from '@shared/enum';
 import { IAuthentication } from '@shared/models/authentication.model';
 
 @Component({
-  selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  selector: 'app-login-admin',
+  templateUrl: './login-admin.component.html',
+  styleUrls: ['./login-admin.component.scss']
 })
-export class SigninComponent implements OnInit {
+export class LoginAdminComponent implements OnInit {
 
   public adminForm: FormGroup
 

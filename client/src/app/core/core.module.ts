@@ -6,6 +6,7 @@ import { DashboardLayoutComponent } from './layouts/dashboard/dashboard-layout.c
 import { SharedModule } from '@shared/shared.module';
 import { AuthenticationService } from "./services/authentication.service";
 import { ArticleService } from "./services/article.service";
+import { TagService } from "./services/tag.service";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
@@ -26,6 +27,7 @@ import { IsUniqueTitleValidator } from './validators/title.validator';
   providers: [
     AuthenticationService,
     ArticleService,
+    TagService,
     SearchArticleBloc,
     ArticleBloc,
     IsUniqueTitleValidator,

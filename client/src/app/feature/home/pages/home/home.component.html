@@ -1,17 +1,30 @@
-<ng-container *ngIf="(articles$ | async) as articles; else loadingBlock">
-    <mat-list>
-        <mat-list-item *ngFor="let article of articles" (click)='goToArticle(article.id)'>
-            <p>Published: {{article.createdAt}}</p>
-            <p>Upadated: {{article.updatedAt}}</p>
-            <h1 matLine> {{article.title}} </h1>
-            <p matLine> {{article.description}} </p>
-            <mat-list class="inline-list">
-                <mat-list-item *ngFor="let tag of tags"> {{tag.name}} </mat-list-item>
-            </mat-list>
-        </mat-list-item>
-    </mat-list>
+<ng-container [ngSwitch]="(articlesStatus$ | async)">
+    <ng-container *ngSwitchCase="status.PENDING">
+        <loading-indicator></loading-indicator>
+    </ng-container>
+    <ng-container *ngSwitchCase="status.ERROR">
+        <loading-indicator></loading-indicator>
+    </ng-container>
+    <ng-container *ngSwitchCase="status.SUCCESSFUL">
+        <ng-container *ngIf="(articles$ | async).length > 0; then articles; else emptyArticles">
+
+        </ng-container>
+    </ng-container>
 </ng-container>
 
-<ng-template #loadingBlock>
-    <loading-indicator></loading-indicator>
+<ng-template #articles>
+    <mat-list>
+        <mat-list-item *ngFor="let article of articles$ | async">
+            <p>Published: {{article.createdAt}}</p>
+            <a matLine [routerLink]="['article', article.id]"> {{article.title}} </a>
+            <p matLine> {{article.description}} </p>
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of article.tags"> {{tag.name}} </mat-chip>
+            </mat-chip-list>
+        </mat-list-item>
+    </mat-list>
+</ng-template>
+
+<ng-template #emptyArticles>
+    <p>No Articles've been found</p>
 </ng-template>

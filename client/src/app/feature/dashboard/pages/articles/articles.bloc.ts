@@ -17,10 +17,10 @@ export class ArticlesBloc {
     constructor(private articleService: ArticleService) { }
 
     getAll(): void {
-        this.articleService.getAll()
-            .subscribe((response: IArticlesResponse) =>
-                this._articlesFetcher$.next(response.articles as IArticle[])
-            );
+        // this.articleService.getAll()
+        //     .subscribe((response: IArticlesResponse) =>
+        //         this._articlesFetcher$.next(response.articles as IArticle[])
+        //     );
     }
 
     dispose() {

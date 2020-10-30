@@ -21,7 +21,7 @@ export class SearchArticleBloc {
     }
 
     search(toSearch?: string): void {
-        this.articleService.search(toSearch)
-            .subscribe((response: IArticlesResponse) => { this._articlesFetcher$.next(response.articles as IArticle[]) });
+    //     this.articleService.search(toSearch)
+    //         .subscribe((response: IArticlesResponse) => { this._articlesFetcher$.next(response.articles as IArticle[]) });
     }
 }

@@ -11,11 +11,11 @@ export class IsUniqueTitleValidator implements AsyncValidator {
 
     validate = (ctrl: AbstractControl): Observable<ValidationErrors | null> => {
         if (ctrl.value !== null && ctrl.value !== "") {
-
-            return this.articleService.isUniqueTitleValidator(ctrl.value).pipe(
-                map((isUnique: boolean) => (!isUnique ? { isUniquetitle: true } : null)),
-                catchError(() => of(null))
-            );
+            return null
+            // return this.articleService.isUniqueTitleValidator(ctrl.value).pipe(
+            //     map((isUnique: boolean) => (!isUnique ? { isUniquetitle: true } : null)),
+            //     catchError(() => of(null))
+            // );
         }
         return null;
     }

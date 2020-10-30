@@ -3,14 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from '../dashboard/pages/dashboard/dashboard.component';
 import { IsAdminGuard } from '@core/guards/is-admin.guard';
 import { IsNotAdminGuard } from '@core/guards/is-not-admin.guard';
-import { SigninComponent } from '@feature/dashboard/pages/signin/signin.component';
 import { ArticlesComponent } from '@feature/dashboard/pages/articles/articles.component';
 import { WriteArticleComponent } from '@feature/dashboard/pages/write-article/write-article.component';
 import { EditArticleComponent } from '@feature/dashboard/pages/edit-article/edit-article.component';
 import { DashboardLayoutComponent } from '@core/layouts/dashboard/dashboard-layout.component';
 
 const routes: Routes = [
-  { path: 'signin', component: SigninComponent, canActivate: [IsNotAdminGuard] },
   {
     path: '', component: DashboardLayoutComponent, canActivate: [IsAdminGuard], children: [
       { path: 'all', component: ArticlesComponent, canActivate: [IsAdminGuard] },
