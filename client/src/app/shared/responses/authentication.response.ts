@@ -1,6 +1,9 @@
 import { IUser } from "../models/user.model";
+import { IResponse } from './response';
 
-export interface IAuthenticationResponse {
-    user: IUser;
-    token: string;
+export interface IAuthenticationResponse extends IResponse {
+    data: {
+        user: IUser;
+        token: string;
+    };
 }

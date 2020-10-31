@@ -9,6 +9,7 @@ import { IIdResponse } from '@shared/responses/id.response';
 import { IArticleCreate } from '@shared/models/article-create.model';
 import { map, tap } from 'rxjs/operators';
 import { IArticle } from '@shared/models/article.model';
+import { Status } from '@shared/enum';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,12 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
   getArticles(): Observable<IArticlesResponse> {
-    return this.http.get<IArticlesResponse>(environment.apiUrl + 'article');
+    return this.http.get<IArticlesResponse>(environment.apiUrl + 'article')
+      .pipe(
+        map((response: IArticlesResponse) => {
+          return {status: Status.SUCCESSFUL, data: response.data}
+        })
+      );
   }
 
   getArticle(articleId: number): Observable<IArticle> {
