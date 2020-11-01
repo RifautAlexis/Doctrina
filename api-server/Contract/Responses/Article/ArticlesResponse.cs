@@ -5,6 +5,6 @@ namespace api_server.Contract.Responses
 {
     public class ArticlesResponse
     {
-        public List<ArticleDTO> Articles { get; set; }
+        public List<ArticleDTO> Data { get; set; }
     }
 }

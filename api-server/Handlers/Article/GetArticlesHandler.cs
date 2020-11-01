@@ -40,7 +40,7 @@ namespace api_server.Handlers
                 .ThenInclude(ta => ta.Tag)
                 .ToListAsync();
 
-            return new ArticlesResponse { Articles = articles.ToDTOs() };
+            return new ArticlesResponse { Data = articles.ToDTOs() };
         }
     }
 }

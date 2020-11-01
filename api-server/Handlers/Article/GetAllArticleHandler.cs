@@ -26,7 +26,7 @@ namespace api_server.Handlers
                 .Include(a => a.Author)
                 .ToListAsync();
 
-            return new ArticlesResponse { Articles = articles.ToDTOs() };
+            return new ArticlesResponse { Data = articles.ToDTOs() };
         }
     }
 }
