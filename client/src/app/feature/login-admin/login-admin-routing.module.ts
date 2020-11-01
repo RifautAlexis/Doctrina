@@ -5,7 +5,6 @@ import { LoginAdminComponent } from './pages/login-admin.component';
 
 const routes: Routes = [
   { path: '', component: LoginAdminComponent, canActivate: [IsNotAdminGuard] },
-
 ];
 
 @NgModule({

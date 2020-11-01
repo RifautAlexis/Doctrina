@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '@core/services/authentication.service';
-import { Role } from '@shared/enum';
+import { AuthenticationService } from '@core/authentication/authentication.service';
+import { Role, Status } from '@shared/enum';
 import { IAuthentication } from '@shared/models/authentication.model';
+import { IAuthenticationResponse } from '@shared/responses/authentication.response';
 
 @Component({
   selector: 'app-login-admin',
@@ -21,7 +22,10 @@ export class LoginAdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.buildAdminForm();
+    this.adminForm = this.formBuilder.group({
+      email: ["", Validators.required],
+      password: ["", Validators.required]
+    });
   }
 
   public hasError = (controlName: string, errorName: string) => {
@@ -29,36 +33,20 @@ export class LoginAdminComponent implements OnInit {
   }
 
   public submitForm() {
-    const { email, password } = this.adminForm.value as ITest;
+    const { email, password } = this.adminForm.value as ILoginForm;
 
-    this.authenticationService.signin(email, password).subscribe(
-      (response: IAuthentication) => {
-
-        localStorage.setItem('currentToken', response.token);
-
-        const role: Role = this.authenticationService.getCurrentUserRole();
-        this.router.navigate(['dashboard']);
-        console.log("RESPONSE", response);
-      },
-      (error: any) => {
-        console.log("LOLOLOLOL", error);
-      },
-      () => {
-        console.log("XXXXXXXXXXXXXXXX");
+    this.authenticationService.login(email, password).subscribe(
+      (response: IAuthenticationResponse) => {
+        console.log(response);
+        if(response.status === Status.SUCCESSFUL) this.router.navigate(['dashboard']);
       }
     );
   }
-
-  private buildAdminForm(): void {
-    this.adminForm = this.formBuilder.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required]
-    });
-  }
+  
 
 }
 
-export interface ITest {
+interface ILoginForm {
   email: string;
   password: string;
 }

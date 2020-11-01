@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from '../dashboard/pages/dashboard/dashboard.component';
+import { DashboardComponent } from '../dashboard/components/dashboard/dashboard.component';
 import { IsAdminGuard } from '@core/guards/is-admin.guard';
 import { IsNotAdminGuard } from '@core/guards/is-not-admin.guard';
 import { ArticlesComponent } from '@feature/dashboard/pages/articles/articles.component';
@@ -11,9 +11,9 @@ import { DashboardLayoutComponent } from '@core/layouts/dashboard/dashboard-layo
 const routes: Routes = [
   {
     path: '', component: DashboardLayoutComponent, canActivate: [IsAdminGuard], children: [
-      { path: 'all', component: ArticlesComponent, canActivate: [IsAdminGuard] },
-      { path: 'write', component: WriteArticleComponent, canActivate: [IsAdminGuard] },
-      { path: 'edit', component: EditArticleComponent, canActivate: [IsAdminGuard] },
+      { path: 'articles', component: ArticlesComponent, canActivate: [IsAdminGuard] },
+      { path: 'articles/write', component: WriteArticleComponent, canActivate: [IsAdminGuard] },
+      { path: 'articles/:id', component: EditArticleComponent, canActivate: [IsAdminGuard] },
       { path: '', redirectTo: 'all', pathMatch: 'full' }
     ]
   }

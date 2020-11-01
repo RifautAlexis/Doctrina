@@ -17,7 +17,6 @@ import { MarkdownModule } from 'ngx-markdown';
     AppComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,
