@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticleService } from '@core/services/article.service';
+import { Status } from '@shared/enum';
 import { IArticle } from '@shared/models/article.model';
-import { Observable } from 'rxjs';
-import { ArticlesBloc } from './articles.bloc';
+import { IArticlesResponse } from '@shared/responses/articles.response';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-articles',
@@ -9,20 +11,14 @@ import { ArticlesBloc } from './articles.bloc';
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-
-  get articles$(): Observable<IArticle[]> {
-    return this.articlesBloc.articles$;
-  };
+  response$: Observable<IArticlesResponse> = of({status: Status.PENDING, data: []});
+  Status = Status;
 
   constructor(
-    private articlesBloc: ArticlesBloc
-  ) {  }
+    private articleService: ArticleService
+  ) { }
 
   ngOnInit(): void {
-    this.articlesBloc.getAll();
-  }
-
-  ngOnDestroy(): void {
-    this.articlesBloc.dispose();
+    this.response$ = this.articleService.getArticles();
   }
 }

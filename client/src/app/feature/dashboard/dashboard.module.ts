@@ -9,9 +9,6 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import { WriteArticleComponent } from './pages/write-article/write-article.component';
 
-import { ArticlesBloc } from './pages/articles/articles.bloc';
-import { WriteArticleBloc } from './pages/write-article/write-article.bloc';
-
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -26,8 +23,6 @@ import { WriteArticleBloc } from './pages/write-article/write-article.bloc';
     MarkdownModule
   ],
   providers: [
-    ArticlesBloc,
-    WriteArticleBloc
   ]
 })
 export class DashboardModule { }

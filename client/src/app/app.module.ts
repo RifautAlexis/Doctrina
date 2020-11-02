@@ -26,7 +26,7 @@ import { MarkdownModule } from 'ngx-markdown';
     ArticleModule,
     HomeModule,
     DashboardModule,
-    LoginAdminModule
+    LoginAdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

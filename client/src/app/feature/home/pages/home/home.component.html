@@ -13,16 +13,17 @@
 </ng-container>
 
 <ng-template #articles let-articles='articles'>
-    <mat-list>
-        <mat-list-item *ngFor="let article of articles">
-            <p>Published: {{article.createdAt}}</p>
+    <!-- <mat-list>
+        <mat-list-item *ngFor="let article of articles"> -->
+            <article-overview *ngFor="let article of articles" [article]="article"></article-overview>
+            <!-- <p>Published: {{article.createdAt}}</p>
             <a matLine [routerLink]="['article', article.id]"> {{article.title}} </a>
             <p matLine> {{article.description}} </p>
             <mat-chip-list>
                 <mat-chip *ngFor="let tag of article.tags"> {{tag.name}} </mat-chip>
-            </mat-chip-list>
-        </mat-list-item>
-    </mat-list>
+            </mat-chip-list> -->
+        <!-- </mat-list-item>
+    </mat-list> -->
 </ng-template>
 
 <ng-template #emptyArticles>

@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: 'articles', component: ArticlesComponent, canActivate: [IsAdminGuard] },
       { path: 'articles/write', component: WriteArticleComponent, canActivate: [IsAdminGuard] },
       { path: 'articles/:id', component: EditArticleComponent, canActivate: [IsAdminGuard] },
-      { path: '', redirectTo: 'all', pathMatch: 'full' }
+      { path: '', redirectTo: 'articles', pathMatch: 'full' }
     ]
   }
 

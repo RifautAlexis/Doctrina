@@ -9,7 +9,6 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { filter, map, startWith } from 'rxjs/operators';
 import { ITag } from '@shared/models/tag.model';
-import { WriteArticleBloc } from './write-article.bloc';
 import { Router } from '@angular/router';
 import { IsUniqueTitleValidator } from '@core/validators/title.validator';
 
@@ -21,23 +20,6 @@ import { IsUniqueTitleValidator } from '@core/validators/title.validator';
 export class WriteArticleComponent implements OnInit {
 
   public articleForm: FormGroup
-
-  // markdown = `## Markdown __rulez__!
-  // ---
-
-  // ### Syntax highlight
-  // \`\`\`typescript
-  // const language = 'typescript';
-  // \`\`\`
-
-  // ### Lists
-  // 1. Ordered list
-  // 2. Another bullet point
-  //   - Unordered list
-  //   - Another unordered bullet point
-
-  // ### Blockquote
-  // > Blockquote to the max`;
 
   markdown;
   tags: ITag[] = [];
@@ -60,7 +42,6 @@ export class WriteArticleComponent implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(
-    private writeArticleBloc: WriteArticleBloc,
     public formBuilder: FormBuilder,
     private router: Router,
     private isUniqueTitleValidator: IsUniqueTitleValidator
@@ -87,8 +68,8 @@ export class WriteArticleComponent implements OnInit {
     const content: string = controls.content.value;
     const tagIds: number[] = this.tagsSelected.map((tag: ITag) => tag.id);
 
-    this.writeArticleBloc.createArticle({title, description, content, tagIds})
-      .subscribe((articleId: number) => {console.log(articleId); this.router.navigate['article/' + articleId];});
+    // this.writeArticleBloc.createArticle({title, description, content, tagIds})
+    //   .subscribe((articleId: number) => {console.log(articleId); this.router.navigate['article/' + articleId];});
   }
 
   private buildArticleForm(): void {

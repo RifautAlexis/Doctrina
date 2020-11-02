@@ -1,19 +1,31 @@
-<!-- <ng-container *ngIf="(articles$ | async) as articles; else loadingBlock">
-    <mat-list>
-        <mat-list-item *ngFor="let article of articles" (click)='goToArticle(article.id)'>
-            <p>Published: {{article.createdAt}}</p>
-            <p>Upadated: {{article.updatedAt}}</p>
-            <h1 matLine> {{article.title}} </h1>
-            <p matLine> {{article.description}} </p>
-            <mat-list class="inline-list">
-                <mat-list-item *ngFor="let tag of tags"> {{tag.name}} </mat-list-item>
-            </mat-list>
-        </mat-list-item>
-    </mat-list>
+<ng-container *ngIf="(response$ | async) as response">
+    <ng-container *ngIf="response.status == Status.PENDING">
+        <loading-indicator></loading-indicator>
+    </ng-container>
+    <ng-container *ngIf="response.status == Status.ERROR">
+        <loading-indicator></loading-indicator>
+    </ng-container>
+    <ng-container *ngIf="response.status == Status.SUCCESSFUL">
+        <ng-container [ngTemplateOutlet]="response.data.length > 0 ? articles : emptyArticles" [ngTemplateOutletContext]="{articles:response.data}">
+        
+        </ng-container>
+    </ng-container>
 </ng-container>
 
-<ng-template #loadingBlock>
-    <loading-indicator></loading-indicator>
-</ng-template> -->
+<ng-template #articles let-articles='articles'>
+    <article-overview *ngFor="let article of articles" [article]="article"></article-overview>
+    <!-- <mat-list>
+        <mat-list-item *ngFor="let article of articles">
+            <p>Published: {{article.createdAt}}</p>
+            <a matLine [routerLink]="['article', article.id]"> {{article.title}} </a>
+            <p matLine> {{article.description}} </p>
+            <mat-chip-list>
+                <mat-chip *ngFor="let tag of article.tags"> {{tag.name}} </mat-chip>
+            </mat-chip-list>
+        </mat-list-item>
+    </mat-list> -->
+</ng-template>
 
-<div>DASHBOARD ARTICLES WORKS</div>
+<ng-template #emptyArticles>
+    <p>No Articles've been found</p>
+</ng-template>

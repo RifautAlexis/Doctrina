@@ -10,8 +10,6 @@ import { TagService } from "./services/tag.service";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './authentication/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import { SearchArticleBloc } from './blocs/search-article.bloc';
-import { ArticleBloc } from './blocs/article.bloc';
 import { IsUniqueTitleValidator } from './validators/title.validator';
 
 @NgModule({
@@ -29,8 +27,6 @@ import { IsUniqueTitleValidator } from './validators/title.validator';
     AuthenticationService,
     ArticleService,
     TagService,
-    SearchArticleBloc,
-    ArticleBloc,
     IsUniqueTitleValidator,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

@@ -11,6 +11,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card';
 
 const modules = [
   MatIconModule,
@@ -23,7 +24,8 @@ const modules = [
   MatChipsModule,
   MatAutocompleteModule,
   MatSidenavModule,
-  MatDividerModule
+  MatDividerModule,
+  MatCardModule
 ];
 
 @NgModule({
