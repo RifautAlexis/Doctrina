@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ArticleService } from '@core/services/article.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ElementRef, ViewChild } from '@angular/core';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { filter, map, startWith } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { ITag } from '@shared/models/tag.model';
 import { Router } from '@angular/router';
 import { IsUniqueTitleValidator } from '@core/validators/title.validator';
+import { Status } from '@shared/enum';
+import { ITagsResponse } from '@shared/responses/tags.response';
+import { TagService } from '@core/services/tag.service';
 
 @Component({
   selector: 'app-write-article',
@@ -19,24 +22,17 @@ import { IsUniqueTitleValidator } from '@core/validators/title.validator';
 })
 export class WriteArticleComponent implements OnInit {
 
+  // responseTags$: Observable<ITagsResponse> = of({status: Status.PENDING, data: []});
   public articleForm: FormGroup
-
-  markdown;
+  
   tags: ITag[] = [];
-  visible = true;
-  selectable = true;
-  removable = true;
+  // visible = true;
+  // selectable = true;
+  // removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl();
   filteredTags: Observable<ITag[]>;
   tagsSelected: ITag[] = [];
-  allTags: ITag[] = [
-    { id: 1, name: "Javascript", createdAt: new Date(Date.now()), updatedAt: new Date(Date.now()) },
-    { id: 2, name: "NodeJs", createdAt: new Date(Date.now()), updatedAt: new Date(Date.now()) },
-    { id: 3, name: "ASP.NET Core", createdAt: new Date(Date.now()), updatedAt: new Date(Date.now()) },
-    { id: 4, name: "Python", createdAt: new Date(Date.now()), updatedAt: new Date(Date.now()) },
-    { id: 5, name: "C#", createdAt: new Date(Date.now()), updatedAt: new Date(Date.now()) }
-  ];
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -44,23 +40,23 @@ export class WriteArticleComponent implements OnInit {
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
-    private isUniqueTitleValidator: IsUniqueTitleValidator
+    private isUniqueTitleValidator: IsUniqueTitleValidator,
+    private tagService: TagService
   ) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
-      startWith(null),
-      map((tag: ITag) => tag ? this._filter(tag) : this.allTags.slice()));
+      // startWith(null),
+      map((tag: ITag) => tag ? this._filter(tag) : this.tags.slice()));
   }
 
   ngOnInit(): void {
+    this.tagService.getTags().subscribe((response: ITagsResponse) => {
+      this.tags = response.data;
+    });
     this.buildArticleForm();
   }
 
   createArticle(): void {
-    console.log("ENTERED");
-    console.log(this.articleForm.invalid);
-    console.log(this.articleForm.errors);
     if(this.articleForm.invalid) return;
-    console.log("PASSED");
 
     const controls = this.articleForm.controls;
     const title: string = controls.title.value;
@@ -80,24 +76,8 @@ export class WriteArticleComponent implements OnInit {
       ],
       content: ["", Validators.required],
       description: ["", Validators.required],
-      tags: [""]
+      tags: ["", Validators.required]
     });
-  }
-
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-    
-    if ((value || '').trim()) {
-      const tagTyped: ITag = this.tags.find(tag => tag.name.toLowerCase() == value.trim().toLowerCase())
-      if(tagTyped) this.tagsSelected.push(tagTyped);
-    }
-
-    if (input) {
-      input.value = '';
-    }
-
-    this.tagCtrl.setValue(null);
   }
 
   remove(tag: ITag): void {
@@ -110,7 +90,7 @@ export class WriteArticleComponent implements OnInit {
 
   selected(event: MatAutocompleteSelectedEvent): void {
     const tagSelected: string = event.option.viewValue.toLowerCase();
-    this.tagsSelected.push(this.allTags.find(tag => tag.name.toLowerCase() == tagSelected));
+    this.tagsSelected.push(this.tags.find(tag => tag.name.toLowerCase() == tagSelected));
     this.filteredTags = this.filteredTags
       .pipe(
         map((tagsFiltered: ITag[]) => tagsFiltered.filter((tag: ITag) => tag.name.toLowerCase() !== tagSelected))
@@ -122,6 +102,6 @@ export class WriteArticleComponent implements OnInit {
   private _filter(value: ITag | string): ITag[] {
     let filterValue: string;
     typeof value !== "string" ? filterValue = value.name.toLowerCase() : filterValue = value.toLowerCase();
-    return this.allTags.filter(tag => tag.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.tags.filter(tag => tag.name.toLowerCase().includes(filterValue));
   }
 }

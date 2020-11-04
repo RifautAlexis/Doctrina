@@ -39,7 +39,7 @@ namespace api_server.Handlers
 
             await _appDBContext.SaveChangesAsync();
 
-            return new AuthenticationResponse { Data = new Autjentication { User = user.ToDTO(), Token = token } };
+            return new AuthenticationResponse { Data = new Authentication { User = user.ToDTO(), Token = token } };
         }
     }
 }

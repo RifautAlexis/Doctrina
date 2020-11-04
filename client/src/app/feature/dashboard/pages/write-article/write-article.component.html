@@ -1,4 +1,4 @@
-<!-- <form [formGroup]="articleForm" (ngSubmit)="createArticle()" novalidate>
+<form [formGroup]="articleForm" (ngSubmit)="createArticle()" novalidate>
 
   <mat-form-field>
     <mat-label>Title</mat-label>
@@ -12,21 +12,20 @@
     <input matInput type="text" id="description" formControlName="description">
   </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>Content</mat-label>
-    <textarea [(ngModel)]="markdown" matInput type="text" id="content" formControlName="content"></textarea>
-  </mat-form-field>
+  <!-- <mat-form-field> -->
+  <!-- <mat-label>Content</mat-label> -->
+  <!-- <textarea  matInput type="text" id="content" formControlName="content"></textarea> -->
+  <quill-editor formControlName="content"></quill-editor>
+  <!-- </mat-form-field> -->
 
   <mat-form-field>
     <mat-chip-list #chipList aria-label="Tag selection">
-      <mat-chip *ngFor="let tag of tagsSelected" [selectable]="selectable" [removable]="removable"
-        (removed)="remove(tag)">
+      <mat-chip *ngFor="let tag of tagsSelected" [selectable]="true" [removable]="true" (removed)="remove(tag)">
         {{tag?.name}}
-        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
       <input placeholder="Add a tag..." #tagInput [formControl]="tagCtrl" [matAutocomplete]="auto"
-        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-        (matChipInputTokenEnd)="add($event)">
+        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
       <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
@@ -37,6 +36,9 @@
 
   <button mat-flat-button type="submit" color="primary">Create</button>
 
-</form> -->
+</form>
 
-<div>DASHBOARD WRITE WORKS</div>
+Preview
+<pre>
+  {{articleForm.get('content').value}}
+</pre>

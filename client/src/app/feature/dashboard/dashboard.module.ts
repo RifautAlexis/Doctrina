@@ -8,6 +8,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { ArticlesComponent } from './pages/articles/articles.component';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import { WriteArticleComponent } from './pages/write-article/write-article.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { WriteArticleComponent } from './pages/write-article/write-article.compo
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
-    MarkdownModule
+    MarkdownModule,
+    QuillModule.forRoot(),
   ],
   providers: [
   ]

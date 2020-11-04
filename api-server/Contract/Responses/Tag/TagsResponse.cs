@@ -5,6 +5,6 @@ namespace api_server.Contract.Responses
 {
     public class TagsResponse
     {
-        public List<TagDTO> Tags { get; set; }
+        public List<TagDTO> Data { get; set; }
     }
 }

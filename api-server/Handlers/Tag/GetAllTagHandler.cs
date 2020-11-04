@@ -22,7 +22,7 @@ namespace api_server.Handlers
         {
             List<Tag> tags = await _appDBContext.Tags.ToListAsync();
 
-            return new TagsResponse { Tags = tags.ToDTOs() };
+            return new TagsResponse { Data = tags.ToDTOs() };
         }
     }
 }
