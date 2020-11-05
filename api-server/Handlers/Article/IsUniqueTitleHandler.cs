@@ -4,7 +4,6 @@ using api_server.Contract.Responses;
 using api_server.Data;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using api_server.Contract.Exceptions;
 
 namespace api_server.Handlers
 {
@@ -20,7 +19,7 @@ namespace api_server.Handlers
         public async Task<BooleanResponse> Handle(IsUniqueTitleRequest request)
         {
             var titles = await _appDBContext.Articles.Select(a => a.Title).ToListAsync();
-            bool isUniqueTitle = titles.All(title => title.ToLowerInvariant() != request.isUniqueTitleDTO.Title.ToLowerInvariant());
+            bool isUniqueTitle = titles.All(title => title.ToLowerInvariant() != request.Title.ToLowerInvariant());
 
             return new BooleanResponse { Value = isUniqueTitle };
         }

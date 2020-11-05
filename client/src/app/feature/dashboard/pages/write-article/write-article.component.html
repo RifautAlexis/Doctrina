@@ -12,11 +12,7 @@
     <input matInput type="text" id="description" formControlName="description">
   </mat-form-field>
 
-  <!-- <mat-form-field> -->
-  <!-- <mat-label>Content</mat-label> -->
-  <!-- <textarea  matInput type="text" id="content" formControlName="content"></textarea> -->
   <quill-editor formControlName="content"></quill-editor>
-  <!-- </mat-form-field> -->
 
   <mat-form-field>
     <mat-chip-list #chipList aria-label="Tag selection">
@@ -39,6 +35,4 @@
 </form>
 
 Preview
-<pre>
-  {{articleForm.get('content').value}}
-</pre>
+<quill-view [content]="articleForm.get('content').value" format="html" theme="snow"></quill-view>

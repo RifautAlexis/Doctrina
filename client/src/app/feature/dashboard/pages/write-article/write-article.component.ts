@@ -6,8 +6,7 @@ import { Observable, of } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ElementRef, ViewChild } from '@angular/core';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
-import { MatChipInputEvent } from '@angular/material/chips';
-import { map, startWith } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ITag } from '@shared/models/tag.model';
 import { Router } from '@angular/router';
 import { IsUniqueTitleValidator } from '@core/validators/title.validator';
@@ -22,13 +21,9 @@ import { TagService } from '@core/services/tag.service';
 })
 export class WriteArticleComponent implements OnInit {
 
-  // responseTags$: Observable<ITagsResponse> = of({status: Status.PENDING, data: []});
   public articleForm: FormGroup
   
   tags: ITag[] = [];
-  // visible = true;
-  // selectable = true;
-  // removable = true;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl();
   filteredTags: Observable<ITag[]>;
@@ -44,7 +39,6 @@ export class WriteArticleComponent implements OnInit {
     private tagService: TagService
   ) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
-      // startWith(null),
       map((tag: ITag) => tag ? this._filter(tag) : this.tags.slice()));
   }
 

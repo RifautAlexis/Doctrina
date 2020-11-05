@@ -22,29 +22,35 @@ export class ArticleService {
     return this.http.get<IArticlesResponse>(environment.apiUrl + 'article')
       .pipe(
         map((response: IArticlesResponse) => {
-          return {status: Status.SUCCESSFUL, data: response.data}
+          return {status: Status.SUCCESSFUL, data: response.data};
         })
       );
   }
 
-  getArticle(articleId: number): Observable<IArticle> {
+  getArticle(articleId: number): Observable<IArticleResponse> {
     return this.http.get<IArticleResponse>(environment.apiUrl + 'article/' + articleId)
     .pipe(
-      map((response: IArticleResponse) => response.article)
+      map((response: IArticleResponse) => {
+        return {status: Status.SUCCESSFUL, data: response.data};
+      })
     );
   }
 
-  isUniqueTitle(title: string): Observable<boolean> {
+  isUniqueTitle(title: string): Observable<IBooleanResponse> {
     return this.http.post<IBooleanResponse>(environment.apiUrl + 'article/isUniqueTitle', JSON.stringify(title), { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
       .pipe(
-        map((response: IBooleanResponse) => response.response)
+        map((response: IBooleanResponse) => {
+          return {status: Status.SUCCESSFUL, data: response.data};
+        })
       );
   }
 
-  createArticle(newArticle: IArticleCreate): Observable<number> {
+  createArticle(newArticle: IArticleCreate): Observable<IIdResponse> {
     return this.http.post<IIdResponse>(environment.apiUrl + 'article/createArticle', newArticle)
       .pipe(
-        map((response: IIdResponse) => response.id)
+        map((response: IIdResponse) => {
+          return {status: Status.SUCCESSFUL, data: response.data};
+        })
       );
   }
 
