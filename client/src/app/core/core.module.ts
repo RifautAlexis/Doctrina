@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FrameLayoutComponent } from './layouts/frame/frame-layout.component';
+import { HeaderLayoutComponent } from './layouts/frame/header-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard/dashboard-layout.component';
 import { SharedModule } from '@shared/shared.module';
 import { AuthenticationService } from "./authentication/authentication.service";
@@ -14,7 +14,7 @@ import { IsUniqueTitleValidator } from './validators/title.validator';
 
 @NgModule({
   declarations: [
-    FrameLayoutComponent,
+    HeaderLayoutComponent,
     DashboardLayoutComponent
   ],
   imports: [
@@ -32,7 +32,7 @@ import { IsUniqueTitleValidator } from './validators/title.validator';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   exports: [
-    FrameLayoutComponent,
+    HeaderLayoutComponent,
     DashboardLayoutComponent
   ]
 })
