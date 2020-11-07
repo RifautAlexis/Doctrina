@@ -9,14 +9,14 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Snackbar } from '@shared/components/snackbar.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { Snackbar } from '../../components/snackbar/snackbar.component';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
     constructor(
         private router: Router,
-        private _snackBar: MatSnackBar
+        // private _snackBar: MatSnackBar
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -25,7 +25,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 catchError((err: HttpErrorResponse) => {
 
                     if (err.status === 400) {
-                        new Snackbar(this._snackBar).openSnackBarError(err.error.message);
+                        // new Snackbar(this._snackBar).openSnackBarError(err.error.message);
                         throw err;
                     } else if(err.status === 401) {
 

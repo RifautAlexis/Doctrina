@@ -15,7 +15,11 @@
 <ng-template #articles let-articles='articles'>
     <!-- <mat-list>
         <mat-list-item *ngFor="let article of articles"> -->
-            <article-overview *ngFor="let article of articles" [article]="article"></article-overview>
+            <main class="container">
+                <!-- <div> -->
+                    <articles-overview [articles]="articles"></articles-overview>
+                <!-- </div> -->
+            </main>
             <!-- <p>Published: {{article.createdAt}}</p>
             <a matLine [routerLink]="['article', article.id]"> {{article.title}} </a>
             <p matLine> {{article.description}} </p>
@@ -27,5 +31,7 @@
 </ng-template>
 
 <ng-template #emptyArticles>
-    <p>No Articles've been found</p>
+    <main class="container">
+        <p>No Articles've been found</p>
+    </main>
 </ng-template>

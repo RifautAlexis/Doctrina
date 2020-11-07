@@ -11,6 +11,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './authentication/jwt.interceptor';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { IsUniqueTitleValidator } from './validators/title.validator';
+// import { Snackbar } from '../components/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { IsUniqueTitleValidator } from './validators/title.validator';
     CommonModule,
     SharedModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    // Snackbar
   ],
   providers: [
     AuthenticationService,
