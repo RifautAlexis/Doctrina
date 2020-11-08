@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderLayoutComponent } from './layouts/frame/header-layout.component';
+import { HeaderLayoutComponent } from './layouts/header/header-layout.component';
 import { DashboardLayoutComponent } from './layouts/dashboard/dashboard-layout.component';
 import { SharedModule } from '@shared/shared.module';
 import { AuthenticationService } from "./authentication/authentication.service";
