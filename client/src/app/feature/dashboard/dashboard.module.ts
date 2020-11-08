@@ -9,6 +9,8 @@ import { ArticlesComponent } from './pages/articles/articles.component';
 import { EditArticleComponent } from './pages/edit-article/edit-article.component';
 import { WriteArticleComponent } from './pages/write-article/write-article.component';
 import { QuillModule } from 'ngx-quill';
+import { ArticlesOverviewModule } from 'src/app/components/articles-overview/articles-overview.module';
+import { LoadingIndicatorModule } from 'src/app/components/loading-indicator/loading-indicator.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { QuillModule } from 'ngx-quill';
     SharedModule,
     MarkdownModule,
     QuillModule.forRoot(),
+    ArticlesOverviewModule,
+    LoadingIndicatorModule
   ],
   providers: [
   ]

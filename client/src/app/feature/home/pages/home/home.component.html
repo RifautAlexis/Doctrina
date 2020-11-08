@@ -6,28 +6,17 @@
         <loading-indicator></loading-indicator>
     </ng-container>
     <ng-container *ngIf="response.status == Status.SUCCESSFUL">
-        <ng-container [ngTemplateOutlet]="response.data.length > 0 ? articles : emptyArticles" [ngTemplateOutletContext]="{articles:response.data}">
-        
+        <ng-container [ngTemplateOutlet]="response.data.length > 0 ? articles : emptyArticles"
+            [ngTemplateOutletContext]="{articles:response.data}">
+
         </ng-container>
     </ng-container>
 </ng-container>
 
 <ng-template #articles let-articles='articles'>
-    <!-- <mat-list>
-        <mat-list-item *ngFor="let article of articles"> -->
-            <main class="container">
-                <!-- <div> -->
-                    <articles-overview [articles]="articles"></articles-overview>
-                <!-- </div> -->
-            </main>
-            <!-- <p>Published: {{article.createdAt}}</p>
-            <a matLine [routerLink]="['article', article.id]"> {{article.title}} </a>
-            <p matLine> {{article.description}} </p>
-            <mat-chip-list>
-                <mat-chip *ngFor="let tag of article.tags"> {{tag.name}} </mat-chip>
-            </mat-chip-list> -->
-        <!-- </mat-list-item>
-    </mat-list> -->
+    <main class="container">
+        <articles-overview [articles]="articles"></articles-overview>
+    </main>
 </ng-template>
 
 <ng-template #emptyArticles>
