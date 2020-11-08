@@ -6,17 +6,25 @@ import { IAuthenticationResponse } from '@shared/responses/authentication.respon
 import { Status } from '@shared/enum';
 import { IAuthentication } from '@shared/models/authentication.model';
 import { environment } from '../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
     private currentUser$: BehaviorSubject<IAuthentication>;
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private router: Router
+    ) {
         this.currentUser$ = new BehaviorSubject<IAuthentication>(JSON.parse(localStorage.getItem('currentUser')));
     }
 
     public get currentUserValue(): IAuthentication {
         return this.currentUser$.value;
+    }
+
+    public get isConnected(): Observable<boolean> {
+        return this.currentUser$.pipe(map((auth: IAuthentication) => auth != null));
     }
 
     login(email: string, password: string): Observable<IAuthenticationResponse> {
@@ -32,5 +40,8 @@ export class AuthenticationService {
     logout() {
         localStorage.removeItem('currentUser');
         this.currentUser$.next(null);
+        if (this.router.url.includes("dashboard")) {
+            this.router.navigate(['/']);
+        }
     }
 }

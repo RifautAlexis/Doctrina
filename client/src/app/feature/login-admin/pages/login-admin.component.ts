@@ -37,7 +37,6 @@ export class LoginAdminComponent implements OnInit {
 
     this.authenticationService.login(email, password).subscribe(
       (response: IAuthenticationResponse) => {
-        console.log(response);
         if(response.status === Status.SUCCESSFUL) this.router.navigate(['dashboard']);
       }
     );
