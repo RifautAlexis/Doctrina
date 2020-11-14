@@ -1,3 +1,9 @@
 .space-between mat-chip:not(:first-child){
     margin-left: 1em;
 }
+
+#menu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

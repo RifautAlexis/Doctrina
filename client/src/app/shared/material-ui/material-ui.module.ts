@@ -12,6 +12,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 const modules = [
   MatIconModule,
@@ -25,7 +27,9 @@ const modules = [
   MatAutocompleteModule,
   MatSidenavModule,
   MatDividerModule,
-  MatCardModule
+  MatCardModule,
+  MatMenuModule,
+  MatButtonModule
 ];
 
 @NgModule({

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { MaterialUiModule } from './material-ui/material-ui.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ArticleValidator } from './validators/article.validator';
 
 @NgModule({
   declarations: [
@@ -9,17 +10,19 @@ import { CommonModule } from '@angular/common';
   entryComponents: [
   ],
   imports: [
+    CommonModule,
     MaterialUiModule,
     FormsModule,
-    ReactiveFormsModule,
-    CommonModule
+    ReactiveFormsModule
   ],
   exports: [
+    CommonModule,
     MaterialUiModule,
     FormsModule,
     ReactiveFormsModule,
   ],
   providers: [
+    ArticleValidator,
   ]
 })
 

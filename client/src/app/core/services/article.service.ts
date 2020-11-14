@@ -10,6 +10,7 @@ import { IArticleCreate } from '@shared/models/article-create.model';
 import { map, tap } from 'rxjs/operators';
 import { IArticle } from '@shared/models/article.model';
 import { Status } from '@shared/enum';
+import { IArticleEdit } from '@shared/models/article-edit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,8 +37,11 @@ export class ArticleService {
     );
   }
 
-  isUniqueTitle(title: string): Observable<IBooleanResponse> {
-    return this.http.post<IBooleanResponse>(environment.apiUrl + 'article/isUniqueTitle', JSON.stringify(title), { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) })
+  isUniqueTitle(title: string, articleId: number): Observable<IBooleanResponse> {
+    return this.http.post<IBooleanResponse>(environment.apiUrl + 'article/isUniqueTitle', {
+      "title": title,
+      "articleId": articleId
+    })
       .pipe(
         map((response: IBooleanResponse) => {
           return {status: Status.SUCCESSFUL, data: response.data};
@@ -45,13 +49,31 @@ export class ArticleService {
       );
   }
 
-  createArticle(newArticle: IArticleCreate): Observable<IIdResponse> {
-    return this.http.post<IIdResponse>(environment.apiUrl + 'article/createArticle', newArticle)
+  createArticle(articleToAdd: IArticleCreate): Observable<IIdResponse> {
+    return this.http.post<IIdResponse>(environment.apiUrl + 'article', articleToAdd)
       .pipe(
         map((response: IIdResponse) => {
           return {status: Status.SUCCESSFUL, data: response.data};
         })
       );
+  }
+
+  editArticle(articleToEdit: IArticleEdit): Observable<IIdResponse> {
+    return this.http.put<IIdResponse>(environment.apiUrl + 'article/' + articleToEdit.id, articleToEdit)
+      .pipe(
+        map((response: IIdResponse) => {
+          return {status: Status.SUCCESSFUL, data: response.data};
+        })
+      );
+  }
+
+  delete(articleId: string): Observable<IBooleanResponse> {
+    return this.http.delete<IBooleanResponse>(environment.apiUrl + 'article/' + articleId)
+    .pipe(
+      map((response: IBooleanResponse) => {
+        return {status: Status.SUCCESSFUL, data: response.data};
+      })
+    );
   }
 
 }

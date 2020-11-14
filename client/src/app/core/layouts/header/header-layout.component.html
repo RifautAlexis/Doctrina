@@ -1,29 +1,35 @@
 <mat-toolbar>
-    <div class="col-6 justify-content-between space-between">
-        <a mat-icon-button routerLink="/">
+    <div class="col-6 justify-content-start space-between">
+        <a routerLink="/">
             Home
         </a>
 
-        <a mat-icon-button routerLink="/about">
+        <a routerLink="/about">
             About
         </a>
 
-        <a mat-icon-button routerLink="/knowledgeCoffee">
+        <a routerLink="/knowledgeCoffee">
             Knowledge Coffee
         </a>
+
+        <ng-container *ngIf="(isAdmin$| async)">
+            <a routerLink="/dashboard/articles">
+                Dashboard
+            </a>
+        </ng-container>
     </div>
     <div class="col-6 d-flex justify-content-end space-between">
         <ng-container *ngIf="(isConnected$ | async)">
-            <a mat-icon-button (click)="logout()">
+            <a (click)="logout()">
                 Logout
             </a>
         </ng-container>
 
-        <a mat-icon-button href="https://www.linkedin.com/in/rifaut-alexis/">
+        <a href="https://www.linkedin.com/in/rifaut-alexis/">
             Linkedin
         </a>
 
-        <a mat-icon-button href="https://github.com/RifautAlexis">
+        <a href="https://github.com/RifautAlexis">
             Github
         </a>
     </div>

@@ -1,1 +1,3 @@
-<div>DASHBOARD EDIT WORKS</div>
+<ng-container *ngIf="(article$ | async) as articleToEdit">
+    <add-edit-article [articleToEdit]="articleToEdit" (articleToEditEvent)="editArticle($event)"></add-edit-article>
+</ng-container>

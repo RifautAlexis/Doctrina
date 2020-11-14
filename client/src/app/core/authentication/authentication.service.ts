@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IAuthenticationResponse } from '@shared/responses/authentication.response';
-import { Status } from '@shared/enum';
+import { Role, Status } from '@shared/enum';
 import { IAuthentication } from '@shared/models/authentication.model';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
@@ -23,8 +23,16 @@ export class AuthenticationService {
         return this.currentUser$.value;
     }
 
-    public get isConnected(): Observable<boolean> {
-        return this.currentUser$.pipe(map((auth: IAuthentication) => auth != null));
+    public get currentUserValue$(): BehaviorSubject<IAuthentication> {
+        return this.currentUser$;
+    }
+
+    public get isConnected$(): Observable<boolean> {
+        return this.currentUser$.pipe(map((auth: IAuthentication) => auth !== null));
+    }
+
+    public get isAdmin$(): Observable<boolean> {
+        return this.currentUser$.pipe(map((auth: IAuthentication) => auth?.user.role === Role.Admin));
     }
 
     login(email: string, password: string): Observable<IAuthenticationResponse> {

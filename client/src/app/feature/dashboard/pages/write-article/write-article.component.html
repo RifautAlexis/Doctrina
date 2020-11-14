@@ -1,4 +1,4 @@
-<form [formGroup]="articleForm" (ngSubmit)="createArticle()" novalidate>
+<!-- <form [formGroup]="articleForm" (ngSubmit)="createArticle()" novalidate>
 
   <mat-form-field>
     <mat-label>Title</mat-label>
@@ -35,4 +35,6 @@
 </form>
 
 Preview
-<quill-view [content]="articleForm.get('content').value" format="html" theme="snow"></quill-view>
+<quill-view [content]="articleForm.get('content').value" format="html" theme="snow"></quill-view> -->
+
+<add-edit-article [articleToEdit]="null" (articleToAddEvent)="createArticle($event)"></add-edit-article>

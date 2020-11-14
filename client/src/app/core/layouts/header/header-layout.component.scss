@@ -1,3 +1,9 @@
 .space-between a:not(:first-child){
     margin-left: 1em;
 }
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}

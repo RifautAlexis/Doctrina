@@ -15,7 +15,7 @@
 
 <ng-template #articles let-articles='articles'>
     <main class="container">
-        <articles-overview [articles]="articles"></articles-overview>
+        <articles-overview [articles]="articles" [isAdmin]="true" (deleteArticleIdEvent)="deleteArticle($event)"></articles-overview>
     </main>
 </ng-template>
 

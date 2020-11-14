@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthenticationService } from '@core/authentication/authentication.service';
 import { Observable } from 'rxjs';
 
@@ -11,13 +10,15 @@ import { Observable } from 'rxjs';
 export class HeaderLayoutComponent implements OnInit {
 
   isConnected$: Observable<boolean>;
+  isAdmin$: Observable<boolean>;
 
   constructor(
     private authService: AuthenticationService
   ) { }
 
   ngOnInit(): void {
-    this.isConnected$ = this.authService.isConnected;
+    this.isAdmin$ = this.authService.isAdmin$;
+    this.isConnected$ = this.authService.isConnected$;
   }
 
   logout() {
