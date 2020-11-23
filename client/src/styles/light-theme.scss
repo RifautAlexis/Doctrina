@@ -1,0 +1,14 @@
+@import '../colors.scss';
+
+@mixin custom-light-theme() {
+    $primary: map-get($mat-primary, main);
+    $test: map-get($mat-accent, lighter);
+    $background: lighten($test, 20%);
+    body {
+        background-color: #F5F5F6;
+    }
+
+    .header-layout {
+        background-color: $primary;
+    }
+}

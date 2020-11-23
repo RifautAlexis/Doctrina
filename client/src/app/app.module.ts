@@ -9,7 +9,6 @@ import { ArticleModule } from './feature/article/article.module';
 import { HomeModule } from './feature/home/home.module';
 import { DashboardModule } from './feature/dashboard/dashboard.module';
 import { LoginAdminModule } from './feature/login-admin/login-admin.module';
-import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { MarkdownModule } from 'ngx-markdown';
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
-    MarkdownModule.forRoot(),
     ArchiveModule,
     ArticleModule,
     HomeModule,

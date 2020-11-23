@@ -1,3 +1,11 @@
+mat-card:not(:first-child){
+    margin-top: 15px;
+}
+
+// mat-card{
+//     margin-top: 15px;
+// }
+
 .space-between mat-chip:not(:first-child){
     margin-left: 1em;
 }

@@ -15,7 +15,9 @@
 
 <ng-template #articles let-articles='articles'>
     <main class="container">
-        <articles-overview [articles]="articles" [isInDashboard]="false"></articles-overview>
+        <br>
+        <articles-overview [articles]="articles" [isAdmin]="false" class="my-3"></articles-overview>
+        <br>
     </main>
 </ng-template>
 

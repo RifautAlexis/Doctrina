@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar class="header-layout">
     <div class="col-6 justify-content-start space-between">
         <a routerLink="/">
             Home
@@ -19,18 +19,30 @@
         </ng-container>
     </div>
     <div class="col-6 d-flex justify-content-end space-between">
+
         <ng-container *ngIf="(isConnected$ | async)">
             <a (click)="logout()">
                 Logout
             </a>
         </ng-container>
+        
+        <ng-container *ngIf="(isDarkModeOn$ | async) as isDarkModeOn">
+            <mat-icon (click)="changeTheme(isDarkModeOn)">
+                wb_sunny
+            </mat-icon>
+        </ng-container>
+        <ng-container *ngIf="!(isDarkModeOn$ | async) as isDarkModeOff">
+            <mat-icon (click)="changeTheme(!isDarkModeOff)">
+                bedtime
+            </mat-icon>
+        </ng-container>
 
         <a href="https://www.linkedin.com/in/rifaut-alexis/">
-            Linkedin
+            <i class="fab fa-linkedin"></i>
         </a>
 
         <a href="https://github.com/RifautAlexis">
-            Github
+            <i class="fab fa-github"></i>
         </a>
     </div>
 </mat-toolbar>

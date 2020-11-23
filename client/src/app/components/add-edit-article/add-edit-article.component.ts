@@ -24,6 +24,8 @@ export class AddEditArticleComponent implements OnInit {
   @Output() articleToAddEvent = new EventEmitter<IArticleCreate>();
   @Output() articleToEditEvent = new EventEmitter<IArticleEdit>();
 
+  content: string;
+
   public articleForm: FormGroup
 
   tags: ITag[] = [];

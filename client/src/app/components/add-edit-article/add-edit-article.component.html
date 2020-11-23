@@ -12,7 +12,8 @@
       <input matInput type="text" id="description" formControlName="description">
     </mat-form-field>
   
-    <quill-editor formControlName="content"></quill-editor>
+    <!-- <quill-editor formControlName="content"></quill-editor> -->
+    <content-editor (htmlText)="content"></content-editor> <!-- formControlName="content" -->
   
     <mat-form-field>
       <mat-chip-list #chipList aria-label="Tag selection">
