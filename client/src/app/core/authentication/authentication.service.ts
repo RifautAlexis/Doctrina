@@ -32,7 +32,7 @@ export class AuthenticationService {
     }
 
     public get isAdmin$(): Observable<boolean> {
-        return this.currentUser$.pipe(map((auth: IAuthentication) => auth?.user.role === Role.Admin));
+        return this.currentUser$.pipe(map((auth: IAuthentication) => auth?.user?.role === Role.Admin));
     }
 
     login(email: string, password: string): Observable<IAuthenticationResponse> {

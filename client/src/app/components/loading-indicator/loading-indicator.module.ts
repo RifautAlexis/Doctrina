@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 
 import { LoadingIndicatorComponent } from './loading-indicator.component';
-import { SharedModule } from '@shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  declarations: [LoadingIndicatorComponent],
+  declarations: [
+    LoadingIndicatorComponent
+  ],
   imports: [
     SharedModule
   ],

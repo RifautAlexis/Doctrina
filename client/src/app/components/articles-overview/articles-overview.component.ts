@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IArticle } from '../../shared/models/article.model';
+import { IArticle } from '@shared/models/article.model';
 
 @Component({
     selector: 'articles-overview',

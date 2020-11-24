@@ -2,10 +2,6 @@ mat-card:not(:first-child){
     margin-top: 15px;
 }
 
-// mat-card{
-//     margin-top: 15px;
-// }
-
 .space-between mat-chip:not(:first-child){
     margin-left: 1em;
 }
@@ -14,4 +10,8 @@ mat-card:not(:first-child){
     position: absolute;
     top: 0px;
     right: 0px;
+}
+
+mat-card-title {
+    
 }

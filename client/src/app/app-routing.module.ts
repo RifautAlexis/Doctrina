@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'dashboard', loadChildren: () => DashboardModule },
   { path: 'admin', loadChildren: () => LoginAdminModule },
   { path: 'archive', loadChildren: () => ArchiveModule },
-  { path: ':id', loadChildren: () => ArticleModule },
+  { path: 'article/:id', loadChildren: () => ArticleModule },
   { path: '**', redirectTo: 'home' },
 ];
 

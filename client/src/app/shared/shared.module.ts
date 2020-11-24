@@ -19,7 +19,7 @@ import { ArticleValidator } from './validators/article.validator';
     CommonModule,
     MaterialUiModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ArticleValidator,

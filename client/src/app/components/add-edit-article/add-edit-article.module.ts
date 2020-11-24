@@ -2,21 +2,21 @@ import { NgModule } from '@angular/core';
 
 import { AddEditArticleComponent } from './add-edit-article.component';
 
-import { SharedModule } from '@shared/shared.module';
-import { ContentEditorModule } from './components/content-editor/content-editor.module';
+import { SharedModule } from '../../shared/shared.module';
+import { ContentEditorComponent } from './content-editor/content-editor.component';
 import { QuillModule } from 'ngx-quill';
 
 @NgModule({
     imports: [
         SharedModule,
-        ContentEditorModule,
         QuillModule
     ],
     exports: [
         AddEditArticleComponent
     ],
     declarations: [
-        AddEditArticleComponent
+        AddEditArticleComponent,
+        ContentEditorComponent
     ],
     providers: [],
 })

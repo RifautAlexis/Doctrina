@@ -1,0 +1,11 @@
+<div>
+    <span>
+        {{article.createdAt}}
+        {{article.updatedAt}}
+    </span>
+    <h1>
+        {{article.title}}
+    </h1>
+    <quill-view [content]="article.content" format="html"></quill-view>
+    <display-tags [tags]="article.tags"></display-tags>
+</div>

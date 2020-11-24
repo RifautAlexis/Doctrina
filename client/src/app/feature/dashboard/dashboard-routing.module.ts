@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from '../dashboard/components/dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { IsAdminGuard } from '@core/guards/is-admin.guard';
 import { IsNotAdminGuard } from '@core/guards/is-not-admin.guard';
 import { ArticlesComponent } from '@feature/dashboard/pages/articles/articles.component';

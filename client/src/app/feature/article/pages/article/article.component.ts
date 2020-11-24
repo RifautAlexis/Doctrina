@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ArticleService } from '@core/services/article.service';
+import { Status } from '@shared/enum';
 import { IArticle } from '@shared/models/article.model';
-import { Observable } from 'rxjs';
+import { IArticleResponse } from '@shared/responses/article.response';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-article',
@@ -11,23 +14,17 @@ import { Observable } from 'rxjs';
 export class ArticleComponent implements OnInit {
 
   private articleId: number;
-  public article: IArticle;
-  get article$(): Observable<IArticle> {
-    // return this.articleBloc.article$;
-    return null;
-  }
+  response$: Observable<IArticleResponse> = of({status: Status.PENDING, data: {} as IArticle});
+  Status = Status;
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private articleService: ArticleService
   ) { }
 
   ngOnInit(): void {
     this.articleId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
-    // this.articleBloc.getById(this.articleId);
-  }
-
-  ngOnDestroy() {
-    // this.articleBloc.dispose();
+    this.response$ = this.articleService.getArticle(this.articleId);
   }
 
 }

@@ -5,8 +5,8 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '@shared/shared.module';
 
-import { ArticlesOverviewModule } from '../../components/articles-overview/articles-overview.module';
 import { LoadingIndicatorModule } from '../../components/loading-indicator/loading-indicator.module';
+import { ArticlesOverviewModule } from '../../components/articles-overview/articles-overview.module';
 
 @NgModule({
   declarations: [HomeComponent],
@@ -14,8 +14,8 @@ import { LoadingIndicatorModule } from '../../components/loading-indicator/loadi
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    ArticlesOverviewModule,
-    LoadingIndicatorModule
+    LoadingIndicatorModule,
+    ArticlesOverviewModule
   ]
 })
 export class HomeModule { }
