@@ -1,10 +1,19 @@
-﻿using System;
-namespace api_server.Contract.Validators.Articles
+﻿using api_server.Contract.Requests;
+using api_server.Data;
+using FluentValidation;
+
+namespace api_server.Contract.Validators
 {
-    public class EditArticleRequestValidator
+    public class EditArticleRequestValidator : AbstractValidator<EditArticleRequest>
     {
         public EditArticleRequestValidator()
         {
+            RuleFor(request => request.ArticleToEdit).NotNull();
+            When(request => request.ArticleToEdit != null,
+                () =>
+                {
+                    RuleFor(request => request.ArticleToEdit).SetValidator(new EditArticleDTOValidator());
+                });
         }
     }
 }

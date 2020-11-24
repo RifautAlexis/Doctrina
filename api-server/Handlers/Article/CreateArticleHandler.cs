@@ -6,6 +6,8 @@ using api_server.Contract.Responses;
 using api_server.Data;
 using api_server.Data.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using api_server.Contract.Exceptions;
 
 namespace api_server.Handlers
 {
@@ -23,6 +25,15 @@ namespace api_server.Handlers
         public async Task<IdResponse> Handle(CreateArticleRequest request)
         {
             (string title, string content, string description, List<int> tagIds) = request.NewArticle;
+
+            bool isUniqueTitle = await _appDBContext.Articles.AllAsync(a => a.Title.ToLowerInvariant() != title.ToLowerInvariant());
+            if (!isUniqueTitle) throw new ArgumentException();
+
+            foreach (var tagId in tagIds)
+            {
+                bool existTagId = await _appDBContext.Tags.AllAsync(a => a.Id != tagId);
+                if (!existTagId) throw new ArgumentException();
+            }
 
             Article articleToAdd = new Article
             {

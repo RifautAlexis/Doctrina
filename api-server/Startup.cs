@@ -25,7 +25,6 @@ namespace api_server
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
@@ -50,6 +49,12 @@ namespace api_server
             services.AddScoped<
                 IHandler<GetAllTagRequest, TagsResponse>,
                 GetAllTagHandler>();
+            services.AddScoped<
+                IHandler<DeleteArticleRequest, BooleanResponse>,
+                DeleteArticleHandler>();
+            services.AddScoped<
+                IHandler<EditArticleRequest, IdResponse>,
+                EditArticleHandler>();
 
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options => options.SuppressInferBindingSourcesForParameters = true)

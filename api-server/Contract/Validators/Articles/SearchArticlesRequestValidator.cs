@@ -1,7 +1,7 @@
 ﻿//using api_server.Contract.Requests;
 //using FluentValidation;
 
-//namespace api_server.Contract.Validators.Articles
+//namespace api_server.Contract.Validators
 //{
 //    public class SearchArticlesRequestValidator : AbstractValidator<SearchArticlesRequest>
 //    {

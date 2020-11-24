@@ -1,10 +1,4 @@
-﻿using System;
-namespace api_server.Contract.Requests.Article
+﻿namespace api_server.Contract.Requests
 {
-    public class DeleteArticleRequest
-    {
-        public DeleteArticleRequest()
-        {
-        }
-    }
+    public class DeleteArticleRequest : DefaultKeyedRequest { }
 }

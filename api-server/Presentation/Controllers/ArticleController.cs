@@ -48,8 +48,24 @@ namespace api_server.Controllers
 
         [HttpPost]
         [Authorized(Role.Admin)]
-        [Route("createArticle")]
+        [Route("")]
         public async Task<IdResponse> CreateArticle(CreateArticleRequest request, [FromServices] IHandler<CreateArticleRequest, IdResponse> handler)
+        {
+            return await handler.Handle(request);
+        }
+
+        [HttpPut]
+        [Authorized(Role.Admin)]
+        [Route("{id}")]
+        public async Task<IdResponse> EditArticle(EditArticleRequest request, [FromServices] IHandler<EditArticleRequest, IdResponse> handler)
+        {
+            return await handler.Handle(request);
+        }
+
+        [HttpDelete]
+        [Authorized(Role.Admin)]
+        [Route("{id}")]
+        public async Task<BooleanResponse> DeleteArticle(DeleteArticleRequest request, [FromServices] IHandler<DeleteArticleRequest, BooleanResponse> handler)
         {
             return await handler.Handle(request);
         }

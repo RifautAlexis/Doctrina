@@ -33,7 +33,7 @@ namespace api_server.Handlers
 
             if (article == null) throw new NotFoundException();
 
-            return new ArticleResponse { Article = article.ToDTO() };
+            return new ArticleResponse { Data = article.ToDTO() };
         }
     }
 }
