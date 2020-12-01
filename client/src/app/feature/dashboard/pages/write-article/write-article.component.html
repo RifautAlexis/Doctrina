@@ -1,40 +1,5 @@
-<!-- <form [formGroup]="articleForm" (ngSubmit)="createArticle()" novalidate>
-
-  <mat-form-field>
-    <mat-label>Title</mat-label>
-    <input matInput type="text" id="title" formControlName="title">
-
-    <mat-error *ngIf="articleForm.controls['title']?.errors?.isUniquetitle"> This title is already taken </mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Description</mat-label>
-    <input matInput type="text" id="description" formControlName="description">
-  </mat-form-field>
-
-  <quill-editor formControlName="content"></quill-editor>
-
-  <mat-form-field>
-    <mat-chip-list #chipList aria-label="Tag selection">
-      <mat-chip *ngFor="let tag of tagsSelected" [selectable]="true" [removable]="true" (removed)="remove(tag)">
-        {{tag?.name}}
-        <mat-icon matChipRemove>cancel</mat-icon>
-      </mat-chip>
-      <input placeholder="Add a tag..." #tagInput [formControl]="tagCtrl" [matAutocomplete]="auto"
-        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
-    </mat-chip-list>
-    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-      <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
-        {{tag.name}}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-
-  <button mat-flat-button type="submit" color="primary">Create</button>
-
-</form>
-
-Preview
-<quill-view [content]="articleForm.get('content').value" format="html" theme="snow"></quill-view> -->
-
-<add-edit-article [articleToEdit]="null" (articleToAddEvent)="createArticle($event)"></add-edit-article>
+<div class="white-card">
+  <add-edit-article [(articleToEdit)]="article" (onContentChanged)="onChangeContent($event)"></add-edit-article>
+  <mat-divider class="my-3"></mat-divider>
+  <quill-view [content]="contentPreview" format="html"></quill-view>
+</div>

@@ -6,14 +6,13 @@ import { IsNotAdminGuard } from '@core/guards/is-not-admin.guard';
 import { ArticlesComponent } from '@feature/dashboard/pages/articles/articles.component';
 import { WriteArticleComponent } from '@feature/dashboard/pages/write-article/write-article.component';
 import { EditArticleComponent } from '@feature/dashboard/pages/edit-article/edit-article.component';
-import { DashboardLayoutComponent } from '@core/layouts/dashboard/dashboard-layout.component';
 
 const routes: Routes = [
   {
-    path: '', component: DashboardLayoutComponent, canActivate: [IsAdminGuard], children: [
+    path: '', component: DashboardComponent, canActivate: [IsAdminGuard], children: [
       { path: 'articles', component: ArticlesComponent, canActivate: [IsAdminGuard] },
-      { path: 'articles/write', component: WriteArticleComponent, canActivate: [IsAdminGuard] },
-      { path: 'articles/:id', component: EditArticleComponent, canActivate: [IsAdminGuard] },
+      { path: 'article/write', component: WriteArticleComponent, canActivate: [IsAdminGuard] },
+      { path: 'article/edit/:id', component: EditArticleComponent, canActivate: [IsAdminGuard] },
       { path: '', redirectTo: 'articles', pathMatch: 'full' }
     ]
   }

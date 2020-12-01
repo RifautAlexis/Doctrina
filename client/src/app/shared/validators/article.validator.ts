@@ -10,7 +10,7 @@ export class ArticleValidator {
 
     constructor(private articleService: ArticleService){}
 
-    IsUniqueTitleValidator(articleId: number): AsyncValidatorFn {
+    IsUniqueTitleValidator(articleId?: string): AsyncValidatorFn {
         return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
             if (control.value !== null && control.value !== "") {
                 return this.articleService.isUniqueTitle(control.value, articleId).pipe(

@@ -10,6 +10,8 @@ import { WriteArticleComponent } from './pages/write-article/write-article.compo
 import { QuillModule } from 'ngx-quill';
 // import { SnackbarModule } from 'src/app/components/snackbar/snackbar.module';
 import { AddEditArticleModule } from '../../components/add-edit-article/add-edit-article.module';
+import { LoadingIndicatorModule } from '../../components/loading-indicator/loading-indicator.module';
+import { ArticlesOverviewModule } from '../../components/articles-overview/articles-overview.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AddEditArticleModule } from '../../components/add-edit-article/add-edit
     SharedModule,
     QuillModule.forRoot(),
     // SnackbarModule,
-    AddEditArticleModule
+    AddEditArticleModule,
+    LoadingIndicatorModule,
+    ArticlesOverviewModule
   ],
   providers: [
   ]

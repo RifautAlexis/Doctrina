@@ -2,7 +2,6 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderLayoutComponent } from './layouts/header/header-layout.component';
-import { DashboardLayoutComponent } from './layouts/dashboard/dashboard-layout.component';
 import { SharedModule } from '@shared/shared.module';
 import { AuthenticationService } from "./authentication/authentication.service";
 import { ArticleService } from "./services/article.service";
@@ -15,8 +14,7 @@ import { StyleManagerService } from "./services/style-manager.service";
 
 @NgModule({
   declarations: [
-    HeaderLayoutComponent,
-    DashboardLayoutComponent
+    HeaderLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -34,8 +32,7 @@ import { StyleManagerService } from "./services/style-manager.service";
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   exports: [
-    HeaderLayoutComponent,
-    DashboardLayoutComponent
+    HeaderLayoutComponent
   ]
 })
 export class CoreModule { }

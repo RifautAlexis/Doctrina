@@ -1,14 +1,20 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container>
 
-  <mat-sidenav mode="side" opened>
-    <span>Article</span>
-    <mat-divider></mat-divider>
-    display
-    write
+  <mat-sidenav mode="side" opened id="side-nav">
+    <mat-list>
+      <div>
+        <a mat-list-item role="navigation" routerLink="/dashboard/articles">Articles</a>
+      </div>
+      <div>
+        <a mat-list-item role="navigation" routerLink="/dashboard/article/write">Write</a>
+      </div>
+    </mat-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <main class="container-fluid">
       <router-outlet></router-outlet>
+    </main>
   </mat-sidenav-content>
 
 </mat-sidenav-container>

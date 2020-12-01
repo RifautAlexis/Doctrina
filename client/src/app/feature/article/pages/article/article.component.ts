@@ -13,7 +13,7 @@ import { Observable, of } from 'rxjs';
 })
 export class ArticleComponent implements OnInit {
 
-  private articleId: number;
+  private articleId: string;
   response$: Observable<IArticleResponse> = of({status: Status.PENDING, data: {} as IArticle});
   Status = Status;
 
@@ -23,7 +23,7 @@ export class ArticleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articleId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
+    this.articleId = this.activatedRoute.snapshot.paramMap.get("id");
     this.response$ = this.articleService.getArticle(this.articleId);
   }
 

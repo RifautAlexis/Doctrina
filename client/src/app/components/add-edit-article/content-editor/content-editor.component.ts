@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ContentChange } from 'ngx-quill';
 
 @Component({
     selector: 'content-editor',
@@ -7,7 +8,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 
 export class ContentEditorComponent implements OnInit {
-    @Output() htmlTextEvent = new EventEmitter<string>();
+    @Input() content?: string;
+    @Output() onContentChanged = new EventEmitter<string>();
 
     quillConfig = {
         toolbar: [
@@ -34,7 +36,7 @@ export class ContentEditorComponent implements OnInit {
 
     ngOnInit() { }
 
-    onContentChanged($event: string) {
-      this.htmlTextEvent.emit($event);
+    onChangeContent($event: ContentChange) {
+      this.onContentChanged.emit($event.html);
     }
 }

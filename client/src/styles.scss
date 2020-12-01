@@ -54,9 +54,19 @@ $fontConfig: (
 // Specific component overrides, pieces that are not in line with the general theming
 
 // Handle buttons appropriately, with respect to line-height
-// main {
-//   padding-top: 15px;
-// }
+
+body,html {
+  height: 100%;
+}
+
+main {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.white-card {
+  padding: 15px;
+}
 
 .mat-raised-button, .mat-stroked-button, .mat-flat-button {
   padding: 0 1.15em;

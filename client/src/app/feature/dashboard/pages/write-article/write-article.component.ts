@@ -10,6 +10,7 @@ import { ITag } from '@shared/models/tag.model';
 import { Router } from '@angular/router';
 import { IArticleEdit } from '@shared/models/article-edit.model';
 import { IIdResponse } from '@shared/responses/id.response';
+import { IArticleForm } from '@shared/models/article-form.model';
 
 @Component({
   selector: 'app-write-article',
@@ -17,6 +18,9 @@ import { IIdResponse } from '@shared/responses/id.response';
   styleUrls: ['./write-article.component.scss']
 })
 export class WriteArticleComponent implements OnInit {
+
+  contentPreview: string;
+  article: IArticleForm;
 
   public articleForm: FormGroup
   
@@ -41,5 +45,9 @@ export class WriteArticleComponent implements OnInit {
     this.articleService.createArticle(articleToAdd).subscribe((response: IIdResponse) => {
       // Snackbar
     })
+  }
+
+  onChangeContent($event: string) {
+    this.contentPreview = $event;
   }
 }

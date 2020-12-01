@@ -7,6 +7,7 @@ import { IArticle } from '@shared/models/article.model';
 import { IArticleResponse } from '@shared/responses/article.response';
 import { IIdResponse } from '@shared/responses/id.response';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-article',
@@ -16,7 +17,8 @@ import { Observable, of } from 'rxjs';
 export class EditArticleComponent implements OnInit {
 
   article$: Observable<IArticleResponse> = of({status: Status.PENDING, data: null});
-  articleId: number;
+  articleId: string;
+  contentPreview: string;
 
   constructor(
     private articleService: ArticleService,
@@ -24,7 +26,7 @@ export class EditArticleComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.articleId = parseInt(this.activatedRoute.snapshot.paramMap.get("id"));
+    this.articleId = this.activatedRoute.snapshot.paramMap.get("id");
     this.article$ = this.articleService.getArticle(this.articleId);
   }
 
@@ -32,5 +34,9 @@ export class EditArticleComponent implements OnInit {
     this.articleService.editArticle(articleToEdit).subscribe((response: IIdResponse) => {
       // Snackbar
     })
+  }
+
+  onChangeContent($event: string) {
+    this.contentPreview = $event;
   }
 }

@@ -1,8 +1,24 @@
-.example-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #eee;
-  }
+mat-sidenav-container {
+  background: #eee;
+  height: 100vh;
+}
+
+mat-sidenav {
+  // padding: 15px;
+}
+
+mat-divider {
+  margin-top: 5px;
+}
+
+mat-list {
+  padding: 0;
+}
+
+mat-list > div {
+  padding: 0px 50px;
+}
+
+a {
+  text-decoration: none;
+}

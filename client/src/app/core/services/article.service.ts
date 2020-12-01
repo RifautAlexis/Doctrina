@@ -28,7 +28,7 @@ export class ArticleService {
       );
   }
 
-  getArticle(articleId: number): Observable<IArticleResponse> {
+  getArticle(articleId: string): Observable<IArticleResponse> {
     return this.http.get<IArticleResponse>(environment.apiUrl + 'article/' + articleId)
     .pipe(
       map((response: IArticleResponse) => {
@@ -37,7 +37,7 @@ export class ArticleService {
     );
   }
 
-  isUniqueTitle(title: string, articleId: number): Observable<IBooleanResponse> {
+  isUniqueTitle(title: string, articleId?: string): Observable<IBooleanResponse> {
     return this.http.post<IBooleanResponse>(environment.apiUrl + 'article/isUniqueTitle', {
       "title": title,
       "articleId": articleId

@@ -1,1 +1,1 @@
-<quill-editor (onContentChanged)="onContentChanged($event)" [modules]="quillConfig"></quill-editor>
+<quill-editor (onContentChanged)="onChangeContent($event)" [modules]="quillConfig" [(ngModel)]="content"></quill-editor>

@@ -11,4 +11,16 @@
     .header-layout {
         background-color: $primary;
     }
+
+    #side-nav mat-list > div:hover {
+        background-color: #F5F5F6;
+    }
+
+    .white-card {
+        background-color: white;
+    }
+
+    .cancel-button {
+        background-color: #F5F5F6;
+    }
 }
