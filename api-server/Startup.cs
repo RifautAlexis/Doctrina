@@ -55,6 +55,18 @@ namespace api_server
             services.AddScoped<
                 IHandler<EditArticleRequest, IdResponse>,
                 EditArticleHandler>();
+            services.AddScoped<
+                IHandler<CreateTagRequest, IdResponse>,
+                CreateTagHandler>();
+            services.AddScoped<
+                IHandler<DeleteTagRequest, BooleanResponse>,
+                DeleteTagHandler>();
+            services.AddScoped<
+                IHandler<IsUniqueTitleRequest, BooleanResponse>,
+                IsUniqueTitleHandler>();
+            services.AddScoped<
+                IHandler<EditTagRequest, IdResponse>,
+                EditTagHandler>();
 
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options => options.SuppressInferBindingSourcesForParameters = true)

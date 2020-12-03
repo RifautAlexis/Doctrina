@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using System.Threading;
+using api_server.Data.Mappings;
 
 namespace api_server.Data
 {
@@ -22,6 +23,7 @@ namespace api_server.Data
         public DbSet<Article> Articles { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TagAttributed> TagsAttributed { get; set; }
+        public DbSet<ReadingList> ReadingLists { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +33,7 @@ namespace api_server.Data
             new ArticleMap(modelBuilder.Entity<Article>());
             new TagMap(modelBuilder.Entity<Tag>());
             new TagAttributedMap(modelBuilder.Entity<TagAttributed>());
+            new ReadingListMap(modelBuilder.Entity<ReadingList>());
 
             modelBuilder.Seed(_appSettings);
         }
@@ -54,13 +57,13 @@ namespace api_server.Data
 
             foreach (var entity in entities)
             {
-                var now = DateTime.UtcNow; // current datetime
+                var now = DateTime.Now; // current datetime
 
                 if (entity.State == EntityState.Added)
                 {
                     ((BaseEntity)entity.Entity).CreatedAt = now;
                 }
-                ((BaseEntity)entity.Entity).UpdatedAt = now;
+                //((BaseEntity)entity.Entity).UpdatedAt = now;
             }
         }
 

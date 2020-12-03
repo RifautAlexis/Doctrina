@@ -3,9 +3,9 @@ using api_server.Contract.DTOs;
 
 namespace api_server.Contract.Requests
 {
-    public class IsUniqueTitleRequest
+    public class IsUniqueTagNameRequest
     {
         [FromBody]
-        public IsUniqueTitleDTO IsUniqueTitleDTO { get; set; }
+        public IsUniqueTagNameDTO IsUniqueTagNameDTO { get; set; }
     }
 }

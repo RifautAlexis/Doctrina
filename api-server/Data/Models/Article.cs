@@ -12,9 +12,11 @@ namespace api_server.Data.Models
 
         public virtual User Author { get; set; }
         public virtual ICollection<TagAttributed> Tags { get; set; }
+        public virtual ReadingList ReadingList { get; set; }
 
         /*****/
 
         public int AuthorId { get; set; }
+        public int ReadingListId { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using api_server.Contract.DTOs;
+﻿using api_server.Contract.DTOs;
 using FluentValidation;
 
 namespace api_server.Contract.Validators
@@ -11,8 +10,6 @@ namespace api_server.Contract.Validators
         {
             RuleFor(isUniqueTitleRequest => isUniqueTitleRequest.Title)
                 .SetValidator(new StringValidator());
-            //RuleFor(isUniqueTitleRequest => isUniqueTitleRequest.ArticleId)
-            //    .???;
         }
     }
 }

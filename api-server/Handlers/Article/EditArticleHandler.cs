@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using api_server.Contract.Requests;
 using api_server.Contract.Responses;
 using api_server.Data;
 using api_server.Data.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using api_server.Contract.Exceptions;
 using System.Linq;
@@ -16,12 +14,10 @@ namespace api_server.Handlers
     public class EditArticleHandler : IHandler<EditArticleRequest, IdResponse>
     {
         private readonly ApplicationDBContext _appDBContext;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public EditArticleHandler(ApplicationDBContext appDBContext, IHttpContextAccessor httpContextAccessor)
+        public EditArticleHandler(ApplicationDBContext appDBContext)
         {
             _appDBContext = appDBContext;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IdResponse> Handle(EditArticleRequest request)

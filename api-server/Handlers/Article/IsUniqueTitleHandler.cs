@@ -19,10 +19,16 @@ namespace api_server.Handlers
         {
             (string title, int? articleId) = request.IsUniqueTitleDTO;
 
-            bool isUniqueTitle = await _appDBContext.Articles.AllAsync(a => a.Id != articleId && a.Title.ToLowerInvariant() != title.ToLowerInvariant());
+            bool isUniqueTitle = false;
 
-            //var titles = await _appDBContext.Articles.Select(a => a.Title).ToListAsync();
-            //bool isUniqueTitle = titles.All(title => title.ToLowerInvariant() != title.ToLowerInvariant() && );
+            if (articleId.HasValue)
+            {
+                isUniqueTitle = await _appDBContext.Articles.AllAsync(a => a.Id != articleId && !a.Title.ToLower().Equals(title.ToLower()));
+            }
+            else
+            {
+                isUniqueTitle = await _appDBContext.Articles.AllAsync(a => !a.Title.ToLower().Equals(title.ToLower()));
+            }
 
             return new BooleanResponse { Data = isUniqueTitle };
         }
