@@ -1,10 +1,4 @@
-﻿using System;
-namespace api_server.Contract.Requests.ReadingList
+﻿namespace api_server.Contract.Requests
 {
-    public class DeleteReadingListRequest
-    {
-        public DeleteReadingListRequest()
-        {
-        }
-    }
+    public class DeleteReadingListRequest : DefaultKeyedRequest { }
 }

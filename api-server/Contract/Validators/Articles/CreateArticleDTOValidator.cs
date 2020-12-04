@@ -1,5 +1,4 @@
 ﻿using api_server.Contract.DTOs;
-using api_server.Data;
 using FluentValidation;
 
 namespace api_server.Contract.Validators

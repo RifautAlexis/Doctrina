@@ -1,10 +1,5 @@
-﻿using System;
-namespace api_server.Contract.Requests.ReadingList
+﻿
+namespace api_server.Contract.Requests
 {
-    public class GetReadingListsRequest
-    {
-        public GetReadingListsRequest()
-        {
-        }
-    }
+    public class GetReadingListsRequest { }
 }

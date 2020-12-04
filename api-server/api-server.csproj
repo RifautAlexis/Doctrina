@@ -38,6 +38,8 @@
     <Folder Include="Middleware\" />
     <Folder Include="Contract\Validators\Tags\" />
     <Folder Include="Contract\Requests\ReadingList\" />
+    <Folder Include="Contract\DTOs\ReadingList\" />
+    <Folder Include="Contract\Validators\ReadingList\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />

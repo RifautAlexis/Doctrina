@@ -1,10 +1,11 @@
-﻿using System;
-namespace api_server.Contract.Requests.ReadingList
+﻿using api_server.Contract.DTOs;
+using Microsoft.AspNetCore.Mvc;
+
+namespace api_server.Contract.Requests
 {
     public class EditReadingListRequest
     {
-        public EditReadingListRequest()
-        {
-        }
+        [FromBody]
+        public EditReadingListDTO ReadingListToEdit { get; set; }
     }
 }
