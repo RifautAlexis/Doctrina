@@ -14,7 +14,6 @@ namespace api_server.Data.Mapping
             entityBuilder.HasIndex(t => t.Name).IsUnique();
 
             entityBuilder.Property(t => t.CreatedAt).IsRequired();
-            entityBuilder.Property(t => t.UpdatedAt).IsRequired();
 
             /*****/
 

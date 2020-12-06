@@ -40,8 +40,7 @@ namespace api_server.Handlers
                 Title = title,
                 Content = content,
                 Description = description,
-                AuthorId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value),
-                ReadingListId = readingListId
+                AuthorId = int.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name).Value)
             };
 
             await _appDBContext.Articles.AddAsync(articleToAdd);
@@ -55,7 +54,7 @@ namespace api_server.Handlers
 
             await _appDBContext.SaveChangesAsync();
 
-            return new IdResponse { Id = articleToAdd.Id };
+            return new IdResponse { Data = articleToAdd.Id };
         }
     }
 }

@@ -18,11 +18,11 @@ namespace api_server.Data.Mapping
             entityBuilder.Property(a => a.Description).IsRequired();
 
             entityBuilder.Property(a => a.CreatedAt).IsRequired();
-            entityBuilder.Property(a => a.UpdatedAt).IsRequired();
 
             /*****/
 
             entityBuilder.HasMany(a => a.Tags).WithOne(ta => ta.Article).HasForeignKey(ta => ta.ArticleId);
+            entityBuilder.HasMany(a => a.ArticleInReadingLists).WithOne(airl => airl.Article).HasForeignKey(ta => ta.ArticleId);
         }
     }
 }

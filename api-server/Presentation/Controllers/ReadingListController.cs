@@ -17,7 +17,15 @@ namespace api_server.Presentation.Controllers
         [HttpGet]
         [Authorized(Role.Admin)]
         [Route("")]
-        public async Task<TagsResponse> GetAll(GetReadingListsRequest request, [FromServices] IHandler<GetReadingListsRequest, TagsResponse> handler)
+        public async Task<ReadingListsResponse> GetAll(GetReadingListsRequest request, [FromServices] IHandler<GetReadingListsRequest, ReadingListsResponse> handler)
+        {
+            return await handler.Handle(request);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("{id}")]
+        public async Task<ReadingListResponse> GetById(GetReadingListByIdRequest request, [FromServices] IHandler<GetReadingListByIdRequest, ReadingListResponse> handler)
         {
             return await handler.Handle(request);
         }

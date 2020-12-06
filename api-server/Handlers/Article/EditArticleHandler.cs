@@ -29,7 +29,7 @@ namespace api_server.Handlers
 
             foreach (var tagId in tagIds)
             {
-                bool existTagId = await _appDBContext.Tags.AllAsync(a => a.Id != tagId);
+                bool existTagId = await _appDBContext.Tags.AnyAsync(a => a.Id == tagId);
                 if (!existTagId) throw new Contract.Exceptions.ArgumentException();
             }
 
@@ -42,6 +42,7 @@ namespace api_server.Handlers
             articleToEdit.Title = title;
             articleToEdit.Description = description;
             articleToEdit.Content = content;
+
             foreach (var tagAttributed in articleToEdit.Tags)
             {
                 if (!tagIds.Contains(tagAttributed.TagId))
@@ -65,7 +66,7 @@ namespace api_server.Handlers
 
             await _appDBContext.SaveChangesAsync();
 
-            return new IdResponse { Id = articleToEdit.Id };
+            return new IdResponse { Data = articleToEdit.Id };
         }
     }
 }

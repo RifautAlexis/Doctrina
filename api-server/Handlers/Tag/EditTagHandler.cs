@@ -39,7 +39,7 @@ namespace api_server.Handlers
 
             await _appDBContext.SaveChangesAsync();
 
-            return new IdResponse { Id = tagToEdit.Id };
+            return new IdResponse { Data = tagToEdit.Id };
         }
     }
 }

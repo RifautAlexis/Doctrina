@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Security.Claims;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using api_server.Contract.Requests;
 using api_server.Contract.Responses;
 using api_server.Data;
 using api_server.Data.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using api_server.Contract.Exceptions;
 
@@ -34,7 +31,7 @@ namespace api_server.Handlers
 
             await _appDBContext.SaveChangesAsync();
 
-            return new IdResponse { Id = tagToAdd.Id };
+            return new IdResponse { Data = tagToAdd.Id };
         }
     }
 }

@@ -10,12 +10,14 @@ namespace api_server.Data.Mappings
         {
             entityBuilder.HasKey(rl => rl.Id);
 
-            entityBuilder.Property(rl => rl.Title).IsRequired();
-            entityBuilder.HasIndex(rl => rl.Title).IsUnique();
+            entityBuilder.Property(rl => rl.Name).IsRequired();
+            entityBuilder.HasIndex(rl => rl.Name).IsUnique();
+
+            entityBuilder.Property(a => a.CreatedAt).IsRequired();
 
             /*****/
 
-            entityBuilder.HasMany(rl => rl.Articles).WithOne(a => a.ReadingList).HasForeignKey(rl => rl.ReadingListId);
+            entityBuilder.HasMany(rl => rl.ArticlesInReadingList).WithOne(airl => airl.ReadingList).HasForeignKey(rl => rl.ReadingListId);
         }
     }
 }

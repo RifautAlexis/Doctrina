@@ -33,6 +33,63 @@ namespace api_server.Handlers
             _appDBContext.TagsAttributed.RemoveRange(tagsAttributed);
             await _appDBContext.SaveChangesAsync();
 
+            List<ArticleInReadingList> articleInReadingLists = await _appDBContext.ArticlesInReadingLists
+                .Where(airl => airl.ArticleId == article.Id)
+                .ToListAsync();
+
+            foreach (var articleInReadingList in articleInReadingLists)
+            {
+                List<ArticleInReadingList> articlesInReadingListToEdit = new List<ArticleInReadingList>();
+
+                if (articleInReadingList.PreviousArticleId == null && articleInReadingList.NextArticleId == null) // The only one
+                {
+                    _appDBContext.ArticlesInReadingLists.Remove(articleInReadingList);
+                }
+                else if (articleInReadingList.PreviousArticleId == null && articleInReadingList.NextArticleId != null) // First one
+                {
+                    articlesInReadingListToEdit = await _appDBContext.ArticlesInReadingLists
+                    .Where(airl => airl.ReadingListId == articleInReadingList.ReadingListId)
+                    .ToListAsync();
+
+                    ArticleInReadingList nextArticle = articlesInReadingListToEdit.FirstOrDefault(airl => airl.ArticleId == articleInReadingList.NextArticleId);
+                    if (nextArticle == null) throw new ArgumentException();
+
+                    nextArticle.PreviousArticleId = null;
+                    _appDBContext.ArticlesInReadingLists.Remove(articleInReadingList);
+                }
+                else if (articleInReadingList.PreviousArticleId != null && articleInReadingList.NextArticleId == null) // Last one
+                {
+                    articlesInReadingListToEdit = await _appDBContext.ArticlesInReadingLists
+                    .Where(airl => airl.ReadingListId == articleInReadingList.ReadingListId)
+                    .ToListAsync();
+
+                    ArticleInReadingList previousArticle = articlesInReadingListToEdit.FirstOrDefault(airl => airl.ArticleId == articleInReadingList.PreviousArticleId);
+                    if (previousArticle == null) throw new ArgumentException();
+
+                    previousArticle.NextArticleId = null;
+                    _appDBContext.ArticlesInReadingLists.Remove(articleInReadingList);
+                }
+                else // Between two articles
+                {
+                    articlesInReadingListToEdit = await _appDBContext.ArticlesInReadingLists
+                    .Where(airl => airl.ReadingListId == articleInReadingList.ReadingListId)
+                    .ToListAsync();
+
+                    ArticleInReadingList nextArticle = articlesInReadingListToEdit.FirstOrDefault(airl => airl.ArticleId == articleInReadingList.NextArticleId);
+                    if (nextArticle == null) throw new ArgumentException();
+
+                    nextArticle.PreviousArticleId = null;
+
+                    ArticleInReadingList previousArticle = articlesInReadingListToEdit.FirstOrDefault(airl => airl.ArticleId == articleInReadingList.PreviousArticleId);
+                    if (previousArticle == null) throw new ArgumentException();
+
+                    previousArticle.NextArticleId = null;
+                    _appDBContext.ArticlesInReadingLists.Remove(articleInReadingList);
+                }
+            }
+            await _appDBContext.SaveChangesAsync();
+
+
             _appDBContext.Articles.Remove(article);
             await _appDBContext.SaveChangesAsync();
 

@@ -24,6 +24,7 @@ namespace api_server.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<TagAttributed> TagsAttributed { get; set; }
         public DbSet<ReadingList> ReadingLists { get; set; }
+        public DbSet<ArticleInReadingList> ArticlesInReadingLists { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,7 @@ namespace api_server.Data
             new TagMap(modelBuilder.Entity<Tag>());
             new TagAttributedMap(modelBuilder.Entity<TagAttributed>());
             new ReadingListMap(modelBuilder.Entity<ReadingList>());
+            new ArticleInReadingListMap(modelBuilder.Entity<ArticleInReadingList>());
 
             modelBuilder.Seed(_appSettings);
         }

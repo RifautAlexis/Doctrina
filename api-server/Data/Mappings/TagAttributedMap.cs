@@ -11,7 +11,6 @@ namespace api_server.Data.Mapping
             entityBuilder.HasKey(t => t.Id);
 
             entityBuilder.Property(t => t.CreatedAt).IsRequired();
-            entityBuilder.Property(t => t.UpdatedAt).IsRequired();
         }
     }
 }

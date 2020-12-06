@@ -20,7 +20,6 @@ namespace api_server.Data.Mapping
             entityBuilder.Property(u => u.PasswordHash).IsRequired();
 
             entityBuilder.Property(u => u.CreatedAt).IsRequired();
-            entityBuilder.Property(u => u.UpdatedAt).IsRequired();
 
             /*****/
 

@@ -13,6 +13,7 @@ using api_server.Contract.Requests;
 using api_server.Contract.Responses;
 using api_server.Handlers;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace api_server
 {
@@ -74,9 +75,12 @@ namespace api_server
 
             services.AddSingleton(Configuration);
 
-            services.AddDbContext<ApplicationDBContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection"),
-                options => options.EnableRetryOnFailure()
-            ));
+            string connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDBContext>(options => options.UseMySql(
+                    connectionString,
+                    ServerVersion.AutoDetect(connectionString)
+                )
+            );
 
             services.AddCors();
 
