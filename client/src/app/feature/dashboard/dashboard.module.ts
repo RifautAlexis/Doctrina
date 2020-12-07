@@ -12,13 +12,16 @@ import { QuillModule } from 'ngx-quill';
 import { AddEditArticleModule } from '../../components/add-edit-article/add-edit-article.module';
 import { LoadingIndicatorModule } from '../../components/loading-indicator/loading-indicator.module';
 import { ArticlesOverviewModule } from '../../components/articles-overview/articles-overview.module';
+import { TagsComponent } from './pages/tags/tags.component';
+import { DisplayTagsModule } from 'src/app/components/display-tags/display-tags.module';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ArticlesComponent,
     EditArticleComponent,
-    WriteArticleComponent
+    WriteArticleComponent,
+    TagsComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +31,8 @@ import { ArticlesOverviewModule } from '../../components/articles-overview/artic
     // SnackbarModule,
     AddEditArticleModule,
     LoadingIndicatorModule,
-    ArticlesOverviewModule
+    ArticlesOverviewModule,
+    DisplayTagsModule
   ],
   providers: [
   ]

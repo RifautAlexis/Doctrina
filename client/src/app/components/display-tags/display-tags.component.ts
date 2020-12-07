@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TagService } from '@core/services/tag.service';
 import { ITag } from '@shared/models/tag.model';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'display-tags',
@@ -8,8 +10,12 @@ import { ITag } from '@shared/models/tag.model';
 
 export class DisplayTagsComponent implements OnInit {
     @Input() tags: ITag[];
+    @Output() onClick = new EventEmitter<string>();
+    tags$: Observable<ITag[]>;
 
-    constructor() { }
+    constructor(private readonly tagService: TagService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        // this.tags$ = this.tagService.getTags();
+    }
 }
