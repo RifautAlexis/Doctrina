@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { IArticle } from '@shared/models/article.model';
 
@@ -9,7 +10,12 @@ import { IArticle } from '@shared/models/article.model';
 
 export class ArticleDetailsComponent implements OnInit {
     @Input() article: IArticle;
+
+    isUpdated: boolean
+
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.isUpdated = this.article.createdAt < this.article.updatedAt;
+    }
 }

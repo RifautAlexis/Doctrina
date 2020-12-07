@@ -1,8 +1,10 @@
 <div>
-    <span>
-        {{article.createdAt}}
-        {{article.updatedAt}}
-    </span>
+    <p *ngIf="isUpdated">
+        Updated : {{article.updatedAt | date: 'dd-MM-yy'}}
+    </p>
+    <p *ngIf="!isUpdated">
+        Created : {{article.createdAt | date: 'dd-MM-yy'}}
+    </p>
     <h1>
         {{article.title}}
     </h1>
