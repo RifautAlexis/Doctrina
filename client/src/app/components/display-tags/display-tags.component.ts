@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TagService } from '@core/services/tag.service';
-import { ITag } from '@shared/models/tag.model';
+import { Tag } from '@shared/models/tag.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,9 +9,9 @@ import { Observable } from 'rxjs';
 })
 
 export class DisplayTagsComponent implements OnInit {
-    @Input() tags: ITag[];
+    @Input() tags: Tag[];
     @Output() onClick = new EventEmitter<string>();
-    tags$: Observable<ITag[]>;
+    tags$: Observable<Tag[]>;
 
     constructor(private readonly tagService: TagService) { }
 

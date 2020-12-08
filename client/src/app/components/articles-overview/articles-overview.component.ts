@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IArticle } from '@shared/models/article.model';
+import { Article } from '@shared/models/article.model';
 
 @Component({
     selector: 'articles-overview',
@@ -8,7 +8,7 @@ import { IArticle } from '@shared/models/article.model';
 })
 
 export class ArticlesOverviewComponent implements OnInit {
-    @Input() articles: IArticle[];
+    @Input() articles: Article[];
     @Input() isAdmin: boolean = false;
 
     @Output() deleteArticleIdEvent = new EventEmitter<string>();

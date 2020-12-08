@@ -1,4 +1,4 @@
-export interface IArticleCreate {
+export interface ArticleCreate {
     title: string;
     content: string;
     description: string;

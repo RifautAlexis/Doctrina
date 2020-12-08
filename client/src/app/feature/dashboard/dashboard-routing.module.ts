@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IsAdminGuard } from '@core/guards/is-admin.guard';
 import { IsNotAdminGuard } from '@core/guards/is-not-admin.guard';
-import { ArticlesComponent } from '@feature/dashboard/pages/articles/articles.component';
-import { WriteArticleComponent } from '@feature/dashboard/pages/write-article/write-article.component';
-import { EditArticleComponent } from '@feature/dashboard/pages/edit-article/edit-article.component';
+import { ArticlesComponent } from '@feature/dashboard/articles/articles.component';
+import { WriteArticleComponent } from '@feature/dashboard/write-article/write-article.component';
+import { EditArticleComponent } from '@feature/dashboard/edit-article/edit-article.component';
 
 const routes: Routes = [
   {

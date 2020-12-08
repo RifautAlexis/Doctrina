@@ -1,0 +1,18 @@
+<ng-container *ngIf="(articles$ | async) as articles">
+    <ng-container [ngTemplateOutlet]="articles.length > 0 ? articlesDetails : emptyArticles"
+        [ngTemplateOutletContext]="{articles:articles}">
+    </ng-container>
+</ng-container>
+
+<ng-template #articlesDetails let-articles='articles'>
+    <main class="container">
+        <articles-overview [articles]="articles" [isAdmin]="true" (deleteArticleIdEvent)="deleteArticle($event)">
+        </articles-overview>
+    </main>
+</ng-template>
+
+<ng-template #emptyArticles>
+    <main class="container">
+        <p>No Articles've been found</p>
+    </main>
+</ng-template>

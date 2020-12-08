@@ -6,11 +6,11 @@ import { Observable, of } from 'rxjs';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ElementRef, ViewChild } from '@angular/core';
 import { MatAutocomplete } from '@angular/material/autocomplete';
-import { ITag } from '@shared/models/tag.model';
+import { Tag } from '@shared/models/tag.model';
 import { Router } from '@angular/router';
-import { IArticleEdit } from '@shared/models/article-edit.model';
-import { IIdResponse } from '@shared/responses/id.response';
-import { IArticleForm } from '@shared/models/article-form.model';
+import { ArticleEdit } from '@shared/models/article-edit.model';
+import { IdResponse } from '@shared/responses/id.response';
+import { ArticleForm } from '@shared/models/article-form.model';
 
 @Component({
   selector: 'app-write-article',
@@ -20,15 +20,15 @@ import { IArticleForm } from '@shared/models/article-form.model';
 export class WriteArticleComponent implements OnInit {
 
   contentPreview: string;
-  article: IArticleForm;
+  article: ArticleForm;
 
   public articleForm: FormGroup
   
-  tags: ITag[] = [];
+  tags: Tag[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl();
-  filteredTags: Observable<ITag[]>;
-  tagsSelected: ITag[] = [];
+  filteredTags: Observable<Tag[]>;
+  tagsSelected: Tag[] = [];
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -41,8 +41,8 @@ export class WriteArticleComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  createArticle(articleToAdd: IArticleEdit){
-    this.articleService.createArticle(articleToAdd).subscribe((response: IIdResponse) => {
+  createArticle(articleToAdd: ArticleEdit){
+    this.articleService.createArticle(articleToAdd).subscribe((articleId: number) => {
       // Snackbar
     })
   }

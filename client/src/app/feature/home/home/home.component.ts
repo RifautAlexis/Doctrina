@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '@core/services/article.service';
 import { Status } from '@shared/enum';
-import { IArticlesResponse } from '@shared/responses/articles.response';
+import { Article } from '@shared/models/article.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  response$: Observable<IArticlesResponse> = of({status: Status.PENDING, data: []});
+  articles$: Observable<Article[]>;
   Status = Status;
 
   constructor(
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.response$ = this.articleService.getArticles();
+    this.articles$ = this.articleService.getArticles();
   }
 
 }

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '@core/services/article.service';
 import { Status } from '@shared/enum';
-import { IArticleEdit } from '@shared/models/article-edit.model';
-import { IArticle } from '@shared/models/article.model';
-import { IArticleResponse } from '@shared/responses/article.response';
-import { IIdResponse } from '@shared/responses/id.response';
+import { ArticleEdit } from '@shared/models/article-edit.model';
+import { Article } from '@shared/models/article.model';
+import { ArticleResponse } from '@shared/responses/article.response';
+import { IdResponse } from '@shared/responses/id.response';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
 })
 export class EditArticleComponent implements OnInit {
 
-  article$: Observable<IArticleResponse> = of({status: Status.PENDING, data: null});
+  article$: Observable<Article>;
   articleId: string;
   contentPreview: string;
 
@@ -30,8 +30,8 @@ export class EditArticleComponent implements OnInit {
     this.article$ = this.articleService.getArticle(this.articleId);
   }
 
-  editArticle(articleToEdit: IArticleEdit) {
-    this.articleService.editArticle(articleToEdit).subscribe((response: IIdResponse) => {
+  editArticle(articleToEdit: ArticleEdit) {
+    this.articleService.editArticle(articleToEdit).subscribe((articleId: number) => {
       // Snackbar
     })
   }

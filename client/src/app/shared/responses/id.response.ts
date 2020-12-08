@@ -1,5 +1,3 @@
-import { IResponse } from "./response";
-
-export interface IIdResponse extends IResponse {
+export interface IdResponse {
     data: number;
 }

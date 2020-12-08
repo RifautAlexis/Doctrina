@@ -1,0 +1,17 @@
+<ng-container *ngIf="(article$ | async) as article">
+    <ng-container [ngTemplateOutlet]="article !== null ? articleDetails : emptyArticle"
+        [ngTemplateOutletContext]="{article:article}">
+    </ng-container>
+</ng-container>
+
+<ng-template #articleDetails let-article='article'>
+    <main class="container py-3">
+        <article-details [article]="article"></article-details>
+    </main>
+</ng-template>
+
+<ng-template #emptyArticle>
+    <main class="container">
+        <p>No content was found for this articles</p>
+    </main>
+</ng-template>

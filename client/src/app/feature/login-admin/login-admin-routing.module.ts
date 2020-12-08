@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { IsNotAdminGuard } from '@core/guards/is-not-admin.guard';
-import { LoginAdminComponent } from './pages/login-admin.component';
+import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 const routes: Routes = [
   { path: '', component: LoginAdminComponent, canActivate: [IsNotAdminGuard] },

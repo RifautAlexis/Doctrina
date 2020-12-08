@@ -1,4 +1,4 @@
-export interface IArticleForm {
+export interface ArticleForm {
     id?: string;
     title: string;
     content: string;

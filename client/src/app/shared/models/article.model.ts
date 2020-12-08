@@ -1,13 +1,13 @@
-import { ITag } from "./tag.model";
-import { IUser } from './user.model';
+import { Tag } from "./tag.model";
+import { User } from './user.model';
 
-export interface IArticle {
+export interface Article {
     id: string
     title: string;
     content: string;
     description: string;
-    author: IUser;
-    tags: ITag[];
+    author: User;
+    tags: Tag[];
     createdAt: Date;
     updatedAt: Date;
 }

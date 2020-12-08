@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@core/authentication/authentication.service';
 import { Role, Status } from '@shared/enum';
-import { IAuthentication } from '@shared/models/authentication.model';
-import { IAuthenticationResponse } from '@shared/responses/authentication.response';
+import { Authentication } from '@shared/models/authentication.model';
+import { AuthenticationResponse } from '@shared/responses/authentication.response';
 
 @Component({
   selector: 'app-login-admin',
@@ -36,8 +36,8 @@ export class LoginAdminComponent implements OnInit {
     const { email, password } = this.adminForm.value as ILoginForm;
 
     this.authenticationService.login(email, password).subscribe(
-      (response: IAuthenticationResponse) => {
-        if(response.status === Status.SUCCESSFUL) this.router.navigate(['dashboard']);
+      (response: Authentication) => {
+        // if(response.status === Status.SUCCESSFUL) this.router.navigate(['dashboard']);
       }
     );
   }

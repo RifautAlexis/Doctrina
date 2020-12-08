@@ -1,6 +1,6 @@
-import { IUser } from "./user.model";
+import { User } from "./user.model";
 
-export interface IAuthentication {
-    user: IUser;
+export interface Authentication {
+    user: User;
     token: string;
 }

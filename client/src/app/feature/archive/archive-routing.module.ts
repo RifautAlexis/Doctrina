@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ArchiveComponent } from './pages/archive/archive.component';
+import { ArchiveComponent } from './archive/archive.component';
 
 const routes: Routes = [
   { path: '', component: ArchiveComponent }

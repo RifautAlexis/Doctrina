@@ -1,6 +1,5 @@
-import { IArticle } from '@shared/models/article.model';
-import { IResponse } from './response';
+import { Article } from '@shared/models/article.model';
 
-export interface IArticleResponse extends IResponse {
-    data: IArticle;
+export interface ArticleResponse {
+    data: Article;
 }

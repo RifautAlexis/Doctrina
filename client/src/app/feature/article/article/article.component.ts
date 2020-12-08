@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '@core/services/article.service';
 import { Status } from '@shared/enum';
-import { IArticle } from '@shared/models/article.model';
-import { IArticleResponse } from '@shared/responses/article.response';
+import { Article } from '@shared/models/article.model';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -14,7 +13,7 @@ import { Observable, of } from 'rxjs';
 export class ArticleComponent implements OnInit {
 
   private articleId: string;
-  response$: Observable<IArticleResponse> = of({status: Status.PENDING, data: {} as IArticle});
+  article$: Observable<Article>;
   Status = Status;
 
   constructor(
@@ -24,7 +23,7 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.articleId = this.activatedRoute.snapshot.paramMap.get("id");
-    this.response$ = this.articleService.getArticle(this.articleId);
+    this.article$ = this.articleService.getArticle(this.articleId);
   }
 
 }

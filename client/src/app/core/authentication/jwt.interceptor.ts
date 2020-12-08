@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { IAuthentication } from '@shared/models/authentication.model';
+import { Authentication } from '@shared/models/authentication.model';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -11,7 +11,7 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
 
-        let currentUser: IAuthentication = this.authenticationService.currentUserValue;
+        let currentUser: Authentication = this.authenticationService.currentUserValue;
 
         if (currentUser && currentUser.token) {
 

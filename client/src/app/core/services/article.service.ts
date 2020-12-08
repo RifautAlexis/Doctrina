@@ -1,16 +1,15 @@
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IArticlesResponse } from '@shared/responses/articles.response';
-import { IArticleResponse } from '@shared/responses/article.response';
-import { IBooleanResponse } from '@shared/responses/boolean.response';
-import { IIdResponse } from '@shared/responses/id.response';
-import { IArticleCreate } from '@shared/models/article-create.model';
-import { map, tap } from 'rxjs/operators';
-import { IArticle } from '@shared/models/article.model';
-import { Status } from '@shared/enum';
-import { IArticleEdit } from '@shared/models/article-edit.model';
+import { ArticlesResponse } from '@shared/responses/articles.response';
+import { ArticleResponse } from '@shared/responses/article.response';
+import { BooleanResponse } from '@shared/responses/boolean.response';
+import { IdResponse } from '@shared/responses/id.response';
+import { ArticleCreate } from '@shared/models/article-create.model';
+import { map } from 'rxjs/operators';
+import { Article } from '@shared/models/article.model';
+import { ArticleEdit } from '@shared/models/article-edit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,59 +18,59 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  getArticles(): Observable<IArticlesResponse> {
-    return this.http.get<IArticlesResponse>(environment.apiUrl + 'article')
+  getArticles(): Observable<Article[]> {
+    return this.http.get<ArticlesResponse>(environment.apiUrl + 'article')
       .pipe(
-        map((response: IArticlesResponse) => {
-          return {status: Status.SUCCESSFUL, data: response.data};
+        map((response: ArticlesResponse) => {
+          return response.data;
         })
       );
   }
 
-  getArticle(articleId: string): Observable<IArticleResponse> {
-    return this.http.get<IArticleResponse>(environment.apiUrl + 'article/' + articleId)
+  getArticle(articleId: string): Observable<Article> {
+    return this.http.get<ArticleResponse>(environment.apiUrl + 'article/' + articleId)
     .pipe(
-      map((response: IArticleResponse) => {
-        return {status: Status.SUCCESSFUL, data: response.data};
+      map((response: ArticleResponse) => {
+        return response.data;
       })
     );
   }
 
-  isUniqueTitle(title: string, articleId?: string): Observable<IBooleanResponse> {
-    return this.http.post<IBooleanResponse>(environment.apiUrl + 'article/isUniqueTitle', {
+  isUniqueTitle(title: string, articleId?: string): Observable<boolean> {
+    return this.http.post<BooleanResponse>(environment.apiUrl + 'article/isUniqueTitle', {
       "title": title,
       "articleId": articleId
     })
       .pipe(
-        map((response: IBooleanResponse) => {
-          return {status: Status.SUCCESSFUL, data: response.data};
+        map((response: BooleanResponse) => {
+          return response.data;
         })
       );
   }
 
-  createArticle(articleToAdd: IArticleCreate): Observable<IIdResponse> {
-    return this.http.post<IIdResponse>(environment.apiUrl + 'article', articleToAdd)
+  createArticle(articleToAdd: ArticleCreate): Observable<number> {
+    return this.http.post<IdResponse>(environment.apiUrl + 'article', articleToAdd)
       .pipe(
-        map((response: IIdResponse) => {
-          return {status: Status.SUCCESSFUL, data: response.data};
+        map((response: IdResponse) => {
+          return response.data;
         })
       );
   }
 
-  editArticle(articleToEdit: IArticleEdit): Observable<IIdResponse> {
-    return this.http.put<IIdResponse>(environment.apiUrl + 'article/' + articleToEdit.id, articleToEdit)
+  editArticle(articleToEdit: ArticleEdit): Observable<number> {
+    return this.http.put<IdResponse>(environment.apiUrl + 'article/' + articleToEdit.id, articleToEdit)
       .pipe(
-        map((response: IIdResponse) => {
-          return {status: Status.SUCCESSFUL, data: response.data};
+        map((response: IdResponse) => {
+          return response.data;
         })
       );
   }
 
-  delete(articleId: string): Observable<IBooleanResponse> {
-    return this.http.delete<IBooleanResponse>(environment.apiUrl + 'article/' + articleId)
+  delete(articleId: string): Observable<boolean> {
+    return this.http.delete<BooleanResponse>(environment.apiUrl + 'article/' + articleId)
     .pipe(
-      map((response: IBooleanResponse) => {
-        return {status: Status.SUCCESSFUL, data: response.data};
+      map((response: BooleanResponse) => {
+        return response.data;
       })
     );
   }

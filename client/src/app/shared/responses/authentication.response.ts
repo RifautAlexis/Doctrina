@@ -1,7 +1,5 @@
-import { IAuthentication } from '@shared/models/authentication.model';
-import { IUser } from "../models/user.model";
-import { IResponse } from './response';
+import { Authentication } from '@shared/models/authentication.model';
 
-export interface IAuthenticationResponse extends IResponse {
-    data: IAuthentication;
+export interface AuthenticationResponse {
+    data: Authentication;
 }

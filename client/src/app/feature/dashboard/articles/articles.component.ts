@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '@core/services/article.service';
 import { Status } from '@shared/enum';
-import { IArticlesResponse } from '@shared/responses/articles.response';
-import { IBooleanResponse } from '@shared/responses/boolean.response';
+import { Article } from '@shared/models/article.model';
+import { BooleanResponse } from '@shared/responses/boolean.response';
 import { Observable, of } from 'rxjs';
 import { Snackbar } from 'src/app/components/snackbar/custom-snackbar.component';
 
@@ -12,7 +12,7 @@ import { Snackbar } from 'src/app/components/snackbar/custom-snackbar.component'
   styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-  response$: Observable<IArticlesResponse> = of({status: Status.PENDING, data: []});
+  articles$: Observable<Article[]>;
   Status = Status;
 
   constructor(
@@ -21,11 +21,11 @@ export class ArticlesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.response$ = this.articleService.getArticles();
+    this.articles$ = this.articleService.getArticles();
   }
 
   deleteArticle(articleId: string) {
-    this.articleService.delete(articleId).subscribe((response: IBooleanResponse) => {
+    this.articleService.delete(articleId).subscribe((hasBeenDeleted: boolean) => {
       // if(response.data) this.snackbar.openSnackBarSuccess("Article has been successful deleted");
     });
   }

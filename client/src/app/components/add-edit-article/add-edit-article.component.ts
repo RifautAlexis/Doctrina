@@ -4,13 +4,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Router } from '@angular/router';
 import { TagService } from '@core/services/tag.service';
-import { IArticleForm } from '@shared/models/article-form.model';
-import { ITag } from '@shared/models/tag.model';
-import { ITagsResponse } from '@shared/responses/tags.response';
+import { ArticleForm } from '@shared/models/article-form.model';
+import { Tag } from '@shared/models/tag.model';
+import { TagsResponse } from '@shared/responses/tags.response';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { ArticleValidator } from '@shared/validators/article.validator';
-import { IArticle } from '@shared/models/article.model';
+import { Article } from '@shared/models/article.model';
 
 @Component({
   selector: 'add-edit-article',
@@ -19,19 +19,19 @@ import { IArticle } from '@shared/models/article.model';
 
 export class AddEditArticleComponent implements OnInit {
 
-  @Input() articleToEdit?: IArticle;
-  @Output() onArticleChanged = new EventEmitter<IArticleForm>();
+  @Input() articleToEdit?: Article;
+  @Output() onArticleChanged = new EventEmitter<ArticleForm>();
   @Output() onContentChanged = new EventEmitter<string>();
 
   content: string;
 
   public articleForm: FormGroup
 
-  tags: ITag[];
+  tags: Tag[];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   tagCtrl = new FormControl();
-  tagsFiltered: Observable<ITag[]>;
-  tagsSelected: ITag[];
+  tagsFiltered: Observable<Tag[]>;
+  tagsSelected: Tag[];
 
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
@@ -50,8 +50,8 @@ export class AddEditArticleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tagService.getTags().subscribe((response: ITagsResponse) => {
-      this.tags = response.data;
+    this.tagService.getTags().subscribe((tags: Tag[]) => {
+      this.tags = tags;
 
       this.buildTagsToEdit();
     });
@@ -75,9 +75,9 @@ export class AddEditArticleComponent implements OnInit {
     const title: string = controls.title.value;
     const description: string = controls.description.value;
     const content: string = controls.content.value;
-    const tagIds: number[] = this.tagsSelected.map((tag: ITag) => tag.id);
+    const tagIds: number[] = this.tagsSelected.map((tag: Tag) => tag.id);
 
-    const article: IArticleForm = {
+    const article: ArticleForm = {
       title: title,
       description: description,
       content: content,
@@ -104,7 +104,7 @@ export class AddEditArticleComponent implements OnInit {
     });
   }
 
-  remove(tag: ITag): void {
+  remove(tag: Tag): void {
     const index = this.tagsSelected.indexOf(tag);
 
     if (index >= 0) {
@@ -116,7 +116,7 @@ export class AddEditArticleComponent implements OnInit {
     const tagSelected: string = event.option.viewValue.toLowerCase();
 
     if(!this.tagsSelected.map(tagsSelected => tagsSelected.name.toLowerCase()).includes(tagSelected)) {
-      const tagFound: ITag = this.tags.find(tag => tag.name.toLowerCase() == tagSelected);
+      const tagFound: Tag = this.tags.find(tag => tag.name.toLowerCase() == tagSelected);
       this.tagsSelected.push(tagFound);
       this.tagsFiltered = of(this.tags.filter(tag => !this.tagsSelected.map(ts => ts.id).includes(tag.id)));
     }
@@ -124,7 +124,7 @@ export class AddEditArticleComponent implements OnInit {
     this.tagCtrl.setValue(null);
   }
 
-  private whenSelected(value: ITag | string): ITag[] {
+  private whenSelected(value: Tag | string): Tag[] {
     let filterValue: string;
     typeof value !== "string" ? filterValue = value.name.toLowerCase() : filterValue = value.toLowerCase();
     return this.tags.filter(tag => !this.tagsSelected.map(ts => ts.name.toLowerCase()).includes(tag.name.toLowerCase()) && tag.name.toLowerCase().includes(filterValue.toLowerCase()));

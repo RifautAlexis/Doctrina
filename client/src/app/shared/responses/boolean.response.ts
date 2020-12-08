@@ -1,5 +1,3 @@
-import { IResponse } from "./response";
-
-export interface IBooleanResponse extends IResponse {
+export interface BooleanResponse {
     data: boolean;
 }
