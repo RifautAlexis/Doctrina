@@ -8,9 +8,9 @@ import { ArticleService } from "./services/article.service";
 import { TagService } from "./services/tag.service";
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './authentication/jwt.interceptor';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
 // import { Snackbar } from '../components/snackbar/snackbar.component';
 import { StyleManagerService } from "./services/style-manager.service";
+import { ErrorHandlerModule } from "./errors/error-handler.module";
 
 @NgModule({
   declarations: [
@@ -21,6 +21,7 @@ import { StyleManagerService } from "./services/style-manager.service";
     SharedModule,
     RouterModule,
     HttpClientModule,
+    ErrorHandlerModule
     // Snackbar
   ],
   providers: [
@@ -29,7 +30,6 @@ import { StyleManagerService } from "./services/style-manager.service";
     TagService,
     StyleManagerService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   exports: [
     HeaderLayoutComponent
