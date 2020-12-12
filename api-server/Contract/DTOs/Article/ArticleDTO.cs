@@ -13,6 +13,6 @@ namespace api_server.Contract.DTOs
         public UserDTO Author { get; set; }
         public List<TagDTO> Tags { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

@@ -45,14 +45,14 @@ namespace api_server.Handlers
                 _appDBContext.ArticlesInReadingLists.RemoveRange(articlesInReadingList);
                 await _appDBContext.SaveChangesAsync();
             }
-            for (int index = 0; index < articleIds.Count(); index++)
+            for (int index = 0; index < articleIds.Count; index++)
             {
                 ArticleInReadingList newArticleInReadingList = new ArticleInReadingList
                 {
                     ArticleId = articleIds[index],
                     ReadingListId = readingListToEdit.Id,
                     PreviousArticleId = index != 0 ? articleIds[index--] : null,
-                    NextArticleId = index < articleIds.Count() - 1 ? articleIds[index++] : null
+                    NextArticleId = index < articleIds.Count - 1 ? articleIds[index++] : null
                 };
                 await _appDBContext.ArticlesInReadingLists.AddAsync(newArticleInReadingList);
             }

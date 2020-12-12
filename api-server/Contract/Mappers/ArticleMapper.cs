@@ -21,8 +21,8 @@ namespace api_server.Contract.Mappers
                 Description = data.Description,
                 Author = data.Author.ToDTO(),
                 Tags = data.Tags.ToList().ToTagDTOs(),
-                CreatedAt = (DateTime)data.CreatedAt,
-                UpdatedAt = (DateTime)data.UpdatedAt
+                CreatedAt = data.CreatedAt,
+                UpdatedAt = data.UpdatedAt
             };
         }
 
