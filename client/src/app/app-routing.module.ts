@@ -12,7 +12,9 @@ const routes: Routes = [
   { path: 'admin', loadChildren: () => LoginAdminModule },
   { path: 'archive', loadChildren: () => ArchiveModule },
   { path: 'article/:id', loadChildren: () => ArticleModule },
-  { path: '**', redirectTo: 'home' },
+  { path: 'black-hole', loadChildren: () => import('./feature/internal-server/internal-server.module').then(m => m.InternalServerModule) },
+  { path: 'not-found', loadChildren: () => import('./feature/not-found/not-found.module').then(m => m.NotFoundModule) },
+  { path: '**', redirectTo: 'not-found' },
 ];
 
 @NgModule({
