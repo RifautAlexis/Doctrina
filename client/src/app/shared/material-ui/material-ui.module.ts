@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const modules = [
   MatIconModule,
@@ -31,7 +32,8 @@ const modules = [
   MatCardModule,
   MatMenuModule,
   MatButtonModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatExpansionModule
 ];
 
 @NgModule({
