@@ -15,6 +15,7 @@ namespace api_server.Contract.Mappers
             {
                 Id = data.Id,
                 Name = data.Name,
+                Description = data.Description,
                 ArticleIds = OrderArticle(data.ArticlesInReadingList.ToList())
             };
         }

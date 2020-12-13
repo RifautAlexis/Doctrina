@@ -10,6 +10,8 @@ namespace api_server.Contract.Validators
         {
             RuleFor(request => request.Name)
                 .SetValidator(new StringValidator());
+            RuleFor(request => request.Description)
+                .SetValidator(new StringValidator());
         }
     }
 }

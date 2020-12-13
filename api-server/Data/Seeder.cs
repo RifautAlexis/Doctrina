@@ -56,9 +56,9 @@ namespace api_server.Data
 
             List<ReadingList> readingList = new List<ReadingList>
             {
-                new ReadingList { Id = 1, Name = "Title ReadingList 01" },
-                new ReadingList { Id = 2, Name = "Title ReadingList 02" },
-                new ReadingList { Id = 3, Name = "Title ReadingList 03" },
+                new ReadingList { Id = 1, Name = "Title ReadingList 01", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+                new ReadingList { Id = 2, Name = "Title ReadingList 02", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
+                new ReadingList { Id = 3, Name = "Title ReadingList 03", Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
             };
 
             modelBuilder.Entity<ReadingList>().HasData(

@@ -24,7 +24,7 @@ namespace api_server.Handlers
 
         public async Task<IdResponse> Handle(CreateArticleRequest request)
         {
-            (string title, string content, string description, List<int> tagIds, int readingListId) = request.NewArticle;
+            var (title, content, description, tagIds, readingListId) = request.NewArticle;
 
             bool isUniqueTitle = await _appDBContext.Articles.AllAsync(a => a.Title.ToLowerInvariant() != title.ToLowerInvariant());
             if (!isUniqueTitle) throw new ArgumentException();

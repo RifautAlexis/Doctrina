@@ -23,7 +23,7 @@ namespace api_server.Handlers
         public async Task<BooleanResponse> Handle(IsUniqueReadingListNameRequest request)
         {
 
-            (string name, int? readingListId) = request.IsUniqueReadingListNameDTO;
+            var (name, readingListId) = request.IsUniqueReadingListNameDTO;
 
             bool isUniqueName = false;
 

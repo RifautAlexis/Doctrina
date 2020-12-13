@@ -13,6 +13,8 @@ namespace api_server.Data.Mappings
             entityBuilder.Property(rl => rl.Name).IsRequired();
             entityBuilder.HasIndex(rl => rl.Name).IsUnique();
 
+            entityBuilder.Property(rl => rl.Description).IsRequired();
+
             entityBuilder.Property(a => a.CreatedAt).IsRequired();
 
             /*****/

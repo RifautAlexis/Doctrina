@@ -15,6 +15,8 @@ namespace api_server.Contract.Validators
                 .SetValidator(new IdValidator());
             RuleFor(request => request.Name)
                 .SetValidator(new StringValidator());
+            RuleFor(request => request.Description)
+                .SetValidator(new StringValidator());
             RuleFor(request => request.ArticleIds)
                 .Must(articleIds => articleIds.Count != articleIds.Distinct().Count());
         }

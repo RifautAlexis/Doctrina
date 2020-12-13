@@ -22,7 +22,7 @@ namespace api_server.Handlers
 
         public async Task<IdResponse> Handle(EditTagRequest request)
         {
-            (int id, string name) = request.TagToEdit;
+            var (id, name) = request.TagToEdit;
 
             bool isUniqueTagName = await _appDBContext.Tags.AllAsync(t => t.Id != id && t.Name.ToLowerInvariant() != name.ToLowerInvariant());
             if (!isUniqueTagName) throw new Contract.Exceptions.ArgumentException();

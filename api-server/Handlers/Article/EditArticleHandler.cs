@@ -22,7 +22,7 @@ namespace api_server.Handlers
 
         public async Task<IdResponse> Handle(EditArticleRequest request)
         {
-            (int id, string title, string content, string description, List<int> tagIds) = request.ArticleToEdit;
+            var (id, title, content, description, tagIds) = request.ArticleToEdit;
 
             bool isUniqueTitle = await _appDBContext.Articles.AllAsync(a => a.Id != id && a.Title.ToLowerInvariant() != title.ToLowerInvariant());
             if (!isUniqueTitle) throw new Contract.Exceptions.ArgumentException();

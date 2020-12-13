@@ -17,7 +17,7 @@ namespace api_server.Handlers
 
         public async Task<BooleanResponse> Handle(IsUniqueTitleRequest request)
         {
-            (string title, int? articleId) = request.IsUniqueTitleDTO;
+            var (title, articleId) = request.IsUniqueTitleDTO;
 
             bool isUniqueTitle = false;
 

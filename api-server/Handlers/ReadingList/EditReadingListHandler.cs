@@ -20,7 +20,7 @@ namespace api_server.Handlers
 
         public async Task<IdResponse> Handle(EditReadingListRequest request)
         {
-            (int id, string name, List<int> articleIds) = request.ReadingListToEdit;
+            var (id, name, description, articleIds) = request.ReadingListToEdit;
 
             bool isUniqueName = await _appDBContext.ReadingLists.AllAsync(rl => rl.Id != id && rl.Name.ToLowerInvariant() != name.ToLowerInvariant());
             if (!isUniqueName) throw new Contract.Exceptions.ArgumentException();

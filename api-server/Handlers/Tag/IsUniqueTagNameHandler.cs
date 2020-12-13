@@ -17,7 +17,7 @@ namespace api_server.Handlers
 
         public async Task<BooleanResponse> Handle(IsUniqueTagNameRequest request)
         {
-            (string name, int? tagId) = request.IsUniqueTagNameDTO;
+            var (name, tagId) = request.IsUniqueTagNameDTO;
 
             bool isUniqueTagName = false;
 

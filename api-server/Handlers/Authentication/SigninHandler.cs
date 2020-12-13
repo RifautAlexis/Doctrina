@@ -26,7 +26,7 @@ namespace api_server.Handlers
         public async Task<AuthenticationResponse> Handle(SigninRequest request)
         {
 
-            (string email, string password) = request.SigninDTO;
+            var (email, password) = request.SigninDTO;
 
             User user = await _appDBContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
 
