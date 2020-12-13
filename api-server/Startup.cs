@@ -68,6 +68,24 @@ namespace api_server
             services.AddScoped<
                 IHandler<EditTagRequest, IdResponse>,
                 EditTagHandler>();
+            services.AddScoped<
+                IHandler<CreateReadingListRequest, IdResponse>,
+                CreateReadingListHandler>();
+            services.AddScoped<
+                IHandler<DeleteReadingListRequest, BooleanResponse>,
+                DeleteReadingListHandler>();
+            services.AddScoped<
+                IHandler<EditReadingListRequest, IdResponse>,
+                EditReadingListHandler>();
+            services.AddScoped<
+                IHandler<GetReadingListByIdRequest, ReadingListResponse>,
+                GetReadingListByIdHandler>();
+            services.AddScoped<
+                IHandler<GetReadingListsRequest, ReadingListsResponse>,
+                GetReadingListsHandler>();
+            services.AddScoped<
+                IHandler<IsUniqueReadingListNameRequest, BooleanResponse>,
+                IsUniqueReadingListNameHandler>();
 
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options => options.SuppressInferBindingSourcesForParameters = true)
