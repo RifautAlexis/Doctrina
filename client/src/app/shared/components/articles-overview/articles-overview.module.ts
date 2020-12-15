@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
 
 import { ArticlesOverviewComponent } from './articles-overview.component';
 import { DisplayTagsModule } from '../display-tags/display-tags.module';
+import { MaterialUiModule } from '@shared/material-ui/material-ui.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [ArticlesOverviewComponent],
   imports: [
-    SharedModule,
-    DisplayTagsModule
+    CommonModule,
+    DisplayTagsModule,
+    MaterialUiModule,
+    // FormsModule,
+    // ReactiveFormsModule,
   ],
   exports: [ArticlesOverviewComponent]
 })

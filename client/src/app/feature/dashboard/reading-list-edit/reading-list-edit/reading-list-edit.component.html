@@ -1,0 +1,3 @@
+<ng-container *ngIf="(readingList$ | async) as readingListToEdit">
+    <add-edit-reading-list [readingListToEdit]="readingListToEdit" (onReadingListSubmited)="editArticle($event)"></add-edit-reading-list>
+</ng-container>

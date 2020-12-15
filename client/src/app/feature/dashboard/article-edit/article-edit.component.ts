@@ -10,19 +10,19 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-edit-article',
-  templateUrl: './edit-article.component.html',
-  styleUrls: ['./edit-article.component.scss']
+  selector: 'edit-article',
+  templateUrl: './article-edit.component.html',
+  styleUrls: ['./article-edit.component.scss']
 })
-export class EditArticleComponent implements OnInit {
+export class ArticleEditComponent implements OnInit {
 
   article$: Observable<Article>;
   articleId: string;
   contentPreview: string;
 
   constructor(
-    private articleService: ArticleService,
-    private activatedRoute: ActivatedRoute
+    private readonly articleService: ArticleService,
+    private readonly activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {

@@ -1,0 +1,17 @@
+<ng-container *ngIf="(readingLists$ | async) as readingLists">
+    <ng-container [ngTemplateOutlet]="readingLists.length > 0 ? readingListsOverview : emptyreadingLists"
+        [ngTemplateOutletContext]="{readingLists:readingLists}">
+    </ng-container>
+</ng-container>
+
+<ng-template #readingListsOverview let-readingLists='readingLists'>
+    <main class="container">
+        <reading-lists-overview [readingLists]="readingLists" [isAdmin]="false"></reading-lists-overview>
+    </main>
+</ng-template>
+
+<ng-template #emptyreadingLists>
+    <main class="container">
+        <p>No reading lists've been found</p>
+    </main>
+</ng-template>

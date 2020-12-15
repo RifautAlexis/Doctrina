@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'article/:id', loadChildren: () => ArticleModule },
   { path: 'black-hole', loadChildren: () => import('./feature/internal-server/internal-server.module').then(m => m.InternalServerModule) },
   { path: 'not-found', loadChildren: () => import('./feature/not-found/not-found.module').then(m => m.NotFoundModule) },
+  { path: 'reading-lists', loadChildren: () => import('./feature/reading-lists/reading-lists.module').then(m => m.ReadingListsModule) },
   { path: '**', redirectTo: 'not-found' },
 ];
 

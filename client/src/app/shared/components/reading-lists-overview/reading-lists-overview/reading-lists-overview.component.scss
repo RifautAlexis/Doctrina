@@ -1,0 +1,17 @@
+mat-card:not(:first-child){
+    margin-top: 15px;
+}
+
+mat-card-content {
+    margin-bottom: 0px;
+}
+
+.space-between mat-chip:not(:first-child){
+    margin-left: 1em;
+}
+
+#menu {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}

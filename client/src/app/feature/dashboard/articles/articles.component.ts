@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '@core/services/article.service';
 import { Status } from '@shared/enum';
 import { Article } from '@shared/models/article.model';
-import { BooleanResponse } from '@shared/responses/boolean.response';
 import { Observable, of } from 'rxjs';
-import { Snackbar } from 'src/app/components/snackbar/custom-snackbar.component';
+// import { Snackbar } from 'src/app/components/snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-articles',

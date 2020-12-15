@@ -11,10 +11,11 @@ import { DashboardModule } from './feature/dashboard/dashboard.module';
 import { LoginAdminModule } from './feature/login-admin/login-admin.module';
 import { NotFoundModule } from '@feature/not-found/not-found.module';
 import { InternalServerModule } from '@feature/internal-server/internal-server.module';
+import { ReadingListsModule } from '@feature/reading-lists/reading-lists.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { InternalServerModule } from '@feature/internal-server/internal-server.m
     DashboardModule,
     LoginAdminModule,
     NotFoundModule,
-    InternalServerModule
+    InternalServerModule,
+    ReadingListsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

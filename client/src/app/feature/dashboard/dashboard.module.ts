@@ -5,23 +5,25 @@ import { SharedModule } from '@shared/shared.module';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ArticlesComponent } from './articles/articles.component';
-import { EditArticleComponent } from './edit-article/edit-article.component';
+import { ArticleEditComponent } from './article-edit/article-edit.component';
 import { WriteArticleComponent } from './write-article/write-article.component';
 import { QuillModule } from 'ngx-quill';
 // import { SnackbarModule } from 'src/app/components/snackbar/snackbar.module';
-import { AddEditArticleModule } from '../../components/add-edit-article/add-edit-article.module';
-import { LoadingIndicatorModule } from '../../components/loading-indicator/loading-indicator.module';
-import { ArticlesOverviewModule } from '../../components/articles-overview/articles-overview.module';
 import { TagsComponent } from './tags/tags.component';
-import { DisplayTagsModule } from 'src/app/components/display-tags/display-tags.module';
+import { ReadingListComponent } from './reading-list/reading-list/reading-list.component';
+import { ReadingListEditComponent } from './reading-list-edit/reading-list-edit/reading-list-edit.component';
+import { ReadingListAddComponent } from './reading-list-add/reading-list-add.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ArticlesComponent,
-    EditArticleComponent,
+    ArticleEditComponent,
     WriteArticleComponent,
-    TagsComponent
+    TagsComponent,
+    ReadingListComponent,
+    ReadingListEditComponent,
+    ReadingListAddComponent
   ],
   imports: [
     CommonModule,
@@ -29,10 +31,6 @@ import { DisplayTagsModule } from 'src/app/components/display-tags/display-tags.
     SharedModule,
     QuillModule.forRoot(),
     // SnackbarModule,
-    AddEditArticleModule,
-    LoadingIndicatorModule,
-    ArticlesOverviewModule,
-    DisplayTagsModule
   ],
   providers: [
   ]

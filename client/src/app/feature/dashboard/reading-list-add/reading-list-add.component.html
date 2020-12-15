@@ -1,0 +1,5 @@
+<ng-container *ngIf="(articles$ | async) as articles">
+    <div class="white-card">
+    <add-edit-reading-list (onReadingListSubmited)="createReadingList($event)" [articles]="articles"></add-edit-reading-list>
+</div>
+</ng-container>

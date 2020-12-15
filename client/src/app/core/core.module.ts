@@ -11,6 +11,7 @@ import { JwtInterceptor } from './authentication/jwt.interceptor';
 // import { Snackbar } from '../components/snackbar/snackbar.component';
 import { StyleManagerService } from "./services/style-manager.service";
 import { ErrorHandlerModule } from "./errors/error-handler.module";
+import { ReadingListService } from './services/reading-list.service'
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ErrorHandlerModule } from "./errors/error-handler.module";
     ArticleService,
     TagService,
     StyleManagerService,
+    ReadingListService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   exports: [

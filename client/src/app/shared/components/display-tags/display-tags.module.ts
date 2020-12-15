@@ -1,11 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-
-import { SharedModule } from '../../shared/shared.module';
+import { MaterialUiModule } from '@shared/material-ui/material-ui.module';
 import { DisplayTagsComponent } from './display-tags.component';
 
 @NgModule({
     imports: [
-        SharedModule
+        MaterialUiModule,
+        CommonModule
     ],
     exports: [
         DisplayTagsComponent

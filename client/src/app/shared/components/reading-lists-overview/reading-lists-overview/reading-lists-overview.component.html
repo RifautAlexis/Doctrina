@@ -1,0 +1,31 @@
+<div>
+    <mat-card *ngFor="let readingList of readingLists">
+        <mat-card-header>
+            <mat-card-title>
+                <a [href]="isAdmin ? '/dashboard/reading-list/edit/readingList.id' : '/dashboard/article/readingList.articleIds[0]'">
+                    {{readingList.name}}
+                </a>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{readingList.description}}
+            </p>
+        </mat-card-content>
+        <ng-container *ngIf="isAdmin">
+            <button mat-icon-button [matMenuTriggerFor]="menu" id="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="deleteReadingList(readingList.id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                </button>
+                <a mat-menu-item href="/dashboard/reading-list/edit/{{readingList.id}}">
+                    <mat-icon>create</mat-icon>
+                    <span>Edit</span>
+                </a>
+            </mat-menu>
+        </ng-container>
+    </mat-card>
+</div>

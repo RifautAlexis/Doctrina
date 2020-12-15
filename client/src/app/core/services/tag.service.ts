@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { TagsResponse } from '@shared/responses/tags.response';
 import { Tag } from '@shared/models/tag.model';
 import { map } from 'rxjs/operators';
+import { BooleanResponse } from '@shared/responses/boolean.response';
 
 @Injectable({
     providedIn: 'root'
@@ -20,6 +21,18 @@ export class TagService {
                   return response.data;
                 })
               );
+    }
+
+    isUniqueName(anme: string, tagId?: string): Observable<boolean> {
+      return this.http.post<BooleanResponse>(environment.apiUrl + 'tag/isUniqueName', {
+        "name": name,
+        "tagId": tagId
+      })
+        .pipe(
+          map((response: BooleanResponse) => {
+            return response.data;
+          })
+        );
     }
 
 }

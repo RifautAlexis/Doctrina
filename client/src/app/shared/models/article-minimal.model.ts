@@ -1,13 +1,10 @@
-import { Tag } from "./tag.model";
 import { User } from './user.model';
 
-export interface Article {
+export interface ArticleMinimal {
     id: string;
     title: string;
-    content: string;
     description: string;
-    author: User;
-    tags: Tag[];
+    authorName: User;
     createdAt: Date;
     updatedAt: Date;
 }

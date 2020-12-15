@@ -1,5 +1,5 @@
 <ng-container *ngIf="(article$ | async) as articleToEdit">
-    <add-edit-article [articleToEdit]="articleToEdit.data" (onContentChanged)="onChangeContent($event)"></add-edit-article>
+    <add-edit-article [articleToEdit]="articleToEdit" (onContentChanged)="onChangeContent($event)"></add-edit-article>
     <mat-divider class="my-3"></mat-divider>
     <quill-view [content]="contentPreview" format="html"></quill-view>
 </ng-container>

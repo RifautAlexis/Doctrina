@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 
 import { LoadingIndicatorComponent } from './loading-indicator.component';
-import { SharedModule } from '../../shared/shared.module';
+import { MaterialUiModule } from '@shared/material-ui/material-ui.module';
 
 @NgModule({
   declarations: [
     LoadingIndicatorComponent
   ],
   imports: [
-    SharedModule
+    MaterialUiModule
   ],
   exports: [LoadingIndicatorComponent]
 })

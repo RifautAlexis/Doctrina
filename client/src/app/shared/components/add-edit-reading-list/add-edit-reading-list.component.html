@@ -1,0 +1,32 @@
+<!-- <form [formGroup]="readingListForm" (ngSubmit)="submit()" novalidate class="d-flex flex-column jusrify-content-center">
+
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" id="name" formControlName="name">
+
+    <mat-error *ngIf="readingListForm.controls['name']?.errors?.isUniqueName"> This name is already taken </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput type="text" id="description" formControlName="description">
+  </mat-form-field>
+
+  <mat-form-field>
+    <div cdkDropList #articles="cdkDropList" [cdkDropListData]="articles" [cdkDropListConnectedTo]="[doneList]"
+      class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+    </div>
+
+    <div cdkDropList #articlesInReadingList="cdkDropList" [cdkDropListData]="readingListToEdit.articleIds" [cdkDropListConnectedTo]="[todoList]"
+      class="example-list" (cdkDropListDropped)="drop($event)">
+      <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+    </div>
+  </mat-form-field>
+
+  <div class="align-self-end">
+    <a mat-flat-button routerLink="/dashboard/reading-lists" class="cancel-button mr-3">Cancel</a>
+    <button mat-flat-button type="submit" color="primary">Create</button>
+  </div>
+
+</form> -->
