@@ -27,11 +27,11 @@ namespace api_server.Contract.Mappers
 
         private static List<int> OrderArticle(List<ArticleInReadingList> articleInReadingList)
         {
-            if (articleInReadingList.Count() == 0) return new List<int>();
+            if (articleInReadingList.Count == 0) return new List<int>();
 
-            List<int> articleidsOrdered = new List<int>();
+            List<int> articleIdsOrdered = new List<int>();
 
-            articleidsOrdered.Add(
+            articleIdsOrdered.Add(
                 articleInReadingList
                 .Where(airl => airl.PreviousArticleId == null)
                 .Select(airl => airl.Id)
@@ -39,11 +39,11 @@ namespace api_server.Contract.Mappers
             );
 
 
-            for (int index = 1; index < articleInReadingList.Count(); index++)
+            for (int index = 1; index < articleInReadingList.Count; index++)
             {
-                articleidsOrdered.Add(
+                articleIdsOrdered.Add(
                     articleInReadingList
-                    .Where(airl => airl.PreviousArticleId == articleidsOrdered[index--])
+                    .Where(airl => airl.PreviousArticleId != null && airl.PreviousArticleId == articleIdsOrdered[index - 1])
                     .Select(airl => airl.Id)
                     .FirstOrDefault());
             }

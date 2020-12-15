@@ -24,8 +24,10 @@ namespace api_server.Handlers
         public async Task<ReadingListsResponse> Handle(GetReadingListsRequest request)
         {
             List<ReadingList> readingLists = await _appDBContext.ReadingLists
-               .ToListAsync();
-            if (readingLists.Count() == 0) return new ReadingListsResponse { Data = new List<ReadingListDTO>() };
+                .Include(rl => rl.ArticlesInReadingList)
+                .ToListAsync();
+
+            if (readingLists.Count == 0) return new ReadingListsResponse { Data = new List<ReadingListDTO>() };
 
             List<ReadingListDTO> readingListsDTO = readingLists.ToDTOs();
 
