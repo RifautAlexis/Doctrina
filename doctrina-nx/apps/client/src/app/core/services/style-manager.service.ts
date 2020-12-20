@@ -10,9 +10,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 export class StyleManagerService {
   private isDarkModeOn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  private themeClassName = "darkMode";
-  private readonly pathToDarkTheme: string = "/assets/dark-theme.css";
-  private readonly pathToLightTheme: string = "/assets/light-heme.css";
+  // private themeClassName = "darkMode";
+  // private readonly pathToDarkTheme: string = "/assets/dark-theme.css";
+  // private readonly pathToLightTheme: string = "/assets/light-heme.css";
   @HostBinding('class') className = '';
 
   constructor(
@@ -105,26 +105,26 @@ export class StyleManagerService {
   // }
 }
 
-function getLinkElementForKey(key: string) {
-  return getExistingLinkElementByKey(key) || createLinkElementWithKey(key);
-}
+// function getLinkElementForKey(key: string) {
+//   return getExistingLinkElementByKey(key) || createLinkElementWithKey(key);
+// }
 
-function getExistingLinkElementByKey(key: string) {
-  // return document.head.querySelector(`#${key}`);
-  return document.head.querySelector(`link[rel="stylesheet"].${getClassNameForKey(key)}`);
-}
+// function getExistingLinkElementByKey(key: string) {
+//   // return document.head.querySelector(`#${key}`);
+//   return document.head.querySelector(`link[rel="stylesheet"].${getClassNameForKey(key)}`);
+// }
 
-function createLinkElementWithKey(key: string) {
-  const linkEl = document.createElement('link');
-  // linkEl.setAttribute('id', key)
-  linkEl.setAttribute('rel', 'stylesheet');
-  linkEl.setAttribute('type', 'text/css');
-  linkEl.classList.add(key);
-  // linkEl.classList.add(getClassNameForKey(key));
-  document.head.appendChild(linkEl);
-  return linkEl;
-}
+// function createLinkElementWithKey(key: string) {
+//   const linkEl = document.createElement('link');
+//   // linkEl.setAttribute('id', key)
+//   linkEl.setAttribute('rel', 'stylesheet');
+//   linkEl.setAttribute('type', 'text/css');
+//   linkEl.classList.add(key);
+//   // linkEl.classList.add(getClassNameForKey(key));
+//   document.head.appendChild(linkEl);
+//   return linkEl;
+// }
 
-function getClassNameForKey(key: string) {
-  return `${key}`;
-}
+// function getClassNameForKey(key: string) {
+//   return `${key}`;
+// }

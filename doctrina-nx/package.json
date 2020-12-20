@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
-    "start": "nx serve",
+    "start:api": "cd apps/api-server && npm run start",
+    "start:client": "cd apps/client && npm run start:dev",
     "build": "nx build",
     "test": "nx test",
     "lint": "nx workspace-lint && nx lint",

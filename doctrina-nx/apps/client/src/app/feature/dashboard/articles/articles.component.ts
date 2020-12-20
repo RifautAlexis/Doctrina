@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '@core/services/article.service';
 import { Status } from '@shared/enum';
 import { Article } from '@shared/models/article.model';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 // import { Snackbar } from 'src/app/components/snackbar/custom-snackbar.component';
 
 @Component({
@@ -25,6 +25,7 @@ export class ArticlesComponent implements OnInit {
 
   deleteArticle(articleId: string) {
     this.articleService.delete(articleId).subscribe((hasBeenDeleted: boolean) => {
+      hasBeenDeleted;
       // if(response.data) this.snackbar.openSnackBarSuccess("Article has been successful deleted");
     });
   }

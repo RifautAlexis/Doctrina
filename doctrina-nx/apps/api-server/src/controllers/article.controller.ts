@@ -1,4 +1,4 @@
-import { Controller, Param, Body, Get, Post, Put, Delete, JsonController } from "routing-controllers";
+import { Param, Get, JsonController } from "routing-controllers";
 import { GetAllArticleRequest } from "../requests/article/getAllArticleRequest";
 import { GetArticleByIdRequest } from "../requests/article/getArticleByIdRequest";
 import { ArticleResponse } from "../responses/article/articleResponse";

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReadingListValidator } from '@shared/validators/reading-list.validator';
-import { ReadingList } from '../../models/reading-list.model';
+// import { ReadingListValidator } from '@shared/validators/reading-list.validator';
 import { ReadingListForm } from '../../models/reading-list-form.model';
 import { ArticleMinimal } from '@shared/models/article-minimal.model';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
@@ -23,7 +22,7 @@ export class AddEditReadingListComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private readingListValidator: ReadingListValidator
+    // private readingListValidator: ReadingListValidator
   ) { }
 
   ngOnInit(): void {

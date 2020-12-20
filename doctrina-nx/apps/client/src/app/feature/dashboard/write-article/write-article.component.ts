@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ArticleService } from '@core/services/article.service';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { ElementRef, ViewChild } from '@angular/core';
 import { MatAutocomplete } from '@angular/material/autocomplete';
 import { Tag } from '@shared/models/tag.model';
-import { Router } from '@angular/router';
 import { ArticleEdit } from '@shared/models/article-edit.model';
-import { IdResponse } from '@shared/responses/id.response';
 import { ArticleForm } from '@shared/models/article-form.model';
 
 @Component({
@@ -43,6 +41,7 @@ export class WriteArticleComponent implements OnInit {
 
   createArticle(articleToAdd: ArticleEdit){
     this.articleService.createArticle(articleToAdd).subscribe((articleId: number) => {
+      articleId;
       // Snackbar
     })
   }

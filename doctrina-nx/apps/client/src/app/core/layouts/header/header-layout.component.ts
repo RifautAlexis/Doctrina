@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '@core/authentication/authentication.service';
 import { StyleManagerService } from '@core/services/style-manager.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'header-layout',

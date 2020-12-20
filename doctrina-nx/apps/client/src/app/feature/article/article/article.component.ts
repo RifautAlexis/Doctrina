@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '@core/services/article.service';
 import { Status } from '@shared/enum';
 import { Article } from '@shared/models/article.model';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-article',

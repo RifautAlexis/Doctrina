@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '@core/authentication/authentication.service';
-import { Role, Status } from '@shared/enum';
 import { Authentication } from '@shared/models/authentication.model';
-import { AuthenticationResponse } from '@shared/responses/authentication.response';
 
 @Component({
   selector: 'app-login-admin',
@@ -37,6 +35,7 @@ export class LoginAdminComponent implements OnInit {
 
     this.authenticationService.login(email, password).subscribe(
       (response: Authentication) => {
+        response;
         this.router.navigate(['dashboard']);
       }
     );

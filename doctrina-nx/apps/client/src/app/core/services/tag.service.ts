@@ -23,7 +23,7 @@ export class TagService {
               );
     }
 
-    isUniqueName(anme: string, tagId?: string): Observable<boolean> {
+    isUniqueName(name: string, tagId?: string): Observable<boolean> {
       return this.http.post<BooleanResponse>(environment.apiUrl + 'tag/isUniqueName', {
         "name": name,
         "tagId": tagId

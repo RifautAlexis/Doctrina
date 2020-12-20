@@ -31,7 +31,6 @@
   },
   "scripts": {
     "build": "tsc --build",
-    "lol": "ts-node-dev src/index.ts",
     "start": "ts-node-dev --compiler ttypescript src/index.ts"
   }
 }

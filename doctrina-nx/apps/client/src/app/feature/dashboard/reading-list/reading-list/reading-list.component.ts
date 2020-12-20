@@ -21,6 +21,7 @@ export class ReadingListComponent implements OnInit {
 
   deleteReadingList(readingListId: string) {
     this.readingListService.delete(readingListId).subscribe((hasBeenDeleted: boolean) => {
+      hasBeenDeleted;
       // if(response.data) this.snackbar.openSnackBarSuccess("Article has been successful deleted");
     });
   }

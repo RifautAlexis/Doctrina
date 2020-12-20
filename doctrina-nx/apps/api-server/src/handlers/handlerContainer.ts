@@ -9,7 +9,7 @@ class HandlerContainer {
         this.kernel[`${requestName}`] = handler;
     }
 
-    ResolveHandler<IRequest, IResponse>(requestName: string, request: IRequest):
+    ResolveHandler<IRequest, IResponse>(requestName: string):
     Handler<IRequest, IResponse> {
         return <Handler<IRequest, IResponse>>this.kernel[`${requestName}`];
     }

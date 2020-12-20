@@ -27,6 +27,7 @@ export class ReadingListEditComponent implements OnInit {
 
   editArticle(readingListToEdit: ReadingListEdit) {
     this.readingListService.editReadingList(readingListToEdit).subscribe((readingListId: number) => {
+      readingListId;
       // Snackbar
     })
   }

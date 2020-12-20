@@ -2,13 +2,10 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { Router } from '@angular/router';
 import { TagService } from '@core/services/tag.service';
 import { ArticleForm } from '@shared/models/article-form.model';
 import { Tag } from '@shared/models/tag.model';
-import { TagsResponse } from '@shared/responses/tags.response';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { ArticleValidator } from '@shared/validators/article.validator';
 import { Article } from '@shared/models/article.model';
 
@@ -38,7 +35,6 @@ export class AddEditArticleComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
-    private router: Router,
     private articleValidator: ArticleValidator,
     private tagService: TagService
   ) {

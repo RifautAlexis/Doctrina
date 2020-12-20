@@ -5,7 +5,7 @@ import logger from "koa-logger";
 import { useKoaServer } from "routing-controllers";
 import { config } from "./config";
 import { ArticleController } from "./controllers/article.controller";
-import router from "./routes"
+// import router from "./routes"
 import "reflect-metadata"
 import container from "./handlers/handlerContainer";
 import { GetAllArticleRequest } from "./requests/article/getAllArticleRequest";

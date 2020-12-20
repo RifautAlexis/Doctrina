@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '@core/services/article.service';
-import { Status } from '@shared/enum';
 import { ArticleEdit } from '@shared/models/article-edit.model';
 import { Article } from '@shared/models/article.model';
-import { ArticleResponse } from '@shared/responses/article.response';
-import { IdResponse } from '@shared/responses/id.response';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'edit-article',
@@ -32,6 +28,7 @@ export class ArticleEditComponent implements OnInit {
 
   editArticle(articleToEdit: ArticleEdit) {
     this.articleService.editArticle(articleToEdit).subscribe((articleId: number) => {
+      articleId;
       // Snackbar
     })
   }

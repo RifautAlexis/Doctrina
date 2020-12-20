@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthenticationResponse } from '@shared/responses/authentication.response';
-import { Role, Status } from '@shared/enum';
+import { Role } from '@shared/enum';
 import { Authentication } from '@shared/models/authentication.model';
 import { environment } from '../../../environments/environment';
 import { Router } from '@angular/router';
