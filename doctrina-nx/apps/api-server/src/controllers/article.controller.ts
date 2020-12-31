@@ -1,36 +1,44 @@
-import { Param, Get, JsonController } from "routing-controllers";
-import { GetAllArticleRequest } from "../requests/article/getAllArticleRequest";
-import { GetArticleByIdRequest } from "../requests/article/getArticleByIdRequest";
-import { ArticleResponse } from "../responses/article/articleResponse";
-import { ArticlesResponse } from "../responses/article/articlesResponse";
+import { Param, Get, JsonController, Post, Put, Delete } from "routing-controllers";
 import executor from "../handlers/executor";
+import { ArticleResponse, ArticlesResponse, BooleanResponse, IdResponse,  } from "@doctrina-nx/responses";
+import { CreateArticleRequest, DeleteArticleRequest, EditArticleRequest, GetAllArticleRequest, GetArticleByIdRequest, IsUniqueTitleRequest, SearchArticleRequest } from "../contract/requests";
 
 @JsonController()
 export class ArticleController {
 
-   @Get("/articles")
-   async get(request: GetAllArticleRequest) {
-      return await executor.Execute<GetAllArticleRequest, ArticlesResponse>(nameof<GetAllArticleRequest>(), request);
+   @Get("/search")
+   async search(request: SearchArticleRequest) {
+      return await executor.Execute<SearchArticleRequest, ArticlesResponse>(nameof<SearchArticleRequest>(), request);
    }
 
-   @Get("/articles/:id")
+   @Get("/:id")
    async getById(@Param("id") request: GetArticleByIdRequest) {
       return await executor.Execute<GetArticleByIdRequest, ArticleResponse>(nameof<GetArticleByIdRequest>(), request);
    }
 
-   // @Post("/articles")
-   // post(@Body() article: any) {
-   //    return "Saving article...";
-   // }
+   @Get("/")
+   async get(request: GetAllArticleRequest) {
+      return await executor.Execute<GetAllArticleRequest, ArticlesResponse>(nameof<GetAllArticleRequest>(), request);
+   }
 
-   // @Put("/articles/:id")
-   // put(@Param("id") id: number, @Body() article: any) {
-   //    return "Updating a article...";
-   // }
+   @Post("/isUniqueTitle")
+   async IsUniqueTitleRequest(request: IsUniqueTitleRequest) {
+      return await executor.Execute<IsUniqueTitleRequest, BooleanResponse>(nameof<IsUniqueTitleRequest>(), request);
+   }
 
-   // @Delete("/articles/:id")
-   // remove(@Param("id") id: number) {
-   //    return "Removing article...";
-   // }
+   @Post("/")
+   async Create(request: CreateArticleRequest) {
+      return await executor.Execute<CreateArticleRequest, IdResponse>(nameof<CreateArticleRequest>(), request);
+   }
+
+   @Put("/:id")
+   async Edit(request: EditArticleRequest) {
+      return await executor.Execute<EditArticleRequest, IdResponse>(nameof<EditArticleRequest>(), request);
+   }
+
+   @Delete("/:id")
+   async Delete(request: DeleteArticleRequest) {
+      return await executor.Execute<DeleteArticleRequest, BooleanResponse>(nameof<DeleteArticleRequest>(), request);
+   }
 
 }

@@ -8,12 +8,11 @@ import { ArticleController } from "./controllers/article.controller";
 // import router from "./routes"
 import "reflect-metadata"
 import container from "./handlers/handlerContainer";
-import { GetAllArticleRequest } from "./requests/article/getAllArticleRequest";
-import { ArticlesResponse } from "./responses/article/articlesResponse";
-import { GetAllArticleHandler } from "./handlers/article/getAllArticleHandler";
-import { GetArticleByIdRequest } from "./requests/article/getArticleByIdRequest";
-import { ArticleResponse } from "./responses/article/articleResponse";
-import { GetArticleByIdHandler } from "./handlers/article/getArticleByIdHandler";
+import { GetAllArticleRequest } from "./contract/requests/article/get-all-article-request";
+import { GetAllArticleHandler } from "./handlers/article/get-all-article-handler";
+import { GetArticleByIdRequest } from "./contract/requests/article/get-article-by-id-request";
+import { GetArticleByIdHandler } from "./handlers/article/get-article-by-id-handler";
+import { ArticleResponse, ArticlesResponse } from "@doctrina-nx/responses";
 
 const app = new Koa();
 

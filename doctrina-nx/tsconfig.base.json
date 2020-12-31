@@ -12,12 +12,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
     "noImplicitAny": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "strict": true,
+    "paths": {
+      "@doctrina-nx/*": ["libs/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

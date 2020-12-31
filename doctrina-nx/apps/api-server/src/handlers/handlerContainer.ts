@@ -1,6 +1,6 @@
 import { Handler } from "./handler"
-import { IRequest } from "../requests/request"
-import { IResponse } from "../responses/response"
+import { IRequest } from "../contract/requests/request"
+import { IResponse } from "@doctrina-nx/responses";
 
 class HandlerContainer {
     private kernel: { [key: string]: Handler<IRequest, IResponse> } = {};
