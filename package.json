@@ -12,7 +12,7 @@
   "homepage": "https://github.com/RifautAlexis/Doctrina#readme",
   "scripts": {
     "nx": "nx",
-    "start:api": "cd apps/api-server && ts-node-dev --compiler ttypescript src/index.ts",
+    "start:api": "cd apps/api-server && ts-node --compiler ttypescript src/index.ts",
     "start:client": "cd apps/client && ng serve",
     "build:api": "cd apps/api-server && tsc --build",
     "test": "nx test",
