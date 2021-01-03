@@ -14,7 +14,7 @@
     "start:api": "cd apps/api-server && ts-node --compiler ttypescript src/index.ts",
     "start:client": "cd apps/client && ng serve",
     "postinstall": "ts-node",
-    "start:heroku": "node dist/index.js"
+    "start:heroku": "node apps/api-server/dist/index.js"
   },
   "private": true,
   "dependencies": {
