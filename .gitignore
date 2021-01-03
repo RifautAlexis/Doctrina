@@ -40,3 +40,5 @@ Thumbs.db
 
 api-server/.env
 .vscode
+
+dist/
