@@ -13,8 +13,8 @@
   "scripts": {
     "start:api": "cd apps/api-server && ts-node --compiler ttypescript src/index.ts",
     "start:client": "cd apps/client && ng serve",
-    "build:api": "cd apps/api-server && tsc --build",
-    "postinstall": "ts-node && ttypescript"
+    "postinstall": "ts-node",
+    "start:heroku": "node dist/index.js"
   },
   "private": true,
   "dependencies": {
