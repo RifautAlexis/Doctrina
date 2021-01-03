@@ -12,7 +12,7 @@ import { GetAllArticleRequest } from "./contract/requests/article/get-all-articl
 import { GetAllArticleHandler } from "./handlers/article/get-all-article-handler";
 import { GetArticleByIdRequest } from "./contract/requests/article/get-article-by-id-request";
 import { GetArticleByIdHandler } from "./handlers/article/get-article-by-id-handler";
-import { ArticleResponse, ArticlesResponse } from "@doctrina-nx/responses";
+import { ArticleResponse, ArticlesResponse } from "../../../libs/responses/index";
 
 const app = new Koa();
 

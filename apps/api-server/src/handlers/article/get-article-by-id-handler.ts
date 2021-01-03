@@ -1,7 +1,7 @@
 import { GetArticleByIdRequest } from "../../contract/requests/article/get-article-by-id-request";
 import { Handler } from "../handler";
-import { ArticleResponse } from "@doctrina-nx/responses";
-import { User } from "@doctrina-nx/models";
+import { ArticleResponse } from "../../../../../libs/responses/index";
+import { User } from "../../../../../libs/models/index";
 
 export class GetArticleByIdHandler implements Handler<GetArticleByIdRequest, ArticleResponse> {
 

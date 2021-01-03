@@ -20,7 +20,8 @@
     "strict": true,
     "paths": {
       "@doctrina-nx/*": ["libs/*"]
-    }
+    },
+    // "plugins": [{ "transform": "ts-nameof", "type": "raw" }]
   },
   "exclude": ["node_modules", "tmp"]
 }

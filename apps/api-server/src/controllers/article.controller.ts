@@ -1,6 +1,6 @@
 import { Param, Get, JsonController, Post, Put, Delete } from "routing-controllers";
 import executor from "../handlers/executor";
-import { ArticleResponse, ArticlesResponse, BooleanResponse, IdResponse,  } from "@doctrina-nx/responses";
+import { ArticleResponse, ArticlesResponse, BooleanResponse, IdResponse,  } from "../../../../libs/responses";
 import { CreateArticleRequest, DeleteArticleRequest, EditArticleRequest, GetAllArticleRequest, GetArticleByIdRequest, IsUniqueTitleRequest, SearchArticleRequest } from "../contract/requests";
 
 @JsonController()
