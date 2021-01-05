@@ -89,5 +89,10 @@
   },
   "peerDependencies": {
     "@angular/material": "^10.1.1"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run test:api-related"
+    ]
   }
 }
