@@ -103,7 +103,6 @@
     "hooks": {
       "pre-commit": "lint-staged",
       "pre-push": "npm run test:api"
-
     }
   },
   "lint-staged": {
