@@ -1,3 +1,3 @@
 test('test lolololol', () => {
-    expect(123456 + 567890).toBe(34567);
+    expect(123456 + 567890).toBe(2);
 });
