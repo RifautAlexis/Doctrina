@@ -1,3 +1,3 @@
 test('adds 1 + 2 to equal 3', () => {
-    expect(1 + 2).toBe(456);
+    expect(1 + 2).toBe(45346);
 });
