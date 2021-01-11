@@ -99,12 +99,6 @@
   "peerDependencies": {
     "@angular/material": "^10.1.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged",
-      "pre-push": "npm run test:api"
-    }
-  },
   "lint-staged": {
     "*.ts": [
       "eslint --fix",
