@@ -3,14 +3,14 @@ name: Koa CI
 on:
   push:
     branches:
-    - develop
+    - 'develop'
     paths:
-    - apps/api-server
+    - 'apps/api-server'
   pull_request:
     branches:
-    - develop
+    - 'develop'
     paths:
-    - apps/api-server
+    - 'apps/api-server'
 
 jobs:
   koa:
