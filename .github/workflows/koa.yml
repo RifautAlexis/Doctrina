@@ -2,9 +2,15 @@ name: Koa CI
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+    - develop
+    paths:
+    - apps/api-server
   pull_request:
-    branches: [ develop ]
+    branches:
+    - develop
+    paths:
+    - apps/api-server
 
 jobs:
   build:
