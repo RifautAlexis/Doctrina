@@ -36,4 +36,4 @@ jobs:
         heroku_app_name: "doctrina-be" #Must be unique in Heroku
         heroku_email: "ralexis149@gmail.com"
         branch: "develop"
-        appdir: "apps/api-server"
+        appdir: "./apps/api-server"
