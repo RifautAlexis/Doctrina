@@ -39,5 +39,3 @@ jobs:
         # branch: "develop"
         # appdir: "./apps/api-server/dist"
         procfile: true
-      env:
-        HUSKY: false
