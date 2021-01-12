@@ -39,3 +39,5 @@ jobs:
         # branch: "develop"
         # appdir: "./apps/api-server/dist"
         procfile: true
+      env:
+        ENV HUSKY_SKIP_INSTALL: true
