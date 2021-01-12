@@ -1,41 +1,38 @@
-name: Koa CI
+# name: Koa CI
 
-on:
-  push:
-    branches:
-    - 'develop'
-    paths:
-    - 'apps/api-server/**'
-  pull_request:
-    branches:
-    - 'develop'
-    paths:
-    - 'apps/api-server/**'
+# on:
+#   push:
+#     branches:
+#     - 'develop'
+#     paths:
+#     - 'apps/api-server/**'
+#   pull_request:
+#     branches:
+#     - 'develop'
+#     paths:
+#     - 'apps/api-server/**'
 
-jobs:
-  koa:
+# jobs:
+#   koa:
 
-    runs-on: ubuntu-latest
+#     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [ 15.x ]
+#     strategy:
+#       matrix:
+#         node-version: [ 15.x ]
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    # - run: npm install
-    - run: npm ci
-    - run: npm run test:api
+#     steps:
+#     - uses: actions/checkout@v2
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v1
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#     - run: npm ci
+#     - run: npm run test:api
 
-    - uses: akhileshns/heroku-deploy@v3.8.9
-      with:
-        heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-        heroku_app_name: "doctrina-be" #Must be unique in Heroku
-        heroku_email: "ralexis149@gmail.com"
-        # branch: "develop"
-        # appdir: "./apps/api-server/dist"
-        procfile: "web: npm run start:heroku"
+#     - uses: akhileshns/heroku-deploy@v3.8.9
+#       with:
+#         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+#         heroku_app_name: "doctrina-be"
+#         heroku_email: "ralexis149@gmail.com"
+#         procfile: "web: npm run start:heroku"
