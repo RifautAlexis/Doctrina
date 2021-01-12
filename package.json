@@ -13,7 +13,7 @@
   "scripts": {
     "start:api": "cd apps/api-server && ts-node --compiler ttypescript src/index.ts",
     "start:client": "cd apps/client && ng serve",
-    "postinstall": "ttsc apps/api-server/src/index.ts && husky install",
+    "postinstall": "ttsc apps/api-server/src/index.ts",
     "start:heroku": "node apps/api-server/dist/apps/api-server/src/index.js",
     "test:api-related": "jest --bail --findRelatedTests ./apps/api-server",
     "test:api": "jest --bail ./apps/api-server",
