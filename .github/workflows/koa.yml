@@ -38,4 +38,4 @@ jobs:
         heroku_email: "ralexis149@gmail.com"
         # branch: "develop"
         # appdir: "./apps/api-server/dist"
-        procfile: true
+        procfile: "web: npm run start:heroku"
