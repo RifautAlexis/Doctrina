@@ -13,13 +13,11 @@
   "scripts": {
     "start:api": "cd apps/api-server && ts-node --compiler ttypescript src/index.ts",
     "start:client": "cd apps/client && ng serve",
-    "postinstall": "ttsc apps/api-server/src/index.ts",
+    "postinstall": "ttsc apps/api-server/src/index.ts && husky install",
     "heroku": "node apps/api-server/dist/apps/api-server/src/index.js",
     "test:api-related": "jest --bail --findRelatedTests ./apps/api-server",
     "test:api": "jest --bail ./apps/api-server",
-    "lint-staged": "lint-staged",
-    "prepublishOnly": "pinst --disable",
-    "postpublish": "pinst --enable"
+    "lint-staged": "lint-staged"
   },
   "private": true,
   "dependencies": {
