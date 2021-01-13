@@ -35,5 +35,3 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "doctrina-be"
         heroku_email: "ralexis149@gmail.com"
-      env:
-        HD_CI: 1
