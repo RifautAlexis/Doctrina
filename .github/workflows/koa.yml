@@ -36,4 +36,4 @@ jobs:
         heroku_app_name: "doctrina-be"
         heroku_email: "ralexis149@gmail.com"
       env:
-        HD_CI: true
+        HD_CI: 1
