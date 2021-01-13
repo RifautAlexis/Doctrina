@@ -43,7 +43,7 @@ export class ArticleController {
 
   @Get('/')
   async get() {
-    return 'CI worked 17!';
+    return 'CI worked 18!';
   }
 
   // @Get("/")
