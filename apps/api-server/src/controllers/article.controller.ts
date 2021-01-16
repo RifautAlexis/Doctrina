@@ -42,14 +42,12 @@ export class ArticleController {
   }
 
   @Get('/')
-  async get() {
-    return 'CI worked 21!';
+  async get(request: GetAllArticleRequest) {
+    return await executor.Execute<GetAllArticleRequest, ArticlesResponse>(
+      nameof<GetAllArticleRequest>(),
+      request
+    );
   }
-
-  // @Get("/")
-  // async get(request: GetAllArticleRequest) {
-  //    return await executor.Execute<GetAllArticleRequest, ArticlesResponse>(nameof<GetAllArticleRequest>(), request);
-  // }
 
   @Post('/isUniqueTitle')
   async IsUniqueTitleRequest(request: IsUniqueTitleRequest) {
